@@ -1501,6 +1501,9 @@
                     <div class="col-6 col-sm-4 col-md-2"><i class="c-icon c-icon-2xl mt-5 mb-2 cil-user"></i>
                       <div>cil-user</div>
                     </div>
+                      <div class="col-6 col-sm-4 col-md-2"><i class="c-icon c-icon-2xl mt-5 mb-2 cil-aparelho"></i>
+                          <div>cil-aparelho</div>
+                      </div>
                     <div class="col-6 col-sm-4 col-md-2"><i class="c-icon c-icon-2xl mt-5 mb-2 cil-user-female"></i>
                       <div>cil-user-female</div>
                     </div>
@@ -1636,7 +1639,7 @@
               </div>
             </div>
           </div>
-      
+
 @endsection
 
 @section('javascript')

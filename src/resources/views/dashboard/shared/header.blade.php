@@ -11,55 +11,20 @@
             }
         ?>
         <ul class="c-header-nav ml-auto mr-4">
-          <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
-              <svg class="c-icon">
-                <use xlink:href="{{ url('/icons/sprites/free.svg#cil-bell') }}"></use>
-              </svg></a></li>
-          <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
-              <svg class="c-icon">
-                <use xlink:href="{{ url('/icons/sprites/free.svg#cil-list-rich') }}"></use>
-              </svg></a></li>
-          <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link">
-              <svg class="c-icon">
-                <use xlink:href="{{ url('/icons/sprites/free.svg#cil-envelope-open') }}"></use>
-              </svg></a></li>
           <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               <div class="c-avatar"><img class="c-avatar-img" src="{{ url('/assets/img/avatars/6.jpg') }}" alt="user@email.com"></div>
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
-              <div class="dropdown-header bg-light py-2"><strong>Account</strong></div><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-bell') }}"></use>
-                </svg> Updates<span class="badge badge-info ml-auto">42</span></a><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-envelope-open') }}"></use>
-                </svg> Messages<span class="badge badge-success ml-auto">42</span></a><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-task') }}"></use>
-                </svg> Tasks<span class="badge badge-danger ml-auto">42</span></a><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-comment-square') }}"></use>
-                </svg> Comments<span class="badge badge-warning ml-auto">42</span></a>
-              <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div><a class="dropdown-item" href="#">
+              <div class="dropdown-header bg-light py-2"><strong>Minha Conta</strong></div><a class="dropdown-item" href="/minha-conta">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-user') }}"></use>
-                </svg> Profile</a><a class="dropdown-item" href="#">
+                </svg> Meus Dados</a><a class="dropdown-item" href="#">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-settings') }}"></use>
-                </svg> Settings</a><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-credit-card') }}"></use>
-                </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-file') }}"></use>
-                </svg> Projects<span class="badge badge-primary ml-auto">42</span></a>
-              <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-lock-locked') }}"></use>
-                </svg> Lock Account</a><a class="dropdown-item" href="#">
+                </svg> Configurações</a><a class="dropdown-item" href="">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-account-logout') }}"></use>
-                </svg><form action="{{ url('/logout') }}" method="POST"> @csrf <button type="submit" class="btn btn-ghost-dark btn-block">Logout</button></form></a>
+                </svg><form action="{{ url('/logout') }}" method="POST"> @csrf <button type="submit" class="btn btn-ghost-dark btn-block">Sair</button></form></a>
             </div>
           </li>
         </ul>

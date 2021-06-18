@@ -1,4 +1,4 @@
-      <div class="c-sidebar-brand"><img class="c-sidebar-brand-full" src="/assets/brand/coreui-base-white.svg" width="118" height="46" alt="CoreUI Logo"><img class="c-sidebar-brand-minimized" src="assets/brand/coreui-signet-white.svg" width="118" height="46" alt="CoreUI Logo"></div>
+      <div class="c-sidebar-brand"><img class="c-sidebar-brand-full" src="/assets/brand/coreui-base-white.svg" width="118" height="46" alt="CoreUI Logo"><img class="c-sidebar-brand-minimized" src="assets/brand/training-core-favicon.png" width="118" height="46" alt="CoreUI Logo"></div>
       <nav class="c-sidebar-nav">
         <ul class="c-nav">
           <li class="c-nav-item"><a class="c-nav-link" href="/">
