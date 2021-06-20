@@ -18,7 +18,7 @@
                         <i class="icon-user"></i>
                         </span>
                     </div>
-                    <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" name="email" value="{{ old('email') }}" required autofocus>
+                    <input class="form-control" type="text" placeholder="{{ __('E-mail') }}" name="email" value="{{ old('email') }}" required autofocus>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@
                         <i class="icon-lock"></i>
                         </span>
                     </div>
-                    <input class="form-control" type="password" placeholder="{{ __('Password') }}" name="password" required>
+                    <input class="form-control" type="password" placeholder="{{ __('Senha') }}" name="password" required>
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
                     </div>
                     </form>
                     <div class="col-6 text-right">
-                        <a href="{{ route('password.request') }}" class="btn btn-link px-0" type="button">{{ __('Forgot Your Password?') }}</a>
+                        <a href="{{ route('password.request') }}" class="btn btn-link px-0" type="button">{{ __('Esqueceu sua senha?') }}</a>
                     </div>
                     </div>
               </div>

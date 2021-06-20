@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Delete {{ $formName }}</h4></div>
+          <div class="card-header"><h4>Deletar {{ $formName }}</h4></div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
@@ -20,18 +20,18 @@
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="marker" value="true">
-                            <p>Are you sure?</p>
+                            <p>Você tem certeza?</p>
                             <button
                                 type="submit"
                                 class="btn btn-danger mt-3"
                             >
-                                Delete
+                                Deletar
                             </button>
-                            <a 
+                            <a
                                 href="{{ route('resource.index', $table) }}"
                                 class="btn btn-primary mt-3"
                             >
-                                Return
+                                Voltar
                             </a>
                         </form>
                     </div>

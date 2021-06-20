@@ -53,12 +53,12 @@
                                     }elseif($column->type == 'radio'){
                                         echo '<label class="mt-3">' . $column->name . '</label>';
                                         echo '<div class="form-check">';
-                                        echo '<input class="form-check-input" type="radio" value="teste" name="' . $column->column_name . '">';
-                                        echo '<label class="form-check-label">yes</label>';
+                                        echo '<input class="form-check-input" type="radio" value="true" name="' . $column->column_name . '">';
+                                        echo '<label class="form-check-label">Sim</label>';
                                         echo '</div>';
                                         echo '<div class="form-check mb-3">';
                                         echo '<input class="form-check-input" type="radio" value="false" name="' . $column->column_name . '">';
-                                        echo '<label class="form-check-label">no</label>';
+                                        echo '<label class="form-check-label">Não</label>';
                                         echo '</div>';
                                     }else{
                                         echo '<label>' . $column->name . '</label>';
@@ -97,13 +97,13 @@
                                 type="submit"
                                 class="btn btn-primary mt-3"
                             >
-                                Save
+                                Salvar
                             </button>
                             <a
                                 href="{{ route('resource.index', $form->id) }}"
                                 class="btn btn-primary mt-3"
                             >
-                                Return
+                                Voltar
                             </a>
                         </form>
                     </div>

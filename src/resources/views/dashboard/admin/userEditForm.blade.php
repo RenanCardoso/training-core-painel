@@ -8,7 +8,7 @@
               <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i> {{ __('Edit') }} {{ $user->name }}</div>
+                      <i class="fa fa-align-justify"></i> {{ __('Editar') }} {{ $user->name }}</div>
                     <div class="card-body">
                         <br>
                         <form method="POST" action="/users/{{ $user->id }}">
@@ -22,16 +22,16 @@
                                       </svg>
                                     </span>
                                 </div>
-                                <input class="form-control" type="text" placeholder="{{ __('Name') }}" name="name" value="{{ $user->name }}" required autofocus>
+                                <input class="form-control" type="text" placeholder="{{ __('Nome') }}" name="name" value="{{ $user->name }}" required autofocus>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
-                                <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" name="email" value="{{ $user->email }}" required>
+                                <input class="form-control" type="text" placeholder="{{ __('E-mail') }}" name="email" value="{{ $user->email }}" required>
                             </div>
-                            <button class="btn btn-block btn-success" type="submit">{{ __('Save') }}</button>
-                            <a href="{{ route('users.index') }}" class="btn btn-block btn-primary">{{ __('Return') }}</a> 
+                            <button class="btn btn-block btn-success" type="submit">{{ __('Salvar') }}</button>
+                            <a href="{{ route('users.index') }}" class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
                         </form>
                     </div>
                 </div>

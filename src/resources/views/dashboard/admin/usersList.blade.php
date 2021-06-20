@@ -8,15 +8,15 @@
               <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
                 <div class="card">
                     <div class="card-header">
-                      <i class="fa fa-align-justify"></i>{{ __('Users') }}</div>
+                      <i class="fa fa-align-justify"></i>{{ __('Usuários') }}</div>
                     <div class="card-body">
                         <table class="table table-responsive-sm table-striped">
                         <thead>
                           <tr>
-                            <th>Username</th>
+                            <th>Nome</th>
                             <th>E-mail</th>
-                            <th>Roles</th>
-                            <th>Email verified at</th>
+                            <th>Papel</th>
+                            <th>E-mail Verificado às</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -30,17 +30,17 @@
                               <td>{{ $user->menuroles }}</td>
                               <td>{{ $user->email_verified_at }}</td>
                               <td>
-                                <a href="{{ url('/users/' . $user->id) }}" class="btn btn-block btn-primary">View</a>
+                                <a href="{{ url('/users/' . $user->id) }}" class="btn btn-block btn-primary">Ver</a>
                               </td>
                               <td>
-                                <a href="{{ url('/users/' . $user->id . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
+                                <a href="{{ url('/users/' . $user->id . '/edit') }}" class="btn btn-block btn-primary">Editar</a>
                               </td>
                               <td>
                                 @if( $you->id !== $user->id )
                                 <form action="{{ route('users.destroy', $user->id ) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-block btn-danger">Delete User</button>
+                                    <button class="btn btn-block btn-danger">Deletar</button>
                                 </form>
                                 @endif
                               </td>

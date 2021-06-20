@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Edit {{ $form->name }}</h4></div>
+          <div class="card-header"><h4>Editar {{ $form->name }}</h4></div>
             <div class="card-body">
                 @if(Session::has('message'))
                     <div class="row">
@@ -122,13 +122,13 @@
                                 type="submit"
                                 class="btn btn-primary mt-3"
                             >
-                                Save
+                                Salvar
                             </button>
-                            <a 
+                            <a
                                 href="{{ route('resource.index', $form->id) }}"
                                 class="btn btn-primary mt-3"
                             >
-                                Return
+                                Voltar
                             </a>
                         </form>
                     </div>

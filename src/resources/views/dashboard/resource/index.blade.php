@@ -23,11 +23,11 @@
                 @endif
                 @if( $enableButtons['add'] == 1 )
                     <div class="col-12">
-                        <a 
+                        <a
                             href="{{ route('resource.create', $form->id ) }}"
                             class="btn btn-primary mb-3"
                         >
-                        Add new
+                        Adicionar
                         </a>
                     </div>
                 @endif
@@ -65,12 +65,12 @@
                                         }
                                         if($enableButtons['read'] == 1){
                                             echo '<td>';
-                                            echo '<a href="' . route("resource.show", ['table' => $form->id, 'resource' => $data['id'] ] ) . '" class="btn btn-primary">Show</a>';
+                                            echo '<a href="' . route("resource.show", ['table' => $form->id, 'resource' => $data['id'] ] ) . '" class="btn btn-primary">Ver</a>';
                                             echo '</td>';
                                         }
                                         if($enableButtons['edit'] == 1){
                                             echo '<td>';
-                                            echo '<a href="' . route("resource.edit", ['table' => $form->id, 'resource' => $data['id'] ] ) . '" class="btn btn-primary">Edit</a>';
+                                            echo '<a href="' . route("resource.edit", ['table' => $form->id, 'resource' => $data['id'] ] ) . '" class="btn btn-primary">Editar</a>';
                                             echo '</td>';
                                         }
                                         if($enableButtons['delete'] == 1){
@@ -80,7 +80,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                 <?php
-                                            echo '<button class="btn btn-danger">Delete</button>';
+                                            echo '<button class="btn btn-danger">Deletar</button>';
                                             echo '</form>';
                                             echo '</td>';
                                         }
