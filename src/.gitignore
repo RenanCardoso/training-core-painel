@@ -25,3 +25,12 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 composer.phar
+node_modules/
+.idea/
+
+_ide_helper.php
+.vscode/
+
+file:/
+.php_cs.cache
+
