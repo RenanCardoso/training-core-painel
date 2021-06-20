@@ -72,7 +72,7 @@ class UsersController extends Controller
         $user->name       = $request->input('name');
         $user->email      = $request->input('email');
         $user->save();
-        $request->session()->flash('message', 'Successfully updated user');
+        $request->session()->flash('message', 'Usuário atualizado com sucesso!');
         return redirect()->route('users.index');
     }
 

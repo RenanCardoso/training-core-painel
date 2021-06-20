@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Add {{ $form->name }}</h4></div>
+          <div class="card-header"><h4>Adicionar {{ $form->name }}</h4></div>
             <div class="card-body">
                 @if(Session::has('message'))
                     <div class="row">
@@ -53,7 +53,7 @@
                                     }elseif($column->type == 'radio'){
                                         echo '<label class="mt-3">' . $column->name . '</label>';
                                         echo '<div class="form-check">';
-                                        echo '<input class="form-check-input" type="radio" value="true" name="' . $column->column_name . '">';
+                                        echo '<input class="form-check-input" type="radio" value="teste" name="' . $column->column_name . '">';
                                         echo '<label class="form-check-label">yes</label>';
                                         echo '</div>';
                                         echo '<div class="form-check mb-3">';
@@ -99,7 +99,7 @@
                             >
                                 Save
                             </button>
-                            <a 
+                            <a
                                 href="{{ route('resource.index', $form->id) }}"
                                 class="btn btn-primary mt-3"
                             >

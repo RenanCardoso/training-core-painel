@@ -29,7 +29,7 @@ class ResourceController extends Controller
             }
         } catch (\Throwable $e) {
             $guestHasPermission = false;
-        }       
+        }
         if(!$guestHasPermission){
             if(empty(Auth::user())){
                 abort('401');
@@ -66,7 +66,7 @@ class ResourceController extends Controller
             }
         } catch (\Throwable $e) {
             $guestHasPermission = false;
-        }       
+        }
         if(!$guestHasPermission){
             if(empty(Auth::user())){
                 abort('401');
@@ -75,13 +75,13 @@ class ResourceController extends Controller
                     abort('401');
                 }
             }
-        }        
+        }
         $form = Form::find( $table );
         if($form->add == 1){
             $resourceService = new ResourceService();
             $formService = new FormService();
             $columns = $resourceService->getColumnsForAdd( $table );
-            
+
             return view('dashboard.resource.create', [
                 'form' => $form,
                 'columns' => $columns,
@@ -108,7 +108,7 @@ class ResourceController extends Controller
             }
         } catch (\Throwable $e) {
             $guestHasPermission = false;
-        }       
+        }
         if(!$guestHasPermission){
             if(empty(Auth::user())){
                 abort('401');
@@ -117,7 +117,7 @@ class ResourceController extends Controller
                     abort('401');
                 }
             }
-        } 
+        }
         $toValidate = array();
         $form = Form::find( $table );
         $formFields = FormField::where('form_id', '=', $table)->where('add', '=', '1')->get();
@@ -150,7 +150,7 @@ class ResourceController extends Controller
             }
         } catch (\Throwable $e) {
             $guestHasPermission = false;
-        }       
+        }
         if(!$guestHasPermission){
             if(empty(Auth::user())){
                 abort('401');
@@ -159,7 +159,7 @@ class ResourceController extends Controller
                     abort('401');
                 }
             }
-        } 
+        }
         $form = Form::find( $table );
         if($form->read == 1){
             $resourceService = new ResourceService();
@@ -187,7 +187,7 @@ class ResourceController extends Controller
             }
         } catch (\Throwable $e) {
             $guestHasPermission = false;
-        }       
+        }
         if(!$guestHasPermission){
             if(empty(Auth::user())){
                 abort('401');
@@ -229,7 +229,7 @@ class ResourceController extends Controller
             }
         } catch (\Throwable $e) {
             $guestHasPermission = false;
-        }       
+        }
         if(!$guestHasPermission){
             if(empty(Auth::user())){
                 abort('401');
@@ -271,7 +271,7 @@ class ResourceController extends Controller
             }
         } catch (\Throwable $e) {
             $guestHasPermission = false;
-        }       
+        }
         if(!$guestHasPermission){
             if(empty(Auth::user())){
                 abort('401');

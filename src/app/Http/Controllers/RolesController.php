@@ -131,8 +131,8 @@ class RolesController extends Controller
         $role = Role::where('id', '=', $id)->first();
         $role->name = $request->input('name');
         $role->save();
-        $request->session()->flash('message', 'Successfully updated role');
-        return redirect()->route('roles.edit', $id); 
+        $request->session()->flash('message', 'Permissão atualizada com sucesso!');
+        return redirect()->route('roles.edit', $id);
     }
 
     /**
@@ -153,7 +153,7 @@ class RolesController extends Controller
         }else{
             $role->delete();
             $roleHierarchy->delete();
-            $request->session()->flash('message', "Successfully deleted role");
+            $request->session()->flash('message', "Permissão removida com sucesso!");
             $request->session()->flash('back', 'roles.index');
             return view('dashboard.shared.universal-info');
         }

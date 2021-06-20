@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Edit menu element</h4></div>
+          <div class="card-header"><h4>Editar Elementos do Menu</h4></div>
             <div class="card-body">
                 @if(Session::has('message'))
                     <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
@@ -79,10 +79,10 @@
                                     Name
                                 </th>
                                 <td>
-                                    <input 
-                                    type="text" 
-                                    class="form-control" 
-                                    name="name" 
+                                    <input
+                                    type="text"
+                                    class="form-control"
+                                    name="name"
                                     value="{{ $menuElement->name }}"
                                     placeholder="Name"
                                     />
@@ -119,10 +119,10 @@
                                 <td>
                                     <div id="div-href">
                                         Href:
-                                        <input 
-                                            type="text" 
-                                            name="href" 
-                                            class="form-control" 
+                                        <input
+                                            type="text"
+                                            name="href"
+                                            class="form-control"
                                             placeholder="href"
                                             value="{{ $menuElement->href }}"
                                         />
@@ -137,18 +137,18 @@
                                     </div>
                                     <br><br>
                                     <div id="div-icon">
-                                        Icon - Find icon class in: 
-                                        <a 
+                                        Icon - Find icon class in:
+                                        <a
                                             href="https://coreui.io/docs/icons/icons-list/#coreui-icons-free-502-icons"
                                             target="_blank"
                                         >
                                             CoreUI icons documentation
                                         </a>
                                         <br>
-                                        <input 
-                                            class="form-control" 
-                                            name="icon" 
-                                            type="text" 
+                                        <input
+                                            class="form-control"
+                                            name="icon"
+                                            type="text"
                                             placeholder="CoreUI Icon class - example: cil-bell"
                                             value="{{ $menuElement->icon }}"
                                         >
@@ -171,8 +171,8 @@
 @endsection
 
 @section('javascript')
-<script src="{{ asset('js/axios.min.js') }}"></script> 
-<script src="{{ asset('js/menu-edit.js') }}"></script> 
+<script src="{{ asset('js/axios.min.js') }}"></script>
+<script src="{{ asset('js/menu-edit.js') }}"></script>
 
 
 
