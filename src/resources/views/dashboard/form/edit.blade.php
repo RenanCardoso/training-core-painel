@@ -20,8 +20,8 @@
                             <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                         </div>
                     </div>
-                @endif 
-                <form method="POST" action="{{ route('bread.update', $form->id) }}">           
+                @endif
+                <form method="POST" action="{{ route('bread.update', $form->id) }}">
                     <div class="row">
                         <div class="col-6">
                             @csrf
@@ -29,7 +29,7 @@
 
                             <div class="form-group">
                                 <label>Form name</label>
-                                <input 
+                                <input
                                     type="text"
                                     name="name"
                                     placeholder="Form name"
@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Records on one page of table</label>
-                                <input 
+                                <input
                                     type="number"
                                     name="pagination"
                                     placeholder="Records on one page of table"
@@ -50,7 +50,7 @@
                                 >
                             </div>
                             <div class="form-check checkbox mt-3">
-                              <input class="form-check-input" type="checkbox" value="true" name="read" 
+                              <input class="form-check-input" type="checkbox" value="true" name="read"
                                 @if( $form->read == 1 )
                                     checked
                                 @endif
@@ -58,7 +58,7 @@
                               <label class="form-check-label">Enable Show button in table</label>
                             </div>
                             <div class="form-check checkbox">
-                              <input class="form-check-input" type="checkbox" value="true" name="edit" 
+                              <input class="form-check-input" type="checkbox" value="true" name="edit"
                                 @if( $form->edit == 1 )
                                     checked
                                 @endif
@@ -66,7 +66,7 @@
                               <label class="form-check-label">Enable Edit button in table</label>
                             </div>
                             <div class="form-check checkbox">
-                              <input class="form-check-input" type="checkbox" value="true" name="add" 
+                              <input class="form-check-input" type="checkbox" value="true" name="add"
                                 @if( $form->add == 1 )
                                     checked
                                 @endif
@@ -74,14 +74,14 @@
                               <label class="form-check-label">Enable Add button in table</label>
                             </div>
                             <div class="form-check checkbox mb-3">
-                              <input class="form-check-input" type="checkbox" value="true" name="delete" 
+                              <input class="form-check-input" type="checkbox" value="true" name="delete"
                                 @if( $form->delete == 1 )
                                     checked
                                 @endif
                               >
                               <label class="form-check-label">Enable Delete button in table</label>
                             </div>
-                        
+
                         </div>
                         <div class="col-6">
                             <div class="card border-primary">
@@ -120,11 +120,11 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $field->column_name }}</h5>
                                             <label>Visible name</label>
-                                            <input 
-                                                class="form-control" 
-                                                name="{{ $field->id }}_name" 
-                                                type="text" 
-                                                value="{{ $field->name }}" 
+                                            <input
+                                                class="form-control"
+                                                name="{{ $field->id }}_name"
+                                                type="text"
+                                                value="{{ $field->name }}"
                                                 placeholder="Visible name"
                                             >
                                             <label>Field type</label>
@@ -138,18 +138,18 @@
                                                 @endforeach
                                             </select>
                                             <label>Optional relation table name</label>
-                                            <input 
-                                                class="form-control" 
-                                                name="{{ $field->id }}_relation_table" 
-                                                type="text" 
+                                            <input
+                                                class="form-control"
+                                                name="{{ $field->id }}_relation_table"
+                                                type="text"
                                                 placeholder="Optional relation table name"
                                                 value="{{ $field->relation_table }}"
                                             >
                                             <label>Optional column name in relation table - to print</label>
-                                            <input 
-                                                class="form-control" 
-                                                name="{{ $field->id }}_relation_column" 
-                                                type="text" 
+                                            <input
+                                                class="form-control"
+                                                name="{{ $field->id }}_relation_column"
+                                                type="text"
                                                 placeholder="Optional column name in relation table - to print"
                                                 value="{{ $field->relation_column }}"
                                             >
@@ -194,7 +194,7 @@
                             >
                                 Save
                             </button>
-                            <a 
+                            <a
                                 href="{{ route('bread.index') }}"
                                 class="btn btn-primary"
                             >

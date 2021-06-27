@@ -20,7 +20,7 @@
                             <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                         </div>
                     </div>
-                @endif            
+                @endif
                 <div class="row">
                     <div class="col-6">
                         <form method="POST" action="{{ route('bread.store') }}">
@@ -28,7 +28,7 @@
                             <input name="marker" value="selectModel" type="hidden">
                             <div class="form-group">
                                 <label>Table name in database</label>
-                                <input 
+                                <input
                                     type="text"
                                     placeholder="Table name"
                                     name="model"
@@ -41,7 +41,7 @@
                             >
                                 Select
                             </button>
-                            <a 
+                            <a
                                 href="{{ route('bread.index') }}"
                                 class="btn btn-primary"
                             >
