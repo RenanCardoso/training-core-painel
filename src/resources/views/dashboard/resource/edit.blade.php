@@ -6,6 +6,9 @@
 
 @section('content')
 
+@section('scripts')
+    <link rel="stylesheet" href="{!! asset('css/animate.css') !!}">
+@endsection
 
 <div class="container-fluid">
   <div class="fade-in">
@@ -54,6 +57,11 @@
                                             }
                                             echo '>';
                                             echo '<label class="form-check-label">' . $column['name']  . '</label>';
+                                            echo '</div>';
+                                        }elseif($column['type'] == 'price'){
+                                            echo '<label class="form-check-label mt-3">' . $column['name'] . '</label>';
+                                            echo '<div class="form mb-3">';
+                                            echo '<input type="text" id="price" name="' . $column['column_name'] . '" class="form-control price" style="display:inline-block" />';
                                             echo '</div>';
                                         }elseif($column['type'] == 'radio'){
                                             echo '<label class="mt-3">' . $column['name'] . '</label>';

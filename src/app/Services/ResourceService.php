@@ -148,7 +148,7 @@ class ResourceService{
         $columns = $this->getColumnsForAdd($formId);
         $toInsert = array();
         foreach($columns as $column){
-            if($column->type == 'checkbox' || $column->type == 'radio' || $column->type == 'relation_radio'){
+            if($column->type == 'checkbox' || $column->type == 'price' || $column->type == 'radio' || $column->type == 'relation_radio'){
                 if(isset($request[$column->column_name])){
                     $toInsert[ $column->column_name ] = $request[$column->column_name];
                 }else{
@@ -172,9 +172,11 @@ class ResourceService{
             if($column != 'id'){
                 $flag = 'false';
                 foreach($toUpdate as $update){
-                    if($update->column_name == $column){
-                        if($update->type == 'checkbox'){
+                    if($update->column_name == $column) {
+                        if ($update->type == 'checkbox') {
                             $flag = 'checkbox';
+                        }elseif($update->type == 'price'){
+                            $flag = 'price';
                         }elseif($update->type == 'radio' || $update->type == 'relation_radio'){
                             $flag = 'radio';
                         }elseif($update->type == 'file' || $update->type == 'image'){
@@ -185,8 +187,14 @@ class ResourceService{
                         break;
                     }
                 }
-                if($flag != 'false'){
-                    if($flag == 'checkbox'){
+                if($flag != 'false') {
+                    if ($flag == 'checkbox') {
+                        if (isset($request[$column])) {
+                            $updateArray[$column] = $request[$column];
+                        } else {
+                            $updateArray[$column] = false;
+                        }
+                    }elseif($flag == 'price'){
                         if(isset($request[$column])){
                             $updateArray[$column] = $request[$column];
                         }else{

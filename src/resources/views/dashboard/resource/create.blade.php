@@ -50,6 +50,11 @@
                                         echo '<input class="form-check-input" type="checkbox" value="true" name="' . $column->column_name . '">';
                                         echo '<label class="form-check-label">' . $column->name  . '</label>';
                                         echo '</div>';
+                                    }elseif($column['type'] == 'price'){
+                                        echo '<label class="form-check-label mt-3">' . $column['name'] . '</label>';
+                                        echo '<div class="form mb-3">';
+                                        echo '<input type="text" id="price" name="price" class="form-control price" style="display:inline-block" />';
+                                        echo '</div>';
                                     }elseif($column->type == 'radio'){
                                         echo '<label class="mt-3">' . $column->name . '</label>';
                                         echo '<div class="form-check">';
