@@ -43,6 +43,11 @@ class FormService{
         }else{
             $formField->add = 0;
         }
+        if(isset($request[$slug . '_required'])){
+            $formField->required = 1;
+        }else{
+            $formField->required = 0;
+        }
         if(isset( $request[$slug . '_relation_table'] )){
             $formField->relation_table = $request[$slug . '_relation_table'];
         }
@@ -76,6 +81,11 @@ class FormService{
             $field->add = 1;
         }else{
             $field->add = 0;
+        }
+        if(isset($request[$field->id . '_required'])){
+            $field->required = 1;
+        }else{
+            $field->required = 0;
         }
         if(isset($request[$field->id . '_relation_table'])){
             $field->relation_table = $request[$field->id . '_relation_table'];

@@ -20,18 +20,18 @@
                             <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                         </div>
                     </div>
-                @endif  
+                @endif
 
                 <form method="POST" action="{{ route('bread.store') }}">
                     @csrf
                     <input name="marker" value="createForm" type="hidden">
-                    <input type="hidden" name="model" value="{{ $model }}"> 
+                    <input type="hidden" name="model" value="{{ $model }}">
 
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Form name</label>
-                                <input 
+                                <input
                                     type="text"
                                     name="name"
                                     placeholder="Form name"
@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Records on one page of table</label>
-                                <input 
+                                <input
                                     type="number"
                                     name="pagination"
                                     placeholder="Records on one page of table"
@@ -66,7 +66,7 @@
                               <input class="form-check-input" type="checkbox" value="true" name="delete" checked>
                               <label class="form-check-label">Enable Delete button in table</label>
                             </div>
-                    
+
                     </div>
                     <div class="col-6">
                         <div class="card border-primary">
@@ -92,11 +92,11 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $column }}</h5>
                                             <label>Visible name</label>
-                                            <input 
-                                                class="form-control" 
-                                                name="{{ $column }}_name" 
-                                                type="text" 
-                                                value="{{ $column }}" 
+                                            <input
+                                                class="form-control"
+                                                name="{{ $column }}_name"
+                                                type="text"
+                                                value="{{ $column }}"
                                                 placeholder="Visible name"
                                             >
                                             <label>Field type</label>
@@ -106,17 +106,17 @@
                                                 @endforeach
                                             </select>
                                             <label>Optional relation table name</label>
-                                            <input 
-                                                class="form-control" 
-                                                name="{{ $column }}_relation_table" 
-                                                type="text" 
+                                            <input
+                                                class="form-control"
+                                                name="{{ $column }}_relation_table"
+                                                type="text"
                                                 placeholder="Optional relation table name"
                                             >
                                             <label>Optional column name in relation table - to print</label>
-                                            <input 
-                                                class="form-control" 
-                                                name="{{ $column }}_relation_column" 
-                                                type="text" 
+                                            <input
+                                                class="form-control"
+                                                name="{{ $column }}_relation_column"
+                                                type="text"
                                                 placeholder="Optional column name in relation table - to print"
                                             >
                                             <div class="form-check checkbox">
@@ -135,6 +135,10 @@
                                                 <input class="form-check-input" name="{{ $column }}_add" type="checkbox" value="true">
                                                 <label class="form-check-label">Add</label>
                                             </div>
+                                            <div class="form-check checkbox">
+                                                <input class="form-check-input" name="{{ $column }}_required" type="checkbox" value="true">
+                                                <label class="form-check-label">Required</label>
+                                            </div>
                                         </div>
                                     </div>
                                 @endif
@@ -145,7 +149,7 @@
                             >
                                 Save
                             </button>
-                            <a 
+                            <a
                                 href="{{ route('bread.create') }}"
                                 class="btn btn-primary"
                             >

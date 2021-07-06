@@ -24,7 +24,7 @@ class ValidatorServiceProvider extends ServiceProvider
         $factory->extend('phone_cell', '\App\Validator\Phone@phoneCell');
 
         $factory->extend('bigger', '\App\Validator\Value@bigger');
-        $factory->extend('money', '\App\Validator\Money@apply');
+        $factory->extend('price', '\App\Validator\Price@apply');
         $factory->extend('percentage', '\App\Validator\Percentage@apply');
 
         $factory->extend('date_before_today', '\App\Validator\Date@beforeToday');

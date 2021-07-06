@@ -14,12 +14,12 @@ class CreatePlano extends Migration
     public function up()
     {
         Schema::create('plano', function (Blueprint $table) {
-            $table->increments('idplano');
-            $table->string('nomeplano', 120);
-            $table->string('duracao', 3)->nullable();;
-            $table->float('preco')->nullable();;
-            $table->integer('limitepessoas')->nullable();;
-            $table->integer('usucadastro');
+            $table->increments('id');
+            $table->string('nome', 120);
+            $table->string('duracao', 3)->nullable();
+            $table->float('preco')->nullable();
+            $table->integer('limitepessoas')->nullable();
+            $table->integer('usucadastro')->nullable();
             $table->integer('usualt')->nullable();
             $table->timestamps();
         });

@@ -122,8 +122,12 @@ class ResourceController extends Controller
         $form = Form::find( $table );
         $formFields = FormField::where('form_id', '=', $table)->where('add', '=', '1')->get();
         foreach($formFields as $formField){
-            $toValidate[$formField->column_name] = 'required';
+//            echo "<pre>"; print_r($formField); exit('');
+            if ($formField->required == 1){
+                $toValidate[$formField->column_name] = 'required';
+            }
         }
+
         $request->validate($toValidate);
         if($form->add == 1){
             $resourceService = new ResourceService();

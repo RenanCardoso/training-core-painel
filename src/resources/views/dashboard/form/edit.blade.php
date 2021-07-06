@@ -185,6 +185,14 @@
                                                 @endif
                                                 <label class="form-check-label">Add</label>
                                             </div>
+                                            <div class="form-check checkbox">
+                                                @if($field->required == 1)
+                                                    <input checked class="form-check-input" name="{{ $field->id }}_required" type="checkbox" value="true">
+                                                @else
+                                                    <input class="form-check-input" name="{{ $field->id }}_required" type="checkbox" value="true">
+                                                @endif
+                                                <label class="form-check-label">Required</label>
+                                            </div>
                                         </div>
                                     </div>
                             @endforeach
