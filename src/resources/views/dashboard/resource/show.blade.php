@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-header"><h4>Show {{ $form->name }}</h4></div>
+          <div class="card-header"><h4>Lista de {{ $form->name }}</h4></div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
@@ -40,11 +40,11 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <a 
+                        <a
                             href="{{ route('resource.index', $form->id) }}"
                             class="btn btn-primary"
                         >
-                            Return
+                            Voltar
                         </a>
                     </div>
                 </div>

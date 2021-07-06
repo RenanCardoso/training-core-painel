@@ -10,6 +10,7 @@ use App\Models\FormField;
 use App\Models\Form;
 use App\Models\Models;
 use App\Models\Folder;
+use App\Validators\Price;
 use Illuminate\Support\Facades\DB;
 
 class ResourceService{
@@ -147,13 +148,16 @@ class ResourceService{
     public function add($formId, $tableName, $request){
         $columns = $this->getColumnsForAdd($formId);
         $toInsert = array();
+
         foreach($columns as $column){
-            if($column->type == 'checkbox' || $column->type == 'price' || $column->type == 'radio' || $column->type == 'relation_radio'){
-                if(isset($request[$column->column_name])){
-                    $toInsert[ $column->column_name ] = $request[$column->column_name];
-                }else{
-                    $toInsert[ $column->column_name ] = '';
+            if($column->type == 'checkbox' || $column->type == 'radio' || $column->type == 'relation_radio') {
+                if (isset($request[$column->column_name])) {
+                    $toInsert[$column->column_name] = $request[$column->column_name];
+                } else {
+                    $toInsert[$column->column_name] = '';
                 }
+            }elseif($column->type == 'price'){
+                $toInsert[$column->column_name] = $request[$column->column_name];
             }elseif( $column->type == 'file' || $column->type == 'image' ){
                 $toInsert[ $column->column_name ] = $this->addMedia($request, $column->column_name);
             }else{

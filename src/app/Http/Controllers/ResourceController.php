@@ -11,7 +11,6 @@ use App\Models\Form;
 use App\Models\FormField;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class ResourceController extends Controller
 {
@@ -122,7 +121,6 @@ class ResourceController extends Controller
         $form = Form::find( $table );
         $formFields = FormField::where('form_id', '=', $table)->where('add', '=', '1')->get();
         foreach($formFields as $formField){
-//            echo "<pre>"; print_r($formField); exit('');
             if ($formField->required == 1){
                 $toValidate[$formField->column_name] = 'required';
             }
@@ -132,7 +130,7 @@ class ResourceController extends Controller
         if($form->add == 1){
             $resourceService = new ResourceService();
             $resourceService->add($form->id, $form->table_name, $request->all() );
-            $request->session()->flash('message', 'Successfully added to ' . $form->name);
+            $request->session()->flash('message', 'Adicionado com sucesso!');
             return redirect()->route('resource.index', $table );
         }else{
             abort('401');
@@ -253,7 +251,7 @@ class ResourceController extends Controller
         if($form->edit == 1){
             $resourceService = new ResourceService();
             $resourceService->update($form->table_name, $table, $id, $request->all() );
-            $request->session()->flash('message', 'Successfully edited ' . $form->name);
+            $request->session()->flash('message', 'Editado com sucesso!');
             return redirect()->route('resource.index', $table );
         }else{
             abort('401');
@@ -289,7 +287,7 @@ class ResourceController extends Controller
         if($form->delete == 1){
             if($request->has('marker')){
                 DB::table($form->table_name)->where('id', '=', $id)->delete();
-                $request->session()->flash('message', 'Successfully deleted element from: ' . $form->name);
+                $request->session()->flash('message', 'Deletado com sucesso');
                 return redirect()->route('resource.index', $table);
             }else{
                 return view('dashboard.resource.delete', ['table' => $table, 'id' => $id, 'formName' => $form->name]);
