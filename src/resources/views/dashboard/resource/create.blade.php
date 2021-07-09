@@ -65,6 +65,9 @@
                                         echo '<input class="form-check-input" type="radio" value="false" name="' . $column->column_name . '">';
                                         echo '<label class="form-check-label">Não</label>';
                                         echo '</div>';
+                                    }elseif($column->type == 'number'){
+                                        echo '<label>' . $column->name . '</label>';
+                                        echo '<input type="text"  class="form-control number" name="' . $column->column_name . '">';
                                     }else{
                                         //column->type == 'text'
                                         echo '<label>' . $column->name . '</label>';

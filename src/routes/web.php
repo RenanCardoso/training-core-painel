@@ -13,7 +13,7 @@
 
 Route::group(['middleware' => ['get.menu']], function () {
 
-    Route::group(['middleware' => ['role:admin']], function () {
+    Route::group(['middleware' => 'auth' ], function () {
         Route::get('/colors', function () {     return view('dashboard.colors'); });
         Route::get('/typography', function () { return view('dashboard.typography'); });
         Route::get('/charts', function () {     return view('dashboard.charts'); });
@@ -115,13 +115,6 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::post('/file/move',       'MediaController@fileMove')->name('media.file.move');
             Route::post('/file/cropp',      'MediaController@cropp');
             Route::get('/file/copy',        'MediaController@fileCopy')->name('media.file.copy');
-        });
-        Route::prefix('/planos')->group(function () {
-            Route::get('/',         'PlanoController@index')->name('plano.index');
-            Route::get('/create',   'PlanoController@create')->name('plano.create');
-            Route::get('/edit',     'PlanoController@edit')->name('plano.edit');
-            Route::post('/update',  'PlanoController@update')->name('plano.update');
-            Route::get('/delete',   'PlanoController@delete')->name('plano.delete');
         });
     });
 });

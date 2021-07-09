@@ -30,11 +30,13 @@ if(!function_exists('renderDropdown')){
 }
 ?>
 
-
         <div class="c-sidebar-brand">
+            <a href="{{ url('/') }}">
             <img class="c-sidebar-brand-full" src="{{ url('/assets/brand/training-core-logo2.png') }}" width="118" height="46" alt="Training Core Logo">
             <img class="c-sidebar-brand-minimized" src="{{ url('assets/brand/training-core-logo2.png') }}" width="118" height="46" alt="Training Core Logo">
+            </a>
         </div>
+
         <ul class="c-sidebar-nav">
         @if(isset($appMenus['sidebar menu']))
             @foreach($appMenus['sidebar menu'] as $menuel)

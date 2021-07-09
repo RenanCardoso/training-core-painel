@@ -14,9 +14,7 @@ use Spatie\Permission\Models\Permission;
 
 class FormService{
 
-    public function __construct(){
-
-    }
+    public function __construct(){}
 
     public function saveSingleFormData($slug, $request, $formId){
 

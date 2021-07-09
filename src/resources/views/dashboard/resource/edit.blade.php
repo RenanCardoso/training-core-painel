@@ -81,6 +81,9 @@
                                             echo '>';
                                             echo '<label class="form-check-label">no</label>';
                                             echo '</div>';
+                                        }elseif($column['type'] == 'number'){
+                                            echo '<label>' . $column['name'] . '</label>';
+                                            echo '<input type="text" id="number" class="form-control number" name="' . $column['column_name'] . '" value="' . $column['value'] .'">';
                                         }else{
                                             echo '<label>' . $column['name'] . '</label>';
                                             echo '<input type="' . $column['type'] . '" class="form-control" name="' . $column['column_name'] . '" value="' . $column['value'] .'">';

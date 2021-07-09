@@ -21,7 +21,7 @@ class ResourceController extends Controller
      */
     public function index($table, Request $request)
     {
-        $role = Role::where('name', '=', 'guest')->first();
+        $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('browse bread ' . $table)){
                 $guestHasPermission = true;
@@ -58,7 +58,7 @@ class ResourceController extends Controller
      */
     public function create($table, Request $request)
     {
-        $role = Role::where('name', '=', 'guest')->first();
+        $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('add bread ' . $table)){
                 $guestHasPermission = true;
@@ -100,7 +100,7 @@ class ResourceController extends Controller
      */
     public function store($table, Request $request)
     {
-        $role = Role::where('name', '=', 'guest')->first();
+        $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('add bread ' . $table)){
                 $guestHasPermission = true;
@@ -145,7 +145,7 @@ class ResourceController extends Controller
      */
     public function show($table, $id, Request $request)
     {
-        $role = Role::where('name', '=', 'guest')->first();
+        $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('read bread ' . $table)){
                 $guestHasPermission = true;
@@ -182,7 +182,7 @@ class ResourceController extends Controller
      */
     public function edit($table, $id)
     {
-        $role = Role::where('name', '=', 'guest')->first();
+        $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('edit bread ' . $table)){
                 $guestHasPermission = true;
@@ -224,7 +224,7 @@ class ResourceController extends Controller
      */
     public function update($table, $id, Request $request)
     {
-        $role = Role::where('name', '=', 'guest')->first();
+        $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('edit bread ' . $table)){
                 $guestHasPermission = true;
@@ -266,7 +266,7 @@ class ResourceController extends Controller
      */
     public function destroy($table, Request $request, $id)
     {
-        $role = Role::where('name', '=', 'guest')->first();
+        $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('delete bread ' . $table)){
                 $guestHasPermission = true;

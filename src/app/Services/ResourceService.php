@@ -150,6 +150,7 @@ class ResourceService{
         $toInsert = array();
 
         foreach($columns as $column){
+//            echo "<pre>"; print_r($columns); exit('');
             if($column->type == 'checkbox' || $column->type == 'radio' || $column->type == 'relation_radio') {
                 if (isset($request[$column->column_name])) {
                     $toInsert[$column->column_name] = $request[$column->column_name];

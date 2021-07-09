@@ -55,6 +55,7 @@
                             <tbody>
                                 <?php
                                     foreach($datas as $data){
+
                                         echo '<tr>';
                                         foreach($header as $head){
                                             if(!empty($head->relation_table)){
