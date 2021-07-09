@@ -19,13 +19,13 @@ class UsersAndNotesSeeder extends Seeder
      */
     public function run()
     {
-        $numberOfUsers = 10;
+        $numberOfUsers = 1;
         $numberOfNotes = 100;
         $usersIds = array();
         $statusIds = array();
         $faker = Faker::create();
         /* Create roles */
-        $adminRole = Role::create(['name' => 'admin']); 
+        $adminRole = Role::create(['name' => 'admin']);
         RoleHierarchy::create([
             'role_id' => $adminRole->id,
             'hierarchy' => 1,
@@ -35,12 +35,12 @@ class UsersAndNotesSeeder extends Seeder
             'role_id' => $userRole->id,
             'hierarchy' => 2,
         ]);
-        $guestRole = Role::create(['name' => 'guest']); 
+        $guestRole = Role::create(['name' => 'guest']);
         RoleHierarchy::create([
             'role_id' => $guestRole->id,
             'hierarchy' => 3,
         ]);
-        
+
         /*  insert status  */
         DB::table('status')->insert([
             'name' => 'ongoing',
@@ -63,28 +63,18 @@ class UsersAndNotesSeeder extends Seeder
         ]);
         array_push($statusIds, DB::getPdo()->lastInsertId());
         /*  insert users   */
-        $user = User::create([ 
+        $user = User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'menuroles' => 'user,admin' 
+            'menuroles' => 'user,admin',
+            'cpf' => '00000000191',
+            'celular' => '11970115800',
+            'flinstrutor' => 'nao'
         ]);
         $user->assignRole('admin');
-        $user->assignRole('user');
-        for($i = 0; $i<$numberOfUsers; $i++){
-            $user = User::create([ 
-                'name' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'email_verified_at' => now(),
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-                'remember_token' => Str::random(10),
-                'menuroles' => 'user'
-            ]);
-            $user->assignRole('user');
-            array_push($usersIds, $user->id);
-        }
         /*  insert notes  */
         for($i = 0; $i<$numberOfNotes; $i++){
             $noteType = $faker->word();
@@ -97,7 +87,7 @@ class UsersAndNotesSeeder extends Seeder
                 'status_id'     => $statusIds[random_int(0,count($statusIds) - 1)],
                 'note_type'     => $noteType,
                 'applies_to_date' => $faker->date(),
-                'users_id'      => $usersIds[random_int(0,$numberOfUsers-1)]
+                'users_id'      => '1'
             ]);
         }
     }

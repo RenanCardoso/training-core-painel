@@ -23,6 +23,20 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+            $table->date('datanasc')->nullable();
+            $table->string('sexo', 3)->nullable();
+            $table->string('cpf', 11)->unique();
+            $table->string('rg', 15)->nullable();
+            $table->string('celular', 14);
+            $table->string('logradouro', 100)->nullable();
+            $table->string('numero', 5)->nullable();
+            $table->string('complemento', 50)->nullable();
+            $table->string('bairro', 50)->nullable();
+            $table->string('cep', 10)->nullable();
+            $table->integer('idcidade')->nullable();
+            $table->string('flinstrutor', 3)->default('nao');
+
+            $table->foreign('idcidade', 'FK_users_cidade')->references('idcidade')->on('cidade');
         });
     }
 
