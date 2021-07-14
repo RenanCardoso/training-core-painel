@@ -78,9 +78,8 @@ Route::group(['middleware' => ['get.menu']], function () {
             'create'    => 'admin.userCreateForm',
             'store'     => 'admin.userStore',
             'show'      => 'admin.userShow',
-            'edit'      => 'admin.userEditForm',
             'update'    => 'admin.userUpdate',
-            'destroy'   => 'admin.userDestroy'
+//            'destroy'   => 'admin.userDestroy'
         ]);
         Route::resource('roles',        'RolesController');
         Route::resource('mail',        'MailController');

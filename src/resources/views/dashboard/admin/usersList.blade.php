@@ -16,7 +16,7 @@
                     <div class="card-body">
                             <div class="col-12">
                                 <a
-                                    href="{{ route('admin.userCreateForm') }}"
+                                    href="{{ url('/users/create') }}"
                                     class="btn btn-primary mb-3" style="color:white;"
                                 >
                                     Adicionar
