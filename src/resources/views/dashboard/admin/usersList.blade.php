@@ -1,5 +1,9 @@
 @extends('dashboard.base')
 
+@section('css')
+
+@endsection
+
 @section('content')
 
         <div class="container-fluid">
@@ -10,6 +14,14 @@
                     <div class="card-header">
                       <i class="fa fa-align-justify"></i>{{ __('Usuários') }}</div>
                     <div class="card-body">
+                            <div class="col-12">
+                                <a
+                                    href="{{ route('admin.userCreateForm') }}"
+                                    class="btn btn-primary mb-3" style="color:white;"
+                                >
+                                    Adicionar
+                                </a>
+                            </div>
                         <table class="table table-responsive-sm table-striped">
                         <thead>
                           <tr>

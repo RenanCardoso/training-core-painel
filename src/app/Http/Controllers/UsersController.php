@@ -55,6 +55,32 @@ class UsersController extends Controller
         return view('dashboard.admin.userEditForm', compact('user'));
     }
 
+    public function create()
+    {
+        return view('dashboard.admin.userCreateForm');
+    }
+
+    /**
+     * Create the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name'       => 'required|min:1|max:256',
+            'email'      => 'required|email|max:256'
+        ]);
+        $user = new User();
+        $user->name       = $request->input('name');
+        $user->email      = $request->input('email');
+        $user->save();
+        $request->session()->flash('message', 'Usuário Criado com sucesso!');
+        return redirect()->route('users.index');
+    }
+
     /**
      * Update the specified resource in storage.
      *

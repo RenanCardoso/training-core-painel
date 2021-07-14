@@ -35,8 +35,6 @@ class CreateUsersTable extends Migration
             $table->string('cep', 10)->nullable();
             $table->integer('idcidade')->nullable();
             $table->string('flinstrutor', 3)->default('nao');
-
-            $table->foreign('idcidade', 'FK_users_cidade')->references('idcidade')->on('cidade');
         });
     }
 
