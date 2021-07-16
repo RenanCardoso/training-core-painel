@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
+
+    /** @var UserService $userService */
+    protected UserService $userService;
+
 
     /**
      * Create a new controller instance.
@@ -75,10 +80,9 @@ class UsersController extends Controller
             'name'       => 'required|min:1|max:256',
             'email'      => 'required|email|max:256'
         ]);
-        $user = new User();
-        $user->name       = $request->input('name');
-        $user->email      = $request->input('email');
-        $user->save();
+
+        $userService = new UserService();
+        $userService->add($request->all());
         $request->session()->flash('message', 'Usuário Criado com sucesso!');
         return redirect()->route('users.index');
     }

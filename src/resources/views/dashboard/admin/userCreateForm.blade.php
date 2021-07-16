@@ -9,7 +9,6 @@
                     <div class="card">
                         <div class="card-header"><strong>Dados Pessoais</strong> <small>Usuários</small></div>
                         <div class="card-body">
-                            <br>
                             <form method="POST" action="{{ route('admin.userStore') }}">
                                 @csrf
                                 <div class="row">
@@ -62,14 +61,6 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="sexo_option" for="sexo">Sexo</label>
-                                        <select class="form-control" name="sexo_option" id="sexo_option">
-                                            <option selected="" value="">Selecione...</option>
-                                            <option value="1">Masculino</option>
-                                            <option value="2">Feminino</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
                                         <label for="menuroles_option">Papel de Acesso</label>
                                         <select class="form-control" name="menuroles_option" id="menuroles_option">
                                             <option selected="" value="">Selecione...</option>
@@ -107,7 +98,7 @@
                                 </div>
                                 <div class="form-group col-sm-8">
                                     <label for="cidade">Cidade</label>
-                                    <input class="form-control" id="cidade" type="text">
+                                    <input type="text" class="form-control" name="cidade" id="cidade">
                                 </div>
                             </div>
                             <div class="form-group">

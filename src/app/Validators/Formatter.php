@@ -2,7 +2,7 @@
 
 namespace App\Validators;
 
-class Price
+class Formatter
 {
     /**
      * Retorno a string numérica formatada para valor com decimais com ponto para o banco de dados.
@@ -14,6 +14,7 @@ class Price
         $value = str_replace("R$ ", '', $value);
         $value = str_replace(".", "", $value);
         $value = str_replace(",", ".", $value);
+        $value = str_replace("-", "", $value);
         return $value;
     }
 
