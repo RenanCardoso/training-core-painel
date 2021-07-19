@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
 //            ExampleSeeder::class,
 //            BREADSeeder::class,
 //            EmailSeeder::class,
-            CidadeSeeder::class
+//            CidadeSeeder::class,
+              DuracaoPlanoTableSeeder::class
         ]);
     }
 }

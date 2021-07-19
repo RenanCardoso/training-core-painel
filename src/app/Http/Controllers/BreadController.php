@@ -60,14 +60,14 @@ class BreadController extends Controller
                     'options' => $formService->getFormOptions(),
                     'model'   => $request->input('model'),
                     'roles'   => $rolesService->get(),
-                ]); 
+                ]);
             }
         }else{
             $validatedData = $request->validate([
                 'name'    => 'required|min:1|max:128',
             ]);
             $formService->addNewForm($request->input('model'), $request->all() );
-            $request->session()->flash('message', 'Successfully added form');
+            $request->session()->flash('message', 'Adicionado com sucesso!');
             return redirect()->route('bread.index');
         }
     }
@@ -82,7 +82,7 @@ class BreadController extends Controller
     {
         return view('dashboard.form.show', [
             'form' => Form::find($id),
-            'formFields' => FormField::where('form_id', '=', $id)->get(),    
+            'formFields' => FormField::where('form_id', '=', $id)->get(),
         ]);
     }
 
@@ -101,7 +101,7 @@ class BreadController extends Controller
             'formFields' => FormField::where('form_id', '=', $id)->get(),
             'options' => $formService->getFormOptions(),
             'roles'   => $rolesService->get(),
-            'formRoles' => $formService->getBreadRoles($id),    
+            'formRoles' => $formService->getBreadRoles($id),
         ]);
     }
 
@@ -120,7 +120,7 @@ class BreadController extends Controller
         //$model = Models::find($request->input('model'));
         $formService = new FormService();
         $formService->updateForm($id, $request->all());
-        $request->session()->flash('message', 'Successfully update form');
+        $request->session()->flash('message', 'Atualizado com sucesso!');
         return redirect()->route('bread.index');
     }
 
@@ -136,7 +136,7 @@ class BreadController extends Controller
         if($request->has('marker')){
             $formFields = FormField::where('form_id', '=', $id)->delete();
             $form->delete();
-            $request->session()->flash('message', 'Successfully deleted form: ' . $form->name);
+            $request->session()->flash('message', 'Deletado com sucesso!');
             return redirect()->route('bread.index');
         }else{
             return view('dashboard.form.delete', ['id' => $id, 'formName' => $form->name]);

@@ -10,6 +10,7 @@ use App\Models\FormField;
 use App\Models\Form;
 use App\Models\Models;
 use App\Models\Folder;
+use App\Validators\Formatter;
 use Illuminate\Support\Facades\DB;
 
 class ResourceService{
@@ -157,7 +158,7 @@ class ResourceService{
                     $toInsert[$column->column_name] = '';
                 }
             }elseif($column->type == 'price'){
-                $toInsert[$column->column_name] = $request[$column->column_name];
+                $toInsert[$column->column_name] = Formatter::formatToDatabase($request[$column->column_name]);
             }elseif( $column->type == 'file' || $column->type == 'image' ){
                 $toInsert[ $column->column_name ] = $this->addMedia($request, $column->column_name);
             }else{

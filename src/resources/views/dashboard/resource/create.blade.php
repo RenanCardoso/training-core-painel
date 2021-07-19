@@ -72,6 +72,7 @@
                                         //column->type == 'text'
                                         echo '<label>' . $column->name . '</label>';
                                         echo '<input type="' . $column->type . '" class="form-control" name="' . $column->column_name . '">';
+                                        echo '<br>';
                                     }
                                 }elseif($column->type == 'relation_select'){
                                     echo '<label>' . $column->name . '</label>';

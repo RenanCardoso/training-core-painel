@@ -61,7 +61,11 @@
                                             if(!empty($head->relation_table)){
                                                 echo '<td>' . $data['relation_' . $head->column_name] . '</td>';
                                             }else{
-                                                echo '<td>' . $data[$head->column_name] . '</td>';
+                                                if (is_numeric($data[$head->column_name])){
+                                                    echo '<td>' . \App\Validators\Formatter::format($data[$head->column_name]) . '</td>';
+                                                } else {
+                                                    echo '<td>' . $data[$head->column_name] . '</td>';
+                                                }
                                             }
                                         }
                                         if($enableButtons['read'] == 1){

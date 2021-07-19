@@ -26,7 +26,11 @@
                                         <td>
                                             <?php
                                               if( $column['type'] == 'default'){
-                                                echo $column['value'];
+                                                  if (is_numeric($column['value'])){
+                                                      echo \App\Validators\Formatter::format($column['value']);
+                                                  }else{
+                                                      echo $column['value'];
+                                                  }
                                               }elseif( $column['type'] == 'file'){
                                                 echo '<a href="' . $column['value'] . '" class="btn btn-primary" target="_blank">Open file</a>';
                                               }elseif( $column['type'] == 'image' ){

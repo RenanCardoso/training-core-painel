@@ -16,7 +16,7 @@ class CreatePlano extends Migration
         Schema::create('plano', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 120);
-            $table->string('duracao', 3)->nullable();
+            $table->integer('duracao')->nullable();
             $table->float('preco')->nullable();
             $table->integer('limitepessoas')->nullable();
             $table->integer('usucadastro')->nullable();
