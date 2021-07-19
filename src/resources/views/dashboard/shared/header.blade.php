@@ -15,13 +15,12 @@
               <div class="c-avatar"><img class="c-avatar-img" src="{{ url('/assets/img/avatars/6.jpg') }}" alt="user@email.com"></div>
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
-              <div class="dropdown-header bg-light py-2"><strong>Minha Conta</strong></div><a class="dropdown-item" href="/minha-conta">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-user') }}"></use>
-                </svg> Meus Dados</a><a class="dropdown-item" href="#">
-                <svg class="c-icon mr-2">
-                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-settings') }}"></use>
-                </svg> Configurações</a><a class="dropdown-item" href="">
+              <div class="dropdown-header bg-light py-2">
+{{--                  <strong>Minha Conta</strong></div>--}}
+{{--                <a class="dropdown-item" href="/users/{{ Auth::guard('user')->user()->id  }}">--}}
+{{--                <svg class="c-icon mr-2">--}}
+{{--                  <use xlink:href="{{ url('/icons/sprites/free.svg#cil-user') }}"></use>--}}
+                </svg></a><a class="dropdown-item" href="#">
                 <svg class="c-icon mr-2">
                   <use xlink:href="{{ url('/icons/sprites/free.svg#cil-account-logout') }}"></use>
                 </svg><form action="{{ url('/logout') }}" method="POST"> @csrf <button type="submit" class="btn btn-ghost-dark btn-block">Sair</button></form></a>
