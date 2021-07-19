@@ -2,23 +2,95 @@
 
 @section('content')
 
-        <div class="container-fluid">
-          <div class="animated fadeIn">
-            <div class="row">
-              <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                <div class="card">
-                    <div class="card-header">
-                      <i class="fa fa-align-justify"></i> Usuário {{ $user->name }}</div>
-                    <div class="card-body">
-                        <h4>Name: {{ $user->name }}</h4>
-                        <h4>E-mail: {{ $user->email }}</h4>
-                        <a href="{{ route('admin.usersList') }}" class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            @if(Session::has('message'))
+                <div class="row">
+                    <div class="col-6">
+                        <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                     </div>
                 </div>
-              </div>
+            @endif
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> <b>Detalhe do Usuário:</b> {{ $user->name }}</div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b>Nome: </b>{{ $user->name }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Data de Nascimento: </b>
+                                    {{ date( 'd/m/Y' , strtotime($user->datanasc))}}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Celular: </b>{{ \App\Validators\Formatter::formatterFone($user->celular) }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>CPF: </b>{{ \App\Validators\Formatter::formatterCPF($user->cpf) }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>RG: </b>{{ $user->rg }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Sexo: </b>{{ $user->sexo == 'mas' ? 'Masculino' : 'Feminino' }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Instrutor: </b>{{ $user->flinstrutor == 'nao' ? 'Não' : 'Sim' }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Papel de Acesso: </b>{{ $user->menuroles }}
+                                </div>
+                            </div>
+
+                            <a href="{{ route('users.index') }}"
+                               class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-align-justify"></i> <b>Endereço</b><small> Usuário</small></div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <b>CEP: </b>
+                                    {{ \App\Validators\Formatter::formatterCEP($user->cep) }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Cidade: </b>
+                                    @foreach($cidades as $cidade)
+                                        @if($user->idcidade == $cidade->idcidade)
+                                            {{ $cidade->nmcidade }}
+                                        @else
+                                            {{ '' }}
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Logradouro: </b>{{ $user->logradouro }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Bairro: </b>{{ $user->bairro }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Complemento: </b>{{ $user->complemento }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Número: </b>{{ $user->numero }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
+    </div>
 
 @endsection
 

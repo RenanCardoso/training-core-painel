@@ -113,19 +113,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="password">Senha</label><small><b> *</b></small>
+                                        <label for="password">Senha</label>
                                         <input type="password" class="form-control" name="password" id="password"
-                                               maxlength="255" required autofocus>
+                                               maxlength="255">
                                         <span class="help-block"><small>Mínimo de 6 caracteres.</small></span>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="password_confirmation">Confirmar Senha</label><small><b> *</b></small>
+                                        <label for="password_confirmation">Confirmar Senha</label>
                                         <input type="password" class="form-control" name="password_confirmation"
-                                               maxlength="255" id="password_confirmation" required autofocus>
+                                               maxlength="255" id="password_confirmation">
                                     </div>
                                 </div>
                                 <button class="btn btn-block btn-success" type="submit">{{ __('Salvar') }}</button>
-                                <a href="{{ route('admin.usersList') }}"
+                                <a href="{{ route('users.index') }}"
                                    class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
                             </div>
                         </div>

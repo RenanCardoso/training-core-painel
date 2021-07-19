@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Services\UserService;
-use Illuminate\Http\Request;
+use App\Validators\Formatter;
 use App\Models\User;
 use App\Models\Cidade;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -47,7 +50,9 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('dashboard.admin.userShow', compact( 'user' ));
+        $cidades = Cidade::all();
+
+        return view('dashboard.admin.userShow', compact( 'user', 'cidades' ));
     }
 
     /**
@@ -79,29 +84,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function store($request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'name'                  => 'required|min:1|max:255',
-            'email'                 => 'required|email|max:255',
-            'telefone'              => 'required|max:11',
-            'cpf'                   => 'required|unique|max:14',
-            'sexo'                  => 'max:3',
-            'instrutor_option'      => 'required',
-            'menuroles_option'      => 'required',
-            'password'              => 'required|min:6',
-            'password_confirmation' => 'required|min:6|same:password',
-            'cep'                   => 'required|max:10',
-            'cidade_option'         => 'required',
-            'logradouro'            => 'required|max:100',
-            'bairro'                => 'required|max:50',
-            'numero'                => 'required|max:5',
-        ]);
-
-        $userService = new UserService();
-        $userService->add($request->all());
+        $user = new User();
+        $this->add($request, $user);
         $request->session()->flash('message', 'Usuário Criado com sucesso!');
-        return redirect()->route('admin.usersList');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -113,11 +101,19 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = User::find($id);
+        $this->updateUser($request, $user);
+        $request->session()->flash('message', 'Usuário atualizado com sucesso!');
+        return redirect()->route('users.index');
+    }
+
+    public function add(Request $request, $user){
+
         $request->validate([
             'name'                  => 'required|min:1|max:255',
             'email'                 => 'required|email|max:255',
             'telefone'              => 'required|max:14',
-            'cpf'                   => 'required|max:11',
+            'cpf'                   => 'required|max:14',
             'sexo'                  => 'max:3',
             'instrutor_option'      => 'required',
             'menuroles_option'      => 'required',
@@ -130,25 +126,82 @@ class UsersController extends Controller
             'numero'                => 'required|max:5',
         ]);
 
-        $user = User::find($id);
-        $user->name       = $request->input('name');
-        $user->email      = $request->input('email');
-        $user->celular      = $request->input('telefone');
-        $user->cpf      = $request->input('cpf');
-        $user->sexo      = $request->input('sexo');
-        $user->flinstrutor      = $request->input('instrutor_option');
-        $user->menuroles      = $request->input('menuroles_option');
-        $user->password      = $request->input('password');
-        $user->cep      = $request->input('cep');
-        $user->idcidade      = $request->input('cidade_option');
-        $user->logradouro      = $request->input('logradouro');
-        $user->bairro      = $request->input('bairro');
-        $user->numero      = $request->input('numero');
+        $user->name = $request['name'];
+        $user->datanasc = $request['datanasc'];
+        $user->email = $request['email'];
+        $user->celular = Formatter::formatToDatabase($request['telefone']);
+        $user->cpf = Formatter::formatToDatabase($request['cpf']);
+        $user->rg = Formatter::formatToDatabase($request['rg']);
+        $user->sexo = $request['sexo_option'];
+        $user->flinstrutor = $request['instrutor_option'];
+        $user->idcidade = $request['cidade_option'];
+
+        //lógica para pegar o role selecionado e gravar corretamente no BD
+        $user->menuroles = $request['menuroles_option'];
+        $menuroles_array = \DB::table("roles")->where('id', $user->menuroles)->first(['name']);
+        $menuroles_array = json_decode(json_encode($menuroles_array), true);
+        $user->menuroles = $menuroles_array['name'];
+
+        $user->cep = Formatter::formatToDatabase($request['cep']);
+        $user->logradouro           = $request['logradouro'];
+        $user->bairro           = $request['bairro'];
+        $user->complemento      = $request['complemento'];
+        $user->numero           = $request['numero'];
+
+        $user->password = Hash::make($request['password']);
+
+//        echo "<pre>"; print_r($user->cidade); exit('objeto');
 
         $user->save();
+    }
 
-        $request->session()->flash('message', 'Usuário atualizado com sucesso!');
-        return redirect()->route('admin.usersList');
+    public function updateUser(Request $request, $user){
+
+        $request->validate([
+            'name'                  => 'required|min:1|max:255',
+            'email'                 => 'required|email|max:255',
+            'telefone'              => 'required|max:14',
+            'cpf'                   => 'required|max:14',
+            'sexo'                  => 'max:3',
+            'instrutor_option'      => 'required',
+            'menuroles_option'      => 'required',
+            'password_confirmation' => 'same:password',
+            'cep'                   => 'required|max:10',
+            'cidade_option'         => 'required',
+            'logradouro'            => 'required|max:100',
+            'bairro'                => 'required|max:50',
+            'numero'                => 'required|max:5',
+        ]);
+
+        $user->name = $request['name'];
+        $user->datanasc = $request['datanasc'];
+        $user->email = $request['email'];
+        $user->celular = Formatter::formatToDatabase($request['telefone']);
+        $user->cpf = Formatter::formatToDatabase($request['cpf']);
+        $user->rg = Formatter::formatToDatabase($request['rg']);
+        $user->sexo = $request['sexo_option'];
+        $user->flinstrutor = $request['instrutor_option'];
+        $user->idcidade = $request['cidade_option'];
+
+        //lógica para pegar o role selecionado e gravar corretamente no BD
+        $user->menuroles = $request['menuroles_option'];
+        $menuroles_array = \DB::table("roles")->where('id', $user->menuroles)->first(['name']);
+        $menuroles_array = json_decode(json_encode($menuroles_array), true);
+        $user->menuroles = $menuroles_array['name'];
+
+        $user->cep = Formatter::formatToDatabase($request['cep']);
+        $user->logradouro           = $request['logradouro'];
+        $user->bairro           = $request['bairro'];
+        $user->complemento      = $request['complemento'];
+        $user->numero           = $request['numero'];
+
+        if (!empty($request['password'])){
+            $user->password = Hash::make($request['password']);
+        }
+
+//        echo "<pre>"; print_r($user->flinstrutor); exit('objeto');
+
+        $user->save();
     }
 
     /**
@@ -160,9 +213,12 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if($user){
-            $user->delete();
+        $users = User::all();
+
+        if(!$user){
+            abort(404);
         }
-        return redirect()->route('admin.usersList');
+
+        return redirect()->route('users.index');
     }
 }

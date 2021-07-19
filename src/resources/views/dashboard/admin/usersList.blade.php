@@ -39,7 +39,7 @@
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->celular }}</td>
+                                        <td>{{ \App\Validators\Formatter::formatterFone($user->celular) }}</td>
                                         <td>{{ $user->flinstrutor == 'nao' ? $user->flinstrutor = 'Não' : 'Sim' }}</td>
                                         <td>{{ $user->menuroles }}</td>
                                         <td>

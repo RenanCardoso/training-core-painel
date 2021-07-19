@@ -20,8 +20,8 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="{{ route('admin.userStore') }}">
-                @csrf
+            <form method="POST" action="{{ route('users.store') }}">
+            @csrf
                 <div class="row">
                     <div class="col-6">
                         <div class="card">
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
                                 <button class="btn btn-block btn-success" type="submit">{{ __('Salvar') }}</button>
-                                <a href="{{ route('admin.usersList') }}"
+                                <a href="{{ route('users.index') }}"
                                    class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
                             </div>
                         </div>

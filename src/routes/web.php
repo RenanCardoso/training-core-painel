@@ -73,15 +73,7 @@ Route::group(['middleware' => ['get.menu']], function () {
 
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('bread',  'BreadController');   //create BREAD (resource)
-        Route::resource('users',        'UsersController')->names([
-            'index'     => 'admin.usersList',
-            'create'    => 'admin.userCreateForm',
-            'store'     => 'admin.userStore',
-            'show'      => 'admin.userShow',
-            'update'    => 'admin.userUpdate',
-
-//            'destroy'   => 'admin.userDestroy'
-        ]);
+        Route::resource('users',        'UsersController');
         Route::resource('roles',        'RolesController');
         Route::resource('mail',        'MailController');
         Route::get('prepareSend/{id}',        'MailController@prepareSend')->name('prepareSend');
