@@ -79,6 +79,7 @@ Route::group(['middleware' => ['get.menu']], function () {
             'store'     => 'admin.userStore',
             'show'      => 'admin.userShow',
             'update'    => 'admin.userUpdate',
+
 //            'destroy'   => 'admin.userDestroy'
         ]);
         Route::resource('roles',        'RolesController');

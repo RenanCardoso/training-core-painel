@@ -4,17 +4,37 @@
 
     <div class="container-fluid">
         <div class="animated fadeIn">
-            <div class="row">
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-header"><strong>Dados Pessoais</strong> <small>Usuários</small></div>
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('admin.userStore') }}">
-                                @csrf
+            @if(Session::has('message'))
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+                    </div>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form method="POST" action="{{ route('admin.userStore') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header"><strong>Dados Pessoais</strong> <small>Usuários</small>
+                                <br> <small>Campos com asterísco * são obrigatórios.</small>
+                            </div>
+
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="name">Nome</label>
-                                        <input class="form-control" type="text" placeholder="{{ __('Nome') }}" name="name" id="name" required autofocus>
+                                        <label for="name">Nome</label><small><b> *</b></small>
+                                        <input class="form-control" type="text" placeholder="{{ __('Nome') }}"
+                                               maxlength="255" name="name" id="name" required autofocus>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="datanasc">Data de Nascimento</label>
@@ -23,22 +43,25 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="email">E-mail</label>
-                                        <input class="form-control" type="text" placeholder="{{ __('E-mail') }}" name="email" id="email" required>
+                                        <label for="email">E-mail</label><small><b> *</b></small>
+                                        <input class="form-control" type="text" name="email" id="email"
+                                               maxlength="255" placeholder="email@email.com" required autofocus>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6"><small><b> *</b></small>
                                         <label for="telefone">Celular</label>
-                                        <input type="tel" class="form-control telefone" name="telefone" id="telefone">
+                                        <input type="tel" class="form-control telefone" name="telefone" id="telefone"
+                                               placeholder="00 00000-0000" required autofocus>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="cpf">CPF</label>
-                                        <input type="text" class="form-control cpf" name="cpf" id="cpf">
+                                        <label for="cpf">CPF</label><small><b> *</b></small>
+                                        <input type="text" class="form-control cpf" name="cpf" id="cpf"
+                                               placeholder="000.000.000-00" required autofocus>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="rg">RG</label>
-                                        <input type="text" class="form-control" name="rg" id="rg">
+                                        <input type="text" class="form-control" name="rg" id="rg" maxlength="15">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -46,13 +69,14 @@
                                         <label for="sexo_option" for="sexo">Sexo</label>
                                         <select class="form-control" name="sexo_option" id="sexo_option">
                                             <option selected="" value="">Selecione...</option>
-                                            <option value="1">Masculino</option>
-                                            <option value="2">Feminino</option>
+                                            <option value="mas">Masculino</option>
+                                            <option value="fem">Feminino</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="instrutor_option" for="instrutor_option">Instrutor?</label>
-                                        <select class="form-control" name="instrutor_option" id="instrutor_option">
+                                        <label for="instrutor_option" for="instrutor_option">Instrutor?</label><small><b> *</b></small>
+                                        <select class="form-control" name="instrutor_option" id="instrutor_option"
+                                                required autofocus>
                                             <option selected="" value="">Selecione...</option>
                                             <option value="sim">Sim</option>
                                             <option value="nao">Não</option>
@@ -61,68 +85,78 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="menuroles_option">Papel de Acesso</label>
-                                        <select class="form-control" name="menuroles_option" id="menuroles_option">
+                                        <label for="menuroles_option">Papel de Acesso</label><small><b> *</b></small>
+                                        <select class="form-control" name="menuroles_option" id="menuroles_option"
+                                                required autofocus>
                                             <option selected="" value="">Selecione...</option>
                                             @foreach($roles as $role)
-                                                <option value="{{ $role->id }}" {{ $role->name }}>{{ $role->name }}</option>
+                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="password">Senha</label>
-                                        <input type="password" class="form-control" name="password" id="password">
+                                        <label for="password">Senha</label><small><b> *</b></small>
+                                        <input type="password" class="form-control" name="password" id="password"
+                                               maxlength="255" required autofocus>
+                                        <span class="help-block"><small>Mínimo de 6 caracteres.</small></span>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="password_confirmation">Confirmar Senha</label>
-                                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                                        <label for="password_confirmation">Confirmar Senha</label><small><b> *</b></small>
+                                        <input type="password" class="form-control" name="password_confirmation"
+                                               maxlength="255" id="password_confirmation" required autofocus>
                                     </div>
                                 </div>
-                                <br>
                                 <button class="btn btn-block btn-success" type="submit">{{ __('Salvar') }}</button>
-                                <a href="{{ route('admin.usersList') }}" class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-header"><strong>Endereço</strong> <small>Usuário</small></div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="form-group col-sm-4">
-                                    <label for="cep">CEP</label>
-                                    <input type="text" class="form-control" name="cep" id="cep">
-                                </div>
-                                <div class="form-group col-sm-8">
-                                    <label for="cidade">Cidade</label>
-                                    <input type="text" class="form-control" name="cidade" id="cidade">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="logradouro">Logradouro</label>
-                                <input type="text" class="form-control" name="logradouro" id="logradouro">
-                            </div>
-                            <div class="form-group">
-                                <label for="bairro">Bairro</label>
-                                <input type="text" class="form-control" name="bairro" id="bairro">
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-sm-8">
-                                    <label for="complemento">Complemento</label>
-                                    <input type="text" class="form-control" name="complemento" id="complemento">
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label for="numero">Número</label>
-                                    <input type="text" class="form-control" name="numero" id="numero">
-                                </div>
+                                <a href="{{ route('admin.usersList') }}"
+                                   class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header"><strong>Endereço</strong> <small>Usuário</small></div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-sm-4">
+                                        <label for="cep">CEP</label><small><b> *</b></small>
+                                        <input type="text" class="form-control cep" name="cep" id="cep"
+                                               placeholder="00000-000" required autofocus>
+                                    </div>
+                                    <div class="form-group col-sm-8">
+                                        <label for="cidade_option">Cidade</label><small><b> *</b></small>
+                                        <select class="form-control" name="cidade_option" id="cidade_option" required autofocus>
+                                            <option selected="" value="">Selecione...</option>
+                                            @foreach($cidades as $cidade)
+                                                <option value="{{ $cidade->idcidade }}">{{ $cidade->nmcidade }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="logradouro">Logradouro</label><small><b> *</b></small>
+                                    <input type="text" class="form-control" name="logradouro" id="logradouro" maxlength="100" required autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bairro">Bairro</label><small><b> *</b></small>
+                                    <input type="text" class="form-control" name="bairro" id="bairro" maxlength="50" required autofocus>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-8">
+                                        <label for="complemento">Complemento</label>
+                                        <input type="text" class="form-control" name="complemento" id="complemento" maxlength="50">
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label for="numero">Número</label><small><b> *</b></small>
+                                        <input type="text" class="form-control" name="numero" id="numero" maxlength="5" required autofocus>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 

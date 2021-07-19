@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h4>Name: {{ $user->name }}</h4>
                         <h4>E-mail: {{ $user->email }}</h4>
-                        <a href="{{ route('users.index') }}" class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
+                        <a href="{{ route('admin.usersList') }}" class="btn btn-block btn-primary">{{ __('Voltar') }}</a>
                     </div>
                 </div>
               </div>

@@ -15,7 +15,7 @@ class Formatter
         $value = str_replace(".", "", $value);
         $value = str_replace(",", ".", $value);
         $value = str_replace("-", "", $value);
-        return $value;
+        return trim($value);
     }
 
     /**

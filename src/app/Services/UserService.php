@@ -6,33 +6,68 @@ namespace App\Services;
 
 use App\Validators\Formatter;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-    public function add($request){
+    public function add($request, $user){
 
-        $user = new User();
-        $user->name             = $request['name'];
-        $user->datanasc         = $request['datanasc'];
-        $user->email            = $request['email'];
-        $user->telefone         = Formatter::formatToDatabase($request['telefone']);
-        $user->cpf              = Formatter::formatToDatabase($request['cpf']);
-        $user->rg               = Formatter::formatToDatabase($request['rg']);
-        $user->sexo_option      = $request['sexo_option'];
-        $user->instrutor_option = $request['instrutor_option'];
-        $user->sexo_option      = $request['sexo_option'];
-        $user->menuroles_option = $request['menuroles_option'];
-        $user->cidade           = $request['cidade'];
-        $user->cep              = $request['cep'];
-        $user->bairro           = $request['bairro'];
-        $user->complemento      = $request['complemento'];
-        $user->numero           = $request['numero'];
-        $user->flinstrutor      = $request['flinstrutor'];
-        $user->password         = Hash::make($request['password']);
+        if (isset($user) && $user != null){
+            $user = new User();
+            $user->name               = $request['name'];
+            $user->datanasc           = $request['datanasc'];
+            $user->email              = $request['email'];
+            $user->celular            = Formatter::formatToDatabase($request['telefone']);
+            $user->cpf                = Formatter::formatToDatabase($request['cpf']);
+            $user->rg                 = Formatter::formatToDatabase($request['rg']);
+            $user->sexo               = $request['sexo_option'];
+            $user->flinstrutor        = $request['instrutor_option'];
+            $user->idcidade           = $request['cidade_option'];
 
-        echo "<pre>"; print_r($user); exit('objeto');
-        $user->save();
+            //lógica para pegar o role selecionado e gravar corretamente no BD
+            $user->menuroles          = $request['menuroles_option'];
+            $menuroles_array          = \DB::table("roles")->where('id', $user->menuroles)->first(['name']);
+            $menuroles_array          = json_decode(json_encode($menuroles_array), true);
+            $user->menuroles          = $menuroles_array['name'];
+
+            $user->cep                = Formatter::formatToDatabase($request['cep']);
+//        $user->bairro           = $request['bairro'];
+//        $user->complemento      = $request['complemento'];
+//        $user->numero           = $request['numero'];
+//        $user->flinstrutor      = $request['flinstrutor'];
+
+            $user->password         = Hash::make($request['password']);
+
+//        echo "<pre>"; print_r($user->cidade); exit('objeto');
+            $user->save();
+        } else {
+            $user = new User();
+            $user->name               = $request['name'];
+            $user->datanasc           = $request['datanasc'];
+            $user->email              = $request['email'];
+            $user->celular            = Formatter::formatToDatabase($request['telefone']);
+            $user->cpf                = Formatter::formatToDatabase($request['cpf']);
+            $user->rg                 = Formatter::formatToDatabase($request['rg']);
+            $user->sexo               = $request['sexo_option'];
+            $user->flinstrutor        = $request['instrutor_option'];
+            $user->idcidade           = $request['cidade_option'];
+
+            //lógica para pegar o role selecionado e gravar corretamente no BD
+            $user->menuroles          = $request['menuroles_option'];
+            $menuroles_array          = \DB::table("roles")->where('id', $user->menuroles)->first(['name']);
+            $menuroles_array          = json_decode(json_encode($menuroles_array), true);
+            $user->menuroles          = $menuroles_array['name'];
+
+            $user->cep                = Formatter::formatToDatabase($request['cep']);
+//        $user->bairro           = $request['bairro'];
+//        $user->complemento      = $request['complemento'];
+//        $user->numero           = $request['numero'];
+//        $user->flinstrutor      = $request['flinstrutor'];
+
+            $user->password         = Hash::make($request['password']);
+
+//        echo "<pre>"; print_r($user->cidade); exit('objeto');
+            $user->save();
+        }
     }
 }

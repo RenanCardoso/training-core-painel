@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Cidade;
 use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
@@ -58,13 +59,17 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('dashboard.admin.userEditForm', compact('user'));
+        $roles = Role::all();
+        $cidades = Cidade::all();
+        return view('dashboard.admin.userEditForm', compact('user', 'roles', 'cidades'));
     }
 
     public function create()
     {
         $roles = Role::all();
-        return view('dashboard.admin.userCreateForm', compact('roles'));
+        $cidades = Cidade::all();
+
+        return view('dashboard.admin.userCreateForm', compact('roles', 'cidades'));
     }
 
     /**
@@ -74,17 +79,29 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($request)
     {
-        $validatedData = $request->validate([
-            'name'       => 'required|min:1|max:256',
-            'email'      => 'required|email|max:256'
+        $request->validate([
+            'name'                  => 'required|min:1|max:255',
+            'email'                 => 'required|email|max:255',
+            'telefone'              => 'required|max:11',
+            'cpf'                   => 'required|unique|max:14',
+            'sexo'                  => 'max:3',
+            'instrutor_option'      => 'required',
+            'menuroles_option'      => 'required',
+            'password'              => 'required|min:6',
+            'password_confirmation' => 'required|min:6|same:password',
+            'cep'                   => 'required|max:10',
+            'cidade_option'         => 'required',
+            'logradouro'            => 'required|max:100',
+            'bairro'                => 'required|max:50',
+            'numero'                => 'required|max:5',
         ]);
 
         $userService = new UserService();
         $userService->add($request->all());
         $request->session()->flash('message', 'Usuário Criado com sucesso!');
-        return redirect()->route('users.index');
+        return redirect()->route('admin.usersList');
     }
 
     /**
@@ -96,16 +113,42 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name'       => 'required|min:1|max:256',
-            'email'      => 'required|email|max:256'
+        $request->validate([
+            'name'                  => 'required|min:1|max:255',
+            'email'                 => 'required|email|max:255',
+            'telefone'              => 'required|max:14',
+            'cpf'                   => 'required|max:11',
+            'sexo'                  => 'max:3',
+            'instrutor_option'      => 'required',
+            'menuroles_option'      => 'required',
+            'password'              => 'required|min:6',
+            'password_confirmation' => 'required|min:6|same:password',
+            'cep'                   => 'required|max:10',
+            'cidade_option'         => 'required',
+            'logradouro'            => 'required|max:100',
+            'bairro'                => 'required|max:50',
+            'numero'                => 'required|max:5',
         ]);
+
         $user = User::find($id);
         $user->name       = $request->input('name');
         $user->email      = $request->input('email');
+        $user->celular      = $request->input('telefone');
+        $user->cpf      = $request->input('cpf');
+        $user->sexo      = $request->input('sexo');
+        $user->flinstrutor      = $request->input('instrutor_option');
+        $user->menuroles      = $request->input('menuroles_option');
+        $user->password      = $request->input('password');
+        $user->cep      = $request->input('cep');
+        $user->idcidade      = $request->input('cidade_option');
+        $user->logradouro      = $request->input('logradouro');
+        $user->bairro      = $request->input('bairro');
+        $user->numero      = $request->input('numero');
+
         $user->save();
+
         $request->session()->flash('message', 'Usuário atualizado com sucesso!');
-        return redirect()->route('users.index');
+        return redirect()->route('admin.usersList');
     }
 
     /**
@@ -120,6 +163,6 @@ class UsersController extends Controller
         if($user){
             $user->delete();
         }
-        return redirect()->route('users.index');
+        return redirect()->route('admin.usersList');
     }
 }

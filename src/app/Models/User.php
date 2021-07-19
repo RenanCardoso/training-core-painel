@@ -38,7 +38,7 @@ class User extends Authenticatable
         'complemento',
         'bairro',
         'cep',
-        'cidade',
+        'idcidade',
         'flinstrutor'
     ];
 

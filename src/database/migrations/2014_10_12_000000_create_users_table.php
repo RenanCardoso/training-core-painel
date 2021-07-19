@@ -16,24 +16,22 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('email');
             $table->string('password');
             $table->string('menuroles');
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-            $table->date('datanasc')->nullable();
+            $table->date('datanasc');
             $table->string('sexo', 3)->nullable();
             $table->string('cpf', 11)->unique();
             $table->string('rg', 15)->nullable();
             $table->string('celular', 14);
-            $table->string('logradouro', 100)->nullable();
-            $table->string('numero', 5)->nullable();
+            $table->string('logradouro', 100);
+            $table->string('numero', 5);
             $table->string('complemento', 50)->nullable();
-            $table->string('bairro', 50)->nullable();
-            $table->string('cep', 10)->nullable();
-            $table->integer('idcidade')->nullable();
+            $table->string('bairro', 50);
+            $table->string('cep', 10);
+            $table->integer('idcidade');
             $table->string('flinstrutor', 3)->default('nao');
         });
     }
