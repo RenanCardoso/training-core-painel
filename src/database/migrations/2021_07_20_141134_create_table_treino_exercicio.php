@@ -21,10 +21,7 @@ class CreateTableTreinoExercicio extends Migration
             $table->integer('series');
             $table->string('repeticoes', 50);
             $table->integer('tempodescansoseg');
-
             $table->text('observacao')->nullable();
-
-            $table->string('codigo_treino', 3)->nullable();
             $table->timestamps();
 
             $table->foreign('idfichatreino')->references('id')->on('ficha_de_treino');
