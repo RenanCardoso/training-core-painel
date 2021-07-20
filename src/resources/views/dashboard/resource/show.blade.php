@@ -25,7 +25,7 @@
                                         </td>
                                         <td>
                                             <?php
-                                              if( $column['type'] == 'default'){
+                                            if( $column['type'] == 'default'){
                                                   if (is_numeric($column['value'])){
                                                       echo \App\Validators\Formatter::format($column['value']);
                                                   }else{
@@ -36,8 +36,6 @@
                                               }elseif( $column['type'] == 'image' ){
                                                 echo '<img src="' . $column['value'] . '" style="max-width:200px;max-height:200px;">';
                                               }
-
-
                                             ?>
                                         </td>
                                     </tr>

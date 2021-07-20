@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlano extends Migration
+class CreateTableAgrupamentoMusc extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreatePlano extends Migration
      */
     public function up()
     {
-        Schema::create('plano', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('agrupamento_musc', function (Blueprint $table) {
+            $table->id('id');
             $table->string('nome', 120);
-            $table->integer('duracao')->nullable();
-            $table->float('preco')->nullable();
-            $table->integer('usucadastro')->nullable();
-            $table->integer('usualt')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('exercicio', function (Blueprint $table) {
+            $table->foreign('idagrupamentomusc', 'FK_agrupamento_musc')->references('id')->on('agrupamento_musc');
         });
     }
 
@@ -31,6 +31,6 @@ class CreatePlano extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plano');
+        Schema::dropIfExists('agrupamento_musc');
     }
 }

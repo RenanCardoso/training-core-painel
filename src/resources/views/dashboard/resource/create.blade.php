@@ -77,10 +77,13 @@
                                 }elseif($column->type == 'relation_select'){
                                     echo '<label>' . $column->name . '</label>';
                                     echo '<select name="' . $column->column_name . '" class="form-control">';
+                                    echo '<option selected="" value="">Selecione...</option>';
                                     foreach($relations['relation_' . $column->column_name] as $relation){
                                         echo '<option value="' . $relation->id . '">' . $relation->name . '</option>';
                                     }
                                     echo '</select>';
+                                    echo '<br>';
+
                                 }elseif($column->type == 'relation_radio'){
                                     echo '<label class="mt-3">' . $column->name . '</label>';
                                     foreach($relations['relation_' . $column->column_name] as $relation){
@@ -94,10 +97,10 @@
                                     echo $column->name . ' <input type="file" name="' . $column->column_name . '">';
                                     echo '</label>';
                                 }elseif($column->type == 'text_area'){
-                                    echo '<div class="form-group row">';
+//                                    echo '<div class="form-group row">';
                                     echo '<label class="col-form-label">' . $column->name . '</label>';
                                     echo '<textarea class="form-control" name="' . $column->column_name . '" rows="9"></textarea>';
-                                    echo '</div>';
+//                                    echo '</div>';
                                 }else{
                                     echo '<p>Not recognize field type: ' . $column->type . '</p>';
                                 }

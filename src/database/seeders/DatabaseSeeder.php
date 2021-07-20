@@ -34,7 +34,9 @@ class DatabaseSeeder extends Seeder
 //            BREADSeeder::class,
 //            EmailSeeder::class,
 //            CidadeSeeder::class,
-              DuracaoPlanoTableSeeder::class
+//              DuracaoPlanoTableSeeder::class,
+              AgrupamentoMuscularSeeder::class
+
         ]);
     }
 }

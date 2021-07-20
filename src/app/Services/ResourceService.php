@@ -63,7 +63,7 @@ class ResourceService{
     }
 
     public function getFullIndexHeader( $id ){
-        return FormField::where('form_id', '=', $id)->where('browse', '=', '1')->get();
+        return FormField::where('form_id', '=', $id)->where('browse', '=', '1')->orderBy('id', 'asc')->get();
     }
 
     public function getRelations( $columns ){
@@ -229,7 +229,7 @@ class ResourceService{
 
     public function show($formId, $tableName, $tableId){
         $form = Form::find($formId);
-        $formFields = FormField::where('form_id', '=', $formId)->where('browse', '=', '1')->get();
+        $formFields = FormField::where('form_id', '=', $formId)->where('read', '=', '1')->orderBy('id', 'asc')->get();
         $indexes = array();
         $relations = array();
         foreach($formFields as $field){
