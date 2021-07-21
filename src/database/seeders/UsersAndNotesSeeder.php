@@ -70,7 +70,7 @@ class UsersAndNotesSeeder extends Seeder
             'menuroles' => 'user,admin',
             'cpf' => '00000000191',
             'celular' => '11970115800',
-            'flinstrutor' => 'nao'
+            'tipousuario' => 'adm'
         ]);
         $user->assignRole('admin');
         /*  insert notes  */

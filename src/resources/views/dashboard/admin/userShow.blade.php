@@ -39,10 +39,20 @@
                                     <b>Sexo: </b>{{ $user->sexo == 'mas' ? 'Masculino' : 'Feminino' }}
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <b>Instrutor: </b>{{ $user->flinstrutor == 'nao' ? 'Não' : 'Sim' }}
+                                    <b>Tipo de Usuário: </b>
+                                    @if($user->tipousuario == 'alu')
+                                        {{ 'Aluno' }}
+                                    @elseif($user->tipousuario == 'ins')
+                                        {{ 'Instrutor' }}
+                                    @else
+                                        {{ 'Administrador' }}
+                                    @endif
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <b>Papel de Acesso: </b>{{ $user->menuroles }}
+                                    <b>Acessa Aplicativo: </b>{{ $user->flaplicativo == 'nao' ? 'Não' : 'Sim' }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Perfil de Acesso: </b>{{ $user->menuroles }}
                                 </div>
                             </div>
 

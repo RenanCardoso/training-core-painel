@@ -27,8 +27,8 @@
                                     <th>Nome</th>
                                     <th>E-mail</th>
                                     <th>Celular</th>
-                                    <th>Instrutor</th>
-                                    <th>Papel</th>
+                                    <th>Tipo de Usuário</th>
+                                    <th>Perfil de Acesso</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -40,7 +40,15 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ \App\Validators\Formatter::formatterFone($user->celular) }}</td>
-                                        <td>{{ $user->flinstrutor == 'nao' ? $user->flinstrutor = 'Não' : 'Sim' }}</td>
+                                        <td>
+                                            @if($user->tipousuario == 'alu')
+                                                {{ 'Aluno' }}
+                                            @elseif($user->tipousuario == 'ins')
+                                                {{ 'Instrutor' }}
+                                            @else
+                                                {{ 'Administrador' }}
+                                            @endif
+                                        </td>
                                         <td>{{ $user->menuroles }}</td>
                                         <td>
                                             <a href="{{ url('/users/' . $user->id) }}"

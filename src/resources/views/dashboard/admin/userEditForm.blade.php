@@ -83,10 +83,25 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="instrutor_option" for="instrutor_option">Instrutor?</label><small><b> *</b></small>
-                                        <select class="form-control" name="instrutor_option" id="instrutor_option"
-                                                required autofocus value="{{ $user->flinstrutor }}">
-                                            @if( $user->flinstrutor == 'sim' )
+                                        <label for="tipousuario_option" for="tipousuario_option">Tipo de Usuário</label><small><b> *</b></small>
+                                        <select class="form-control" name="tipousuario_option" id="tipousuario_option"
+                                                required autofocus value="{{ $user->tipousuario }}">
+                                            @if( $user->tipousuario == 'alu' )
+                                                <option selected value="alu">Aluno</option>
+                                                <option value="ins">Instrutor</option>
+                                            @else
+                                                <option value="alu">Aluno</option>
+                                                <option selected value="ins">Instrutor</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="flaplicativo_option">Acessa Aplicativo?</label><small><b> *</b></small>
+                                        <select class="form-control" name="flaplicativo_option" id="flaplicativo_option"
+                                                required autofocus value="{{ $user->flaplicativo }}">
+                                            @if( $user->flaplicativo == 'sim' )
                                                 <option selected value="sim">Sim</option>
                                                 <option value="nao">Não</option>
                                             @else
@@ -95,10 +110,8 @@
                                             @endif
                                         </select>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="menuroles_option">Papel de Acesso</label><small><b> *</b></small>
+                                        <label for="menuroles_option">Perfil de Acesso</label><small><b> *</b></small>
                                         <select class="form-control" name="menuroles_option" id="menuroles_option"
                                                 required autofocus value="{{ $user->menuroles }}">
                                             @foreach($roles as $role)

@@ -115,7 +115,8 @@ class UsersController extends Controller
             'telefone'              => 'required|max:14',
             'cpf'                   => 'required|max:14',
             'sexo'                  => 'max:3',
-            'instrutor_option'      => 'required',
+            'tipousuario_option'    => 'required',
+            'flaplicativo_option'   => 'required',
             'menuroles_option'      => 'required',
             'password'              => 'required|min:6',
             'password_confirmation' => 'required|min:6|same:password',
@@ -133,8 +134,9 @@ class UsersController extends Controller
         $user->cpf = Formatter::formatToDatabase($request['cpf']);
         $user->rg = Formatter::formatToDatabase($request['rg']);
         $user->sexo = $request['sexo_option'];
-        $user->flinstrutor = $request['instrutor_option'];
+        $user->tipousuario = $request['tipousuario_option'];
         $user->idcidade = $request['cidade_option'];
+        $user->flaplicativo = $request['flaplicativo_option'];
 
         //lógica para pegar o role selecionado e gravar corretamente no BD
         $user->menuroles = $request['menuroles_option'];
@@ -163,7 +165,8 @@ class UsersController extends Controller
             'telefone'              => 'required|max:14',
             'cpf'                   => 'required|max:14',
             'sexo'                  => 'max:3',
-            'instrutor_option'      => 'required',
+            'tipousuario_option'    => 'required',
+            'flaplicativo_option'   => 'required',
             'menuroles_option'      => 'required',
             'password_confirmation' => 'same:password',
             'cep'                   => 'required|max:10',
@@ -180,8 +183,9 @@ class UsersController extends Controller
         $user->cpf = Formatter::formatToDatabase($request['cpf']);
         $user->rg = Formatter::formatToDatabase($request['rg']);
         $user->sexo = $request['sexo_option'];
-        $user->flinstrutor = $request['instrutor_option'];
+        $user->tipousuario = $request['tipousuario_option'];
         $user->idcidade = $request['cidade_option'];
+        $user->flaplicativo = $request['flaplicativo_option'];
 
         //lógica para pegar o role selecionado e gravar corretamente no BD
         $user->menuroles = $request['menuroles_option'];
@@ -199,7 +203,7 @@ class UsersController extends Controller
             $user->password = Hash::make($request['password']);
         }
 
-//        echo "<pre>"; print_r($user->flinstrutor); exit('objeto');
+//        echo "<pre>"; print_r($user->tipousuario); exit('objeto');
 
         $user->save();
     }

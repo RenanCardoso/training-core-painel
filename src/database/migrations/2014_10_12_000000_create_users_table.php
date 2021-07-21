@@ -32,7 +32,9 @@ class CreateUsersTable extends Migration
             $table->string('bairro', 50);
             $table->string('cep', 10);
             $table->integer('idcidade');
-            $table->string('flinstrutor', 3)->default('nao');
+            $table->string('tipousuario', 3);
+            $table->string('flaplicativo', 3)->default('nao');
+
         });
     }
 
