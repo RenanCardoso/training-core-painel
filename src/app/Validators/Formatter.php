@@ -2,6 +2,8 @@
 
 namespace App\Validators;
 
+use Illuminate\Support\Carbon;
+
 class Formatter
 {
     /**
@@ -31,6 +33,12 @@ class Formatter
             return $value;
         }
         return '0,00';
+    }
+
+    public static function formatterDate($value)
+    {
+        $value = Carbon::parse($value);
+        return $value->format("d/m/Y");
     }
 
     public static function formatterCPF($cpf)

@@ -29,6 +29,14 @@ class UsersController extends Controller
         $this->middleware('admin');
     }
 
+    public function findAlunos(){
+        $alunos = DB::table('users')->where('tipopessoa', '=', 'alu')->orderBy('ASC');
+    }
+
+    public function findInstrutores(){
+        $alunos = DB::table('users')->where('tipopessoa', '=', 'ins')->orderBy('ASC');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -217,7 +225,6 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $users = User::all();
 
         if(!$user){
             abort(404);

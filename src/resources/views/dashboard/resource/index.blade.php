@@ -55,14 +55,23 @@
                             <tbody>
                                 <?php
                                     foreach($datas as $data){
-
                                         echo '<tr>';
                                         foreach($header as $head){
+
                                             if(!empty($head->relation_table)){
                                                 echo '<td>' . $data['relation_' . $head->column_name] . '</td>';
                                             }else{
-                                                if (is_numeric($data[$head->column_name])){
+//                                                echo "<pre>"; print_r($head); exit('');
+                                                if ($head->type == 'date'){
+                                                    echo '<td>' . \App\Validators\Formatter::formatterDate($data[$head->column_name]) . '</td>';
+                                                } elseif (is_numeric($data[$head->column_name])){
                                                     echo '<td>' . \App\Validators\Formatter::format($data[$head->column_name]) . '</td>';
+                                                } elseif ($head->type == 'flag'){
+                                                    if ($data[$head->column_name] == 'nao'){
+                                                        echo '<td>Não</td>';
+                                                    } else {
+                                                        echo '<td>Sim</td>';
+                                                    }
                                                 } else {
                                                     echo '<td>' . $data[$head->column_name] . '</td>';
                                                 }

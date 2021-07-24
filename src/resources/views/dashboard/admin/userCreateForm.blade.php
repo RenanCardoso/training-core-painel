@@ -47,8 +47,8 @@
                                         <input class="form-control" type="text" name="email" id="email"
                                                maxlength="255" placeholder="email@email.com" required autofocus>
                                     </div>
-                                    <div class="form-group col-md-6"><small><b> *</b></small>
-                                        <label for="telefone">Celular</label>
+                                    <div class="form-group col-md-6">
+                                        <label for="telefone">Celular</label><small><b> *</b></small>
                                         <input type="tel" class="form-control telefone" name="telefone" id="telefone"
                                                placeholder="00 00000-0000" required autofocus>
                                     </div>

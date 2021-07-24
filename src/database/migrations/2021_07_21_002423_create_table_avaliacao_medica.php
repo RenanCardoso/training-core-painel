@@ -1,0 +1,60 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateTableAvaliacaoMedica extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('avaliacao_medica', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('idaluno');
+            $table->integer('idinstrutor');
+            $table->float('peso')->unsigned();
+            $table->float('altura')->unsigned();
+            $table->float('imc')->unsigned()->nullable();
+            $table->float('percgorduracorporal');
+            $table->float('medidabicepsdir');
+            $table->float('medidabicepsesq');
+            $table->float('medidatricepsdir');
+            $table->float('medidatricepsesq');
+            $table->float('medidaombro');
+            $table->float('medidacostas');
+            $table->float('medidacoxadir');
+            $table->float('medidacoxaesq');
+            $table->float('medidapanturrilhadir');
+            $table->float('medidapanturrilhaesq');
+            $table->date('dataavaliacao');
+            $table->date('dataexpiracaoavaliacao')->nullable();
+            $table->string('status', 3);
+            $table->text('anexoavaliacao')->nullable();
+            $table->integer('iddoencafisica')->nullable();
+            $table->string('fldeficiente', 3)->default('nao');
+            $table->string('flpossuilesao', 3)->default('nao');
+            $table->text('observacao')->nullable();
+
+            $table->timestamps();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('id', 'FK_avaliacao_users')->references('id')->on('users');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('avaliacao_medica');
+    }
+}

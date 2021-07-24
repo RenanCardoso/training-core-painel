@@ -91,6 +91,7 @@ class FormService{
         if(isset($request[$field->id . '_relation_column'])){
             $field->relation_column = $request[$field->id . '_relation_column'];
         }
+
         $field->save();
     }
 
@@ -331,6 +332,14 @@ class FormService{
             array(
                 'value'=> 'price',
                 'name' => 'price'
+            ),
+            array(
+                'value'=> 'flag',
+                'name' => 'flag'
+            ),
+            array(
+                'value'=> 'imc',
+                'name' => 'imc'
             ),
         );
     }

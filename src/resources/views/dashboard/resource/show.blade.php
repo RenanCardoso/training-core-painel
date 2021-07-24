@@ -25,17 +25,26 @@
                                         </td>
                                         <td>
                                             <?php
+//                                            echo "<pre>"; print_r($columns); exit('');
                                             if( $column['type'] == 'default'){
                                                   if (is_numeric($column['value'])){
                                                       echo \App\Validators\Formatter::format($column['value']);
                                                   }else{
-                                                      echo $column['value'];
+                                                      if ($column['value'] == 'nao'){
+                                                          echo 'Não';
+                                                      } elseif ($column['value'] == 'sim'){
+                                                          echo 'Sim';
+                                                      } else {
+                                                          echo $column['value'];
+                                                      }
                                                   }
-                                              }elseif( $column['type'] == 'file'){
-                                                echo '<a href="' . $column['value'] . '" class="btn btn-primary" target="_blank">Open file</a>';
-                                              }elseif( $column['type'] == 'image' ){
+                                            }elseif( $column['type'] == 'date'){
+                                                echo \App\Validators\Formatter::formatterDate($column['value']);
+                                            }elseif( $column['type'] == 'file'){
+                                                echo '<a href="' . $column['value'] . '" class="btn btn-primary" target="_blank">Abrir arquivo</a>';
+                                            }elseif( $column['type'] == 'image' ){
                                                 echo '<img src="' . $column['value'] . '" style="max-width:200px;max-height:200px;">';
-                                              }
+                                            }
                                             ?>
                                         </td>
                                     </tr>

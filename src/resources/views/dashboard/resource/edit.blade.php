@@ -68,6 +68,18 @@
                                                         echo '<div class="form mb-3">';
                                                         echo '<input type="text" id="price" name="' . $column['column_name'] . '" class="form-control price" style="display:inline-block" value="' . $column['value'] . '"/>';
                                                         echo '</div>';
+                                                    } elseif ($column['type'] == 'flag') {
+                                                        echo '<label>' . $column['name'] . '</label>';
+                                                        echo '<select name="' . $column['column_name'] . '" class="form-control">';
+                                                        if( $column['value'] == 'sim' ){
+                                                            echo '<option selected value="sim">Sim</option>';
+                                                            echo '<option value="nao">Não</option>';
+                                                        } else {
+                                                            echo '<option value="sim">Sim</option>';
+                                                            echo '<option selected value="nao">Não</option>';
+                                                        }
+                                                        echo '</select>';
+                                                        echo '<br>';
                                                     } elseif ($column['type'] == 'radio') {
                                                         echo '<label class="mt-3">' . $column['name'] . '</label>';
                                                         echo '<div class="form-check">';
@@ -89,11 +101,14 @@
                                                     } elseif ($column['type'] == 'number') {
                                                         echo '<label>' . $column['name'] . '</label>';
                                                         echo '<input type="text" id="number" class="form-control number" name="' . $column['column_name'] . '" value="' . $column['value'] . '">';
+                                                        echo '<br>';
+                                                    } elseif ($column['type'] == 'imc') {
+                                                        echo '<label>' . $column['name'] . '</label>';
+                                                        echo '<input type="text" id="imc" class="form-control imc" name="' . $column['column_name'] . '" value="">';
                                                     } else {
                                                         echo '<label>' . $column['name'] . '</label>';
                                                         echo '<input type="' . $column['type'] . '" class="form-control" name="' . $column['column_name'] . '" value="' . $column['value'] . '">';
                                                         echo '<br>';
-
                                                     }
                                                 } elseif ($column['type'] == 'relation_select') {
                                                     echo '<label>' . $column['name'] . '</label>';
@@ -106,6 +121,7 @@
                                                         }
                                                     }
                                                     echo '</select>';
+                                                    echo '<br>';
                                                 } elseif ($column['type'] == 'relation_radio') {
                                                     echo '<label class="mt-3">' . $column['name'] . '</label>';
                                                     foreach ($relations['relation_' . $column['column_name']] as $relation) {
@@ -126,10 +142,10 @@
                                                     echo $column['name'] . ' <input type="file" name="' . $column['column_name'] . '">';
                                                     echo '</label>';
                                                 } elseif ($column['type'] == 'text_area') {
-                                                    echo '<div class="form-group row">';
+//                                                    echo '<div class="form-group row">';
                                                     echo '<label class="col-form-label">' . $column['name'] . '</label>';
                                                     echo '<textarea class="form-control" name="' . $column['column_name'] . '" rows="9">' . $column['value'] . '</textarea>';
-                                                    echo '</div>';
+//                                                    echo '</div>';
                                                 } else {
                                                     echo '<p>Not recognize field type: ' . $column['type'] . '</p>';
                                                 }

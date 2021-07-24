@@ -56,20 +56,23 @@ class ResourceService{
             if(!empty($mediaFolder)){
                 $mediaFolder->addMedia($path)->usingName($oryginalName)->usingFileName( date('YmdHis') . $oryginalName )->toMediaCollection();
                 $result = DB::getPdo()->lastInsertId();
-                $media->delete();
+                if ($media != null){
+                    $media->delete();
+                }
             }
         }
         return $result;
     }
 
     public function getFullIndexHeader( $id ){
-        return FormField::where('form_id', '=', $id)->where('browse', '=', '1')->orderBy('id', 'asc')->get();
+        return FormField::where('form_id', '=', $id)->where('browse', '=', '1')->orderBy('name', 'asc')->get();
     }
 
     public function getRelations( $columns ){
         $relations = array();
         $result = array();
         foreach($columns as $column){
+
             if(!empty($column->relation_table)){
                 if(!empty($column->relation_column)){
                     $name = $column->relation_column;
@@ -91,7 +94,7 @@ class ResourceService{
 
     public function getIndexDatas($id){
         $form = Form::find($id);
-        $formFields = FormField::where('form_id', '=', $id)->where('browse', '=', '1')->get();
+        $formFields = FormField::where('form_id', '=', $id)->where('browse', '=', '1')->orderBy('name', 'asc')->get();
         $indexes = array();
         $relations = array();
         foreach($formFields as $field){
@@ -105,6 +108,7 @@ class ResourceService{
             }
         }
         $table = DB::table($form->table_name);
+
         if(!empty($relations)){
             $table->addSelect($form->table_name . '.*');
         }
@@ -142,7 +146,7 @@ class ResourceService{
     }
 
     public function getColumnsForAdd($id){
-        return FormField::where('form_id', '=', $id)->where('add', '=', '1')->get();
+        return FormField::where('form_id', '=', $id)->where('add', '=', '1')->orderBy('name', 'asc')->get();
     }
 
     public function add($formId, $tableName, $request){
@@ -169,7 +173,7 @@ class ResourceService{
     }
 
     public function update($tableName, $formId, $tableId, $request){
-        $toUpdate = FormField::where('form_id', '=', $formId)->where('edit', '=', '1')->get();
+        $toUpdate = FormField::where('form_id', '=', $formId)->where('edit', '=', '1')->orderBy('name', 'asc')->get();
         $columns = DB::getSchemaBuilder()->getColumnListing( $tableName );
         $data = DB::table($tableName)->where('id', '=', $tableId)->first();
         $updateArray = array();
@@ -178,10 +182,12 @@ class ResourceService{
                 $flag = 'false';
                 foreach($toUpdate as $update){
                     if($update->column_name == $column) {
-                        if ($update->type == 'checkbox') {
+                        if($update->type == 'checkbox'){
                             $flag = 'checkbox';
                         }elseif($update->type == 'price'){
                             $flag = 'price';
+                        }elseif($update->type == 'imc') {
+                            $flag = 'imc';
                         }elseif($update->type == 'radio' || $update->type == 'relation_radio'){
                             $flag = 'radio';
                         }elseif($update->type == 'file' || $update->type == 'image'){
@@ -201,7 +207,7 @@ class ResourceService{
                         }
                     }elseif($flag == 'price'){
                         if(isset($request[$column])){
-                            $updateArray[$column] = $request[$column];
+                            $updateArray[$column] = Formatter::formatToDatabase($request[$column]);
                         }else{
                             $updateArray[$column] = false;
                         }
@@ -248,6 +254,7 @@ class ResourceService{
         }
         foreach( $relations as $relation ){
             $table->leftJoin($relation['table'], $relation['table'] . '.id', '=', $form->table_name . '.' . $relation['thisTableColumnName']);
+
             if(empty($relation['column'])){
                 $table->addSelect($relation['table'] . '.name AS relation_' . $relation['thisTableColumnName']);
             }else{
@@ -267,6 +274,17 @@ class ResourceService{
                     'value' => $value,
                     'type' => $column->type
                 ));
+            }elseif ($column->type == 'date'){
+                if(!empty($column->relation_table)){
+                    $columnName = 'relation_' . $column->column_name;
+                }else{
+                    $columnName = $column->column_name;
+                }
+                array_push($result, array(
+                    'name' => $column->name,
+                    'value' => $data->$columnName,
+                    'type' => 'date'
+                ));
             }else{
                 if(!empty($column->relation_table)){
                     $columnName = 'relation_' . $column->column_name;
@@ -284,7 +302,7 @@ class ResourceService{
     }
 
     public function getColumnsForEdit($tableName, $formId, $tableId){
-        $columns = FormField::where('form_id', '=', $formId)->where('edit', '=', '1')->get();
+        $columns = FormField::where('form_id', '=', $formId)->where('edit', '=', '1')->orderBy('name', 'asc')->get();
         $data = DB::table($tableName)->where('id', '=', $tableId)->first();
         $result = array();
         foreach($columns as $column){

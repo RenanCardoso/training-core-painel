@@ -55,6 +55,14 @@
                                         echo '<label class="form-check-label mt-3">' . $column['name'] . '</label>';
                                         echo '<input type="text" id="price" name="' . $column->column_name . '" class="form-control price" style="display:inline-block" />';
                                         echo '</div>';
+                                    }elseif($column->type == 'flag'){
+                                        echo '<label>' . $column->name . '</label>';
+                                        echo '<select name="' . $column->column_name . '" class="form-control">';
+                                        echo '<option selected="" value="">Selecione...</option>';
+                                        echo '<option value="sim">Sim</option>';
+                                        echo '<option value="nao">Não</option>';
+                                        echo '</select>';
+                                        echo '<br>';
                                     }elseif($column->type == 'radio'){
                                         echo '<label class="mt-3">' . $column->name . '</label>';
                                         echo '<div class="form-check">';
@@ -68,6 +76,7 @@
                                     }elseif($column->type == 'number'){
                                         echo '<label>' . $column->name . '</label>';
                                         echo '<input type="text"  class="form-control number" name="' . $column->column_name . '">';
+                                        echo '<br>';
                                     }else{
                                         //column->type == 'text'
                                         echo '<label>' . $column->name . '</label>';
@@ -81,9 +90,8 @@
                                     foreach($relations['relation_' . $column->column_name] as $relation){
                                         echo '<option value="' . $relation->id . '">' . $relation->name . '</option>';
                                     }
-                                    echo '</select>';
                                     echo '<br>';
-
+                                    echo '</select>';
                                 }elseif($column->type == 'relation_radio'){
                                     echo '<label class="mt-3">' . $column->name . '</label>';
                                     foreach($relations['relation_' . $column->column_name] as $relation){
