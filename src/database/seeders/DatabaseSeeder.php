@@ -35,10 +35,11 @@ class DatabaseSeeder extends Seeder
 //            EmailSeeder::class,
 //            CidadeSeeder::class,
 //              DuracaoPlanoTableSeeder::class,
-//              AgrupamentoMuscularSeeder::class
-//              DoencaFisicaSeeder::class
-              FlSimNaoSeeder::class
-
+//              AgrupamentoMuscularSeeder::class,
+//              DoencaFisicaSeeder::class,
+//              FlSimNaoSeeder::class,
+//              ObjetivoTreinoSeeder::class,
+//              DificuldadeTreinoSeeder::class
         ]);
     }
 }
