@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->integer('idcidade');
             $table->string('tipousuario', 3);
             $table->string('flaplicativo', 3)->default('nao');
-
+            $table->string('status', 3)->default('ati');
         });
     }
 

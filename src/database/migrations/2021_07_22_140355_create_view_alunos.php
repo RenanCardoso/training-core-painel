@@ -14,7 +14,7 @@ class CreateViewAlunos extends Migration
     public function up()
     {
         DB::statement("CREATE VIEW view_alunos AS
-                        select * from users where tipousuario = 'alu' order by name asc;");
+                        select * from users where tipousuario = 'alu' and status = 'ati' order by name asc;");
     }
 
     /**

@@ -54,6 +54,9 @@
                                 <div class="form-group col-sm-6">
                                     <b>Perfil de Acesso: </b>{{ $user->menuroles }}
                                 </div>
+                                <div class="form-group col-sm-6">
+                                    <b>Status: </b>{{ $user->status == 'ati' ? 'Ativo' : 'Inativo' }}
+                                </div>
                             </div>
 
                             <a href="{{ route('users.index') }}"

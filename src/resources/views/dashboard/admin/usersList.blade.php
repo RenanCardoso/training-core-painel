@@ -29,6 +29,7 @@
                                     <th>Celular</th>
                                     <th>Tipo de Usuário</th>
                                     <th>Perfil de Acesso</th>
+                                    <th>Status</th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -50,6 +51,13 @@
                                             @endif
                                         </td>
                                         <td>{{ $user->menuroles }}</td>
+                                        <td>
+                                            @if($user->status == 'ati')
+                                                {{ 'Ativo' }}
+                                            @else
+                                                {{ 'Inativo' }}
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ url('/users/' . $user->id) }}"
                                                class="btn btn-block btn-primary">Ver</a>

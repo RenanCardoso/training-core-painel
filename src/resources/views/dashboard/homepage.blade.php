@@ -9,14 +9,9 @@
                   <div class="card text-white bg-primary">
                     <div class="card-body pb-0">
                       <div class="btn-group float-right">
-                        <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <svg class="c-icon">
-                            <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-settings"></use>
-                          </svg>
-                        </button>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
                       </div>
-                      <div class="text-value-lg">20</div>
+                      <div class="text-value-lg">{{ $cont_aparelhos }}</div>
                       <div>Aparelhos</div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -28,12 +23,7 @@
                 <div class="col-sm-6 col-lg-3">
                   <div class="card text-white bg-info">
                     <div class="card-body pb-0">
-                      <button class="btn btn-transparent p-0 float-right" type="button">
-                        <svg class="c-icon">
-                          <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-location-pin"></use>
-                        </svg>
-                      </button>
-                      <div class="text-value-lg">12</div>
+                      <div class="text-value-lg">{{ $cont_instrutores }}</div>
                       <div>Instrutores</div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -46,14 +36,9 @@
                   <div class="card text-white bg-warning">
                     <div class="card-body pb-0">
                       <div class="btn-group float-right">
-                        <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <svg class="c-icon">
-                            <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-settings"></use>
-                          </svg>
-                        </button>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
                       </div>
-                      <div class="text-value-lg">110</div>
+                      <div class="text-value-lg">{{ $cont_alunos }}</div>
                       <div>Alunos</div>
                     </div>
                     <div class="c-chart-wrapper mt-3" style="height:70px;">
@@ -66,14 +51,9 @@
                   <div class="card text-white bg-danger">
                     <div class="card-body pb-0">
                       <div class="btn-group float-right">
-                        <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <svg class="c-icon">
-                            <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-settings"></use>
-                          </svg>
-                        </button>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
                       </div>
-                      <div class="text-value-lg">93</div>
+                      <div class="text-value-lg">{{ $count_alunos_com_aval }}</div>
                       <div>Alunos com Avaliação Médica</div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">

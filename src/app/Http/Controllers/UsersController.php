@@ -29,14 +29,6 @@ class UsersController extends Controller
         $this->middleware('admin');
     }
 
-    public function findAlunos(){
-        $alunos = DB::table('users')->where('tipopessoa', '=', 'alu')->orderBy('ASC');
-    }
-
-    public function findInstrutores(){
-        $alunos = DB::table('users')->where('tipopessoa', '=', 'ins')->orderBy('ASC');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -157,6 +149,7 @@ class UsersController extends Controller
         $user->bairro           = $request['bairro'];
         $user->complemento      = $request['complemento'];
         $user->numero           = $request['numero'];
+        $user->status           = 'ati';
 
         $user->password = Hash::make($request['password']);
 
@@ -229,6 +222,9 @@ class UsersController extends Controller
         if(!$user){
             abort(404);
         }
+        $user->status = 'ina';
+        $user->save();
+        $user->delete();
 
         return redirect()->route('users.index');
     }

@@ -14,7 +14,7 @@ class CreateViewInstrutores extends Migration
     public function up()
     {
         DB::statement("CREATE VIEW view_instrutores AS
-                        select * from users where tipousuario = 'ins' order by name asc;");
+                        select * from users where tipousuario = 'ins' and status = 'ati' order by name asc;");
     }
 
     /**

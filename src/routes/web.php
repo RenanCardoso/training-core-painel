@@ -11,6 +11,8 @@
 |
 */
 
+use App\Models\User;
+
 Route::group(['middleware' => ['get.menu']], function () {
 
     Route::group(['middleware' => 'auth' ], function () {
@@ -57,7 +59,18 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::get('/badge', function(){    return view('dashboard.notifications.badge'); });
             Route::get('/modals', function(){   return view('dashboard.notifications.modals'); });
         });
-        Route::get('/', function () { return view('dashboard.homepage');    });
+        Route::get('/', function () {
+            $cont_alunos = DB::table('view_alunos')->get()->count();
+            $cont_instrutores = DB::table('view_instrutores')->get()->count();
+            $cont_aparelhos = DB::table('aparelho')->get()->count();
+            $count_alunos_com_aval = DB::table('avaliacao_medica')->where('status', '=', '1')->get()->count();
+
+            return view('dashboard.homepage')
+                ->with('cont_alunos', $cont_alunos)
+                ->with('cont_instrutores', $cont_instrutores)
+                ->with('cont_aparelhos', $cont_aparelhos)
+                ->with('count_alunos_com_aval', $count_alunos_com_aval);
+        });
     });
     Auth::routes();
 
