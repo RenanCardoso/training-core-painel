@@ -44,7 +44,11 @@ class CreateTableAvaliacaoMedica extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('id', 'FK_avaliacao_users')->references('id')->on('users');
+            $table->foreign('idaluno', 'FK_avaliacao_aluno')->references('id')->on('users');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('idinstrutor', 'FK_avaliacao_instrutor')->references('id')->on('users');
         });
     }
 

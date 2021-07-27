@@ -47,8 +47,9 @@
                                 if($flag == true){
                                     if($column->type == 'checkbox'){
                                         echo '<div class="form-check checkbox">';
+                                        echo '<label class="form-check-label">';
                                         echo '<input class="form-check-input" type="checkbox" value="true" name="' . $column->column_name . '">';
-                                        echo '<label class="form-check-label">' . $column->name  . '</label>';
+                                        echo "$column->name</label>";
                                         echo '</div>';
                                     }elseif($column['type'] == 'price'){
                                         echo '<div class="form mb-3">';
@@ -104,6 +105,7 @@
                                     echo '<label class="btn btn-primary mt-2 ml-1">';
                                     echo $column->name . ' <input type="file" name="' . $column->column_name . '">';
                                     echo '</label>';
+                                    echo '<br>';
                                 }elseif($column->type == 'text_area'){
 //                                    echo '<div class="form-group row">';
                                     echo '<label class="col-form-label">' . $column->name . '</label>';

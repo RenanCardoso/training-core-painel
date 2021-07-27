@@ -159,7 +159,7 @@ class ResourceService{
                 if (isset($request[$column->column_name])) {
                     $toInsert[$column->column_name] = $request[$column->column_name];
                 } else {
-                    $toInsert[$column->column_name] = '';
+                    $toInsert[$column->column_name] = false;
                 }
             }elseif($column->type == 'price'){
                 $toInsert[$column->column_name] = Formatter::formatToDatabase($request[$column->column_name]);

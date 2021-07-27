@@ -286,6 +286,16 @@ class ResourceController extends Controller
             }
         }
         $form = Form::find( $table );
+
+        //lógica para validar se o exercício pertence a uma ficha de treino
+        if($form->table_name == 'exercicio') {
+            $temvinculocomficha = \DB::table("treino_exercicio")->where('id', $id)->count();
+
+            if ($temvinculocomficha > 0){
+                abort('401');
+            }
+        }
+
         if($form->delete == 1){
             if($request->has('marker')){
                 DB::table($form->table_name)->where('id', '=', $id)->delete();

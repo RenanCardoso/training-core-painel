@@ -113,6 +113,7 @@
                                                 } elseif ($column['type'] == 'relation_select') {
                                                     echo '<label>' . $column['name'] . '</label>';
                                                     echo '<select name="' . $column['column_name'] . '" class="form-control">';
+                                                    echo '<option value="">Selecione...</option>';
                                                     foreach ($relations['relation_' . $column['column_name']] as $relation) {
                                                         if ($relation->id == $column['value']) {
                                                             echo '<option selected value="' . $relation->id . '">' . $relation->name . '</option>';
@@ -141,6 +142,7 @@
                                                     echo '<label class="btn btn-primary mt-2 ml-1">';
                                                     echo $column['name'] . ' <input type="file" name="' . $column['column_name'] . '">';
                                                     echo '</label>';
+                                                    echo '<br>';
                                                 } elseif ($column['type'] == 'text_area') {
 //                                                    echo '<div class="form-group row">';
                                                     echo '<label class="col-form-label">' . $column['name'] . '</label>';

@@ -19,9 +19,15 @@ class CreateTableExercicio extends Migration
             $table->integer('idaparelho')->nullable();
             $table->text('descricao')->nullable();
             $table->string('url', 500)->nullable();
-            $table->integer('idagrupamentomusc');
+            $table->string('imagem', 500)->nullable();
+            $table->integer('idagrupamentomusc')->nullable();
+            $table->time('tempoexercicio')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('idagrupamentomusc')->references('id')->on('agrupamento_musc');
+            $table->foreign('idaparelho')->references('id')->on('aparelho');
+
         });
     }
 
