@@ -201,7 +201,7 @@ In `run()` function - add `insertLink()`:
 ```php
 $id = $this->insertLink( $rolesString, $visibleName, $href, $iconString);
 ```
-* `$rolesString` - a string with list of user roles this menu element will be available, ex. `"guest,user,admin"`
+* `$rolesString` - a string with list of user roles this menu element will be available, ex. `"aluno,user,admin"`
 * `$visibleName` - a string caption visible in sidebar
 * `$href` - a href, ex. `/homepage` or `http://example.com`
 * `$iconString` - a string containing valid CoreUI Icon name (kebab-case), ex. `cil-speedometer` or `cil-pencil`

@@ -22,7 +22,7 @@ class GetMenu
     public function handle($request, Closure $next)
     {
         if (Auth::check()){
-            $role = 'guest';
+            $role = 'user';
             //$role =  Auth::user()->menuroles;
             $userRoles = Auth::user()->getRoleNames();
             //$userRoles = $userRoles['items'];
@@ -43,7 +43,7 @@ class GetMenu
                 }
             }
         }else{
-            $role = 'guest';
+            $role = 'user';
         }
         //session(['prime_user_role' => $role]);
         $menus = new GetSidebarMenu();

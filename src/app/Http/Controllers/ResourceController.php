@@ -24,12 +24,12 @@ class ResourceController extends Controller
         $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('browse bread ' . $table)){
-                $guestHasPermission = true;
+                $alunoHasPermission = true;
             }
         } catch (\Throwable $e) {
-            $guestHasPermission = false;
+            $alunoHasPermission = false;
         }
-        if(!$guestHasPermission){
+        if(!$alunoHasPermission){
             if(empty(Auth::user())){
                 abort('401');
             }else{
@@ -61,12 +61,12 @@ class ResourceController extends Controller
         $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('add bread ' . $table)){
-                $guestHasPermission = true;
+                $alunoHasPermission = true;
             }
         } catch (\Throwable $e) {
-            $guestHasPermission = false;
+            $alunoHasPermission = false;
         }
-        if(!$guestHasPermission){
+        if(!$alunoHasPermission){
             if(empty(Auth::user())){
                 abort('401');
             }else{
@@ -103,12 +103,12 @@ class ResourceController extends Controller
         $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('add bread ' . $table)){
-                $guestHasPermission = true;
+                $alunoHasPermission = true;
             }
         } catch (\Throwable $e) {
-            $guestHasPermission = false;
+            $alunoHasPermission = false;
         }
-        if(!$guestHasPermission){
+        if(!$alunoHasPermission){
             if(empty(Auth::user())){
                 abort('401');
             }else{
@@ -148,12 +148,12 @@ class ResourceController extends Controller
         $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('read bread ' . $table)){
-                $guestHasPermission = true;
+                $alunoHasPermission = true;
             }
         } catch (\Throwable $e) {
-            $guestHasPermission = false;
+            $alunoHasPermission = false;
         }
-        if(!$guestHasPermission){
+        if(!$alunoHasPermission){
             if(empty(Auth::user())){
                 abort('401');
             }else{
@@ -185,12 +185,12 @@ class ResourceController extends Controller
         $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('edit bread ' . $table)){
-                $guestHasPermission = true;
+                $alunoHasPermission = true;
             }
         } catch (\Throwable $e) {
-            $guestHasPermission = false;
+            $alunoHasPermission = false;
         }
-        if(!$guestHasPermission){
+        if(!$alunoHasPermission){
             if(empty(Auth::user())){
                 abort('401');
             }else{
@@ -227,12 +227,12 @@ class ResourceController extends Controller
         $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('edit bread ' . $table)){
-                $guestHasPermission = true;
+                $alunoHasPermission = true;
             }
         } catch (\Throwable $e) {
-            $guestHasPermission = false;
+            $alunoHasPermission = false;
         }
-        if(!$guestHasPermission){
+        if(!$alunoHasPermission){
             if(empty(Auth::user())){
                 abort('401');
             }else{
@@ -271,12 +271,12 @@ class ResourceController extends Controller
         $role = Role::where('name', '=', 'admin')->first();
         try {
             if($role->hasPermissionTo('delete bread ' . $table)){
-                $guestHasPermission = true;
+                $alunoHasPermission = true;
             }
         } catch (\Throwable $e) {
-            $guestHasPermission = false;
+            $alunoHasPermission = false;
         }
-        if(!$guestHasPermission){
+        if(!$alunoHasPermission){
             if(empty(Auth::user())){
                 abort('401');
             }else{

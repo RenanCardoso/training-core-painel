@@ -42,15 +42,6 @@
 
     @yield('css')
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-
-    </script>
-
     <link href="{{ asset('css/coreui-chartjs.css') }}" rel="stylesheet">
   </head>
 

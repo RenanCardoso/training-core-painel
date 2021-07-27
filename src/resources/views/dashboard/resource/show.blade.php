@@ -27,7 +27,7 @@
                                             <?php
 //                                            echo "<pre>"; print_r($columns); exit('');
                                             if( $column['type'] == 'default'){
-                                                  if (is_numeric($column['value'])){
+                                                  if ($column['name'] == 'Preço'){
                                                       echo \App\Validators\Formatter::format($column['value']);
                                                   }else{
                                                       if ($column['value'] == 'nao'){

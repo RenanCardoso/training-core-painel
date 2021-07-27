@@ -64,7 +64,7 @@
 //                                                echo "<pre>"; print_r($head); exit('');
                                                 if ($head->type == 'date'){
                                                     echo '<td>' . \App\Validators\Formatter::formatterDate($data[$head->column_name]) . '</td>';
-                                                } elseif (is_numeric($data[$head->column_name])){
+                                                } elseif ($head->type == 'price'){
                                                     echo '<td>' . \App\Validators\Formatter::format($data[$head->column_name]) . '</td>';
                                                 } elseif ($head->type == 'flag'){
                                                     if ($data[$head->column_name] == 'nao'){
