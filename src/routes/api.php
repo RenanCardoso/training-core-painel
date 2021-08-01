@@ -20,18 +20,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //WS001 - Realizar Login
 Route::name('api.login')->post('login', 'Api\AuthController@login');
-
 //endpoint de refresh token
 Route::post('refresh', 'Api\AuthController@refresh');
 
 //grupo de rotas mobile protegidas
-Route::group(['middleware' => ['auth:api', 'jwt.refresh']], function (){
-
-    //Listar Usuários
-    Route::get('users', function (){
-        return \App\Models\User::all();
-    });
+Route::group(['middleware' => 'auth:api'], function (){
 
     //WS002 - Realizar Logout
     Route::post('logout', 'Api\AuthController@logout');
+
+    Route::group(['middleware' => 'jwt.refresh'], function () {
+
+        //Listar Usuários
+        Route::resource('users', 'Api\UsersController', ['except' => ['create', 'edit']]);
+
+        //WS - Categorias
+        Route::resource('categories', 'Api\CategoryController', ['except' => ['create', 'edit']]);
+    });
 });

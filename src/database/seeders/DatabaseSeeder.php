@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
 //              FlSimNaoSeeder::class,
 //              ObjetivoTreinoSeeder::class,
 //              DificuldadeTreinoSeeder::class
+              CategoriesTableSeeder::class
         ]);
     }
 }

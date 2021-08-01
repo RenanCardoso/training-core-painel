@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Tenant\TenantModels;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -16,6 +17,7 @@ class User extends Authenticatable implements JWTSubject
     use SoftDeletes;
     use HasRoles;
     use HasFactory;
+    use TenantModels; //Usar o multi-tenancy
 
     protected $table = 'users';
 
