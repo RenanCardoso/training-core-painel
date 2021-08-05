@@ -11,18 +11,13 @@
 |
 */
 
-use App\Models\User;
-
 Route::group(['middleware' => ['get.menu']], function () {
 
     Route::group(['middleware' => 'auth' ], function () {
         Route::get('/404', function () {        return view('dashboard.404'); });
         Route::get('/500', function () {        return view('dashboard.500'); });
-        Route::get('/', function () {
-            return view('home');
-
-            });
-        });
+        Route::get('/', function () { return view('home'); });
+    });
     Auth::routes();
 
     Route::resource('resource/{table}/resource', 'ResourceController')->names([
@@ -35,7 +30,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         'destroy'   => 'resource.destroy'
     ]);
 
-    Route::group(['middleware' => ['role:admin']], function () {
+//    Route::group(['middleware' => ['role:admin']], function () {
 
         Route::get('/dashboard', function () {
             $cont_alunos = DB::table('view_alunos')->get()->count();
@@ -93,5 +88,5 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::post('/file/cropp',      'MediaController@cropp');
             Route::get('/file/copy',        'MediaController@fileCopy')->name('media.file.copy');
         });
-    });
+//    });
 });

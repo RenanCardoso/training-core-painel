@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 
 class RolesService{
 
-    static $defaultRoles = ['guest'];
+    static $defaultRoles = ['aluno'];
 
     public static function get(){
         $roles = Role::all();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class AuthController extends Controller
 {
@@ -12,13 +13,20 @@ class AuthController extends Controller
 
     //endpoint de login
     public function login(Request $request){
+
         $this->validateLogin($request);
 
         $credentials = $this->credentials($request);
-
         $token = \JWTAuth::attempt($credentials);
 
-        return $this->responseToken($token);
+        $user = \JWTAuth::user();
+        if($user['flaplicativo'] == 'sim' && $user['status'] == 'ati'){
+            return $this->responseToken($token);
+        } else {
+            return response()->json([
+                'error' => \Lang::get('auth.failed')
+            ], 400);
+        }
     }
 
     private function responseToken($token){

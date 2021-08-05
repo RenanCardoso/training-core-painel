@@ -15,7 +15,7 @@ class CreateTableAvaliacaoMedica extends Migration
     {
         Schema::create('avaliacao_medica', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idaluno');
+            $table->integer('idusuario')->comment("ID do aluno usuário do app");
             $table->integer('idinstrutor');
             $table->float('peso')->unsigned();
             $table->float('altura')->unsigned();

@@ -20,19 +20,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //WS001 - Realizar Login
 Route::name('api.login')->post('login', 'Api\AuthController@login');
-//endpoint de refresh token
+
+//WS002 - Renovar Token de Autenticação - endpoint de refresh token
 Route::post('refresh', 'Api\AuthController@refresh');
 
 //grupo de rotas mobile protegidas
 Route::group(['middleware' => 'auth:api'], function (){
 
-    //WS002 - Realizar Logout
+    //WS003 - Realizar Logout
     Route::post('logout', 'Api\AuthController@logout');
 
     Route::group(['middleware' => 'jwt.refresh'], function () {
 
-        //Listar Usuários
-        Route::resource('users', 'Api\UsersController', ['except' => ['create', 'edit']]);
+        //WS004 - Meus Dados
+//        Route::resource('users', 'Api\UsersController', ['only' => ['index', 'show']]);
+
+        //WS005 - Consultar Avaliação Médica
+        Route::resource('avaliacao-medica', 'Api\AvaliacaoMedicaController', ['only' => ['index']]);
 
         //WS - School of Net
         Route::get('categories/{category}/bill_pays', 'Api\CategoryBillPayController@index');

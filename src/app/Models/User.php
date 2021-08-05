@@ -21,12 +21,16 @@ class User extends Authenticatable implements JWTSubject
 
     protected $table = 'users';
 
+    /** @var string $primaryKey */
+    protected $primaryKey = 'idusuario';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'idusuario',
         'name',
         'email',
         'password',
@@ -41,7 +45,9 @@ class User extends Authenticatable implements JWTSubject
         'bairro',
         'cep',
         'idcidade',
-        'flinstrutor'
+        'flaplicativo',
+        'tipousuario',
+        'status',
     ];
 
     /**
@@ -89,7 +95,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             'name' => $this->name,
-            'email' => $this->email
+            'email' => $this->email,
+            'flaplicativo' => $this->flaplicativo,
         ];
     }
 }

@@ -18,7 +18,7 @@ trait TenantModels
         static::creating(function (Model $model){
             if (\Tenant::getTenant()){
                 $userId = \Tenant::getTenant()->id;
-                $model->user_id = $userId;
+                $model->idusuario = $userId;
             }
         });
     }

@@ -15,7 +15,7 @@ class TenantScope implements Scope
     {
         if (\Tenant::getTenant()){
             $userId = \Tenant::getTenant()->id;
-            $builder->where('user_id', $userId);
+            $builder->where('idusuario', $userId);
         }
     }
 }
