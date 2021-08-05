@@ -34,7 +34,9 @@ Route::group(['middleware' => 'auth:api'], function (){
         //Listar Usuários
         Route::resource('users', 'Api\UsersController', ['except' => ['create', 'edit']]);
 
-        //WS - Categorias
+        //WS - School of Net
+        Route::get('categories/{category}/bill_pays', 'Api\CategoryBillPayController@index');
         Route::resource('categories', 'Api\CategoryController', ['except' => ['create', 'edit']]);
+        Route::resource('bill_pays', 'Api\BillPayController', ['except' => ['create', 'edit']]);
     });
 });

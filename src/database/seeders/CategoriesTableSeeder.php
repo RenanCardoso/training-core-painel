@@ -1,10 +1,6 @@
 <?php
 
-namespace Database\Seeders;
-
-use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -15,13 +11,13 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-
-        for ($i = 0; $i < 5; $i++){
-            DB::table('categories')->insert([
-                'name'         => $faker->city,
-                'user_id'      => rand(1,25)
-            ]);
-        }
+        $users = \App\Models\User::all();
+        factory(\App\Models\Category::class,100)
+            ->make()
+            ->each(function($category) use($users){
+                \Tenant::setTenant($users->random());
+                $category->save();
+            });
+        \Tenant::setTenant(null);
     }
 }

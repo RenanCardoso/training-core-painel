@@ -12,6 +12,8 @@ class TenantManager
      * @return mixed
      * posso retornar valores nulos ou Users
      */
+    private $tenant;
+
     public function getTenant(): ?User
     {
         return $this->tenant;
@@ -24,5 +26,4 @@ class TenantManager
     {
         $this->tenant = $tenant;
     }
-    private $tenant;
 }

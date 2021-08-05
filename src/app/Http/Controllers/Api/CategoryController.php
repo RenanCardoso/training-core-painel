@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
-use App\Http\Requests\CategoryRequest;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryController extends Controller
 {
@@ -19,16 +18,6 @@ class CategoryController extends Controller
     {
         $categories = Category::paginate();
         return CategoryResource::collection($categories); //usado para serializar uma coleção de dados (lista)
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -55,17 +44,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -76,6 +54,7 @@ class CategoryController extends Controller
     {
         $category->fill($request->all());
         $category->save();
+
         return new CategoryResource($category); //usado para serializar o retorno
     }
 
