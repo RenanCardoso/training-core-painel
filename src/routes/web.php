@@ -17,20 +17,21 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/404', function () {        return view('dashboard.404'); });
         Route::get('/500', function () {        return view('dashboard.500'); });
         Route::get('/', function () { return view('home'); });
+
+        Route::resource('resource/{table}/resource', 'ResourceController')->names([
+            'index'     => 'resource.index',
+            'create'    => 'resource.create',
+            'store'     => 'resource.store',
+            'show'      => 'resource.show',
+            'edit'      => 'resource.edit',
+            'update'    => 'resource.update',
+            'destroy'   => 'resource.destroy'
+        ]);
     });
     Auth::routes();
 
-    Route::resource('resource/{table}/resource', 'ResourceController')->names([
-        'index'     => 'resource.index',
-        'create'    => 'resource.create',
-        'store'     => 'resource.store',
-        'show'      => 'resource.show',
-        'edit'      => 'resource.edit',
-        'update'    => 'resource.update',
-        'destroy'   => 'resource.destroy'
-    ]);
 
-//    Route::group(['middleware' => ['role:admin']], function () {
+    Route::group(['middleware' => ['role:admin']], function () {
 
         Route::get('/dashboard', function () {
             $cont_alunos = DB::table('view_alunos')->get()->count();
@@ -88,5 +89,5 @@ Route::group(['middleware' => ['get.menu']], function () {
             Route::post('/file/cropp',      'MediaController@cropp');
             Route::get('/file/copy',        'MediaController@fileCopy')->name('media.file.copy');
         });
-//    });
+    });
 });

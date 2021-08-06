@@ -32,10 +32,10 @@ Route::group(['middleware' => 'auth:api'], function (){
 
     Route::group(['middleware' => 'jwt.refresh'], function () {
 
-        //WS004 - Meus Dados
+        //WS004 - Meus Dados e WS005 - Atualizar Meus Dados
 //        Route::resource('users', 'Api\UsersController', ['only' => ['index', 'show']]);
 
-        //WS005 - Consultar Avaliação Médica
+        //WS006 - Consultar Avaliação Médica
         Route::resource('avaliacao-medica', 'Api\AvaliacaoMedicaController', ['only' => ['index']]);
 
         //WS - School of Net
