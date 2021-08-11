@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
+use App\Tenant\TenantModels;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Status extends Model
 {
     use HasFactory;
+    use TenantModels;
 
     protected $table = 'status';
-    public $timestamps = false; 
-    /**
-     * Get the notes for the status.
-     */
-    public function notes()
-    {
-        return $this->hasMany('App\Models\Notes');
-    }
+
+    protected $fillable = [
+        'id',
+        'name',
+    ];
 }

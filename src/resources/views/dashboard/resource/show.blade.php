@@ -30,12 +30,18 @@
                                                   if ($column['name'] == 'Preço'){
                                                       echo \App\Validators\Formatter::format($column['value']);
                                                   }else{
-                                                      if ($column['value'] == 'nao'){
-                                                          echo 'Não';
-                                                      } elseif ($column['value'] == 'sim'){
-                                                          echo 'Sim';
+                                                      if (is_bool($column['value'])){
+                                                          if ($column['value'] == true){
+                                                              echo '<i class="cil-check-alt"></i>';
+                                                          }
                                                       } else {
-                                                          echo $column['value'];
+                                                          if ($column['value'] == 'nao'){
+                                                              echo 'Não';
+                                                          } elseif ($column['value'] == 'sim'){
+                                                              echo 'Sim';
+                                                          } else {
+                                                              echo $column['value'];
+                                                          }
                                                       }
                                                   }
                                             }elseif( $column['type'] == 'date'){

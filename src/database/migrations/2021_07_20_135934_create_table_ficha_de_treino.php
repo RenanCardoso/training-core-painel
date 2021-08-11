@@ -15,10 +15,15 @@ class CreateTableFichaDeTreino extends Migration
     {
         Schema::create('ficha_de_treino', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('idaluno')->nullable();
+            $table->integer('idusuario')->nullable();
             $table->string('nome', 120);
+
             $table->integer('idobjetivotreino')->nullable();
+            $table->foreign('idobjetivotreino', )->references('id')->on('objetivotreino');
+
             $table->integer('iddificuldadetreino');
+            $table->foreign('iddificuldadetreino', )->references('id')->on('dificuldadetreino');
+
             $table->string('fliniciante', 3);
             $table->time('tempotreino')->nullable();
             $table->date('datainicio')->nullable();
@@ -33,6 +38,8 @@ class CreateTableFichaDeTreino extends Migration
             $table->boolean('sex')->nullable();
             $table->boolean('sab')->nullable();
 
+            $table->integer('status', );
+            $table->foreign('status', )->references('id')->on('status');
             $table->timestamps();
         });
 

@@ -15,8 +15,8 @@ class CreateTableTreinoExercicio extends Migration
     {
         Schema::create('treino_exercicio', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('idfichatreino')->unsigned();
-            $table->bigInteger('idexercicio')->unsigned();
+            $table->bigInteger('ficha_de_treino_id')->unsigned();
+            $table->bigInteger('exercicio_id')->unsigned();
             $table->string('codigo_treino', 3)->nullable();
             $table->integer('ordem');
             $table->integer('series');
@@ -25,8 +25,8 @@ class CreateTableTreinoExercicio extends Migration
             $table->text('observacao')->nullable();
             $table->timestamps();
 
-            $table->foreign('idfichatreino')->references('id')->on('ficha_de_treino');
-            $table->foreign('idexercicio')->references('id')->on('exercicio');
+            $table->foreign('ficha_de_treino_id')->references('id')->on('ficha_de_treino');
+            $table->foreign('exercicio_id')->references('id')->on('exercicio');
         });
     }
 

@@ -90,9 +90,22 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [
-            'name' => $this->name,
-            'email' => $this->email,
+            'name'         => $this->name,
+            'email'        => $this->email,
+            'datanasc'     => $this->datanasc,
+            'sexo'         => $this->sexo,
+            'cpf'          => $this->cpf,
+            'rg'           => $this->rg,
+            'telefone'     => $this->telefone,
+            'logradouro'   => $this->logradouro,
+            'numero'       => $this->numero,
+            'complemento'  => $this->complemento,
+            'bairro'       => $this->bairro,
+            'cep'          => $this->cep,
+            'idcidade'     => $this->idcidade,
             'flaplicativo' => $this->flaplicativo,
+            'tipousuario'  => $this->tipousuario,
+            'status'       => $this->status,
         ];
     }
 }

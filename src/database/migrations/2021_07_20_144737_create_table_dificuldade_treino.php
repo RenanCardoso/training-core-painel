@@ -16,7 +16,6 @@ class CreateTableDificuldadeTreino extends Migration
         Schema::create('dificuldadetreino', function (Blueprint $table) {
             $table->id('id');
             $table->string('nome', 120);
-            $table->timestamps();
         });
 
         Schema::table('ficha_de_treino', function (Blueprint $table) {

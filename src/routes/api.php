@@ -33,10 +33,18 @@ Route::group(['middleware' => 'auth:api'], function (){
     Route::group(['middleware' => 'jwt.refresh'], function () {
 
         //WS004 - Meus Dados e WS005 - Atualizar Meus Dados
-//        Route::resource('users', 'Api\UsersController', ['only' => ['index', 'show']]);
+        Route::resource('meus-dados', 'Api\UserController', ['except' => ['create', 'edit']]);
 
         //WS006 - Consultar Avaliação Médica
         Route::resource('avaliacao-medica', 'Api\AvaliacaoMedicaController', ['only' => ['index']]);
+
+        //WS007 - Consultar Ficha de Treino
+        Route::resource('ficha-de-treino', 'Api\FichaDeTreinoController', ['only' => ['index']]);
+
+        //WS008 - Consultar Exercícios da Ficha de Treino do Aluno
+        Route::get('ficha-de-treino/{fichadetreino}/exercicios', 'Api\TreinoExercicioController@index');
+
+        Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);
 
         //WS - School of Net
         Route::get('categories/{category}/bill_pays', 'Api\CategoryBillPayController@index');

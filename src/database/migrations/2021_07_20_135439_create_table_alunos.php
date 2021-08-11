@@ -32,7 +32,7 @@
 //            $table->integer('idcidade');
 //            $table->integer('idplano');
 //            $table->integer('idinstrutor');
-//            $table->integer('idfichatreino');
+//            $table->integer('ficha_de_treino_id');
 //
 //            $table->timestamps();
 //        });
