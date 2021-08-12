@@ -26,4 +26,9 @@ class TreinoExercicio extends Model
     public function exercicios(){
         return $this->belongsTo(Exercicio::class);
     }
+
+    public function consultarExerciciosDoDia($fichadetreino){
+//        $exerciciosdodia = TreinoExercicio::all()->where($fichadetreino)
+//        return $this->belongsTo(Exercicio::class);
+    }
 }

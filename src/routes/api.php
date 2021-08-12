@@ -41,11 +41,15 @@ Route::group(['middleware' => 'auth:api'], function (){
         //WS007 - Consultar Ficha de Treino
         Route::resource('ficha-de-treino', 'Api\FichaDeTreinoController', ['only' => ['index']]);
 
-        //WS008 - Consultar Exercícios da Ficha de Treino do Aluno
-        Route::get('ficha-de-treino/{fichadetreino}/exercicios', 'Api\TreinoExercicioController@index');
+        //WS008 - Consultar Todos Exercícios da Ficha de Treino do Aluno e WS009 - Detalhe Exercício
+        Route::resource('ficha-de-treino/{fichadetreino}/exercicios', 'Api\TreinoExercicioController', ['only' => ['index', 'show']]);
+
+
+        //WS009 - Consultar Exercícios do Dia
+        Route::get('ficha-de-treino/{fichadetreino}/exercicio-do-dia', 'Api\TreinoExercicioController@index');
+
 
         //WS009 - Iniciar Treino PAREI AQUI
-
 
 
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);

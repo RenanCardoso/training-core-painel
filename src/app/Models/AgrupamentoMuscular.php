@@ -13,8 +13,9 @@ class AgrupamentoMuscular extends Model
 
     protected $fillable = ['nome'];
 
-    public function exercicio()
+    public function getAgrupamentoMuscular($agrupamento_id)
     {
-        return $this->belongsTo(Exercicio::class);
+        $agrupamento['id']        = AgrupamentoMuscular::find($agrupamento_id);
+        return $agrupamento;
     }
 }

@@ -33,8 +33,8 @@ class CreateTableAvaliacaoMedica extends Migration
             $table->float('medidapanturrilhaesq');
             $table->date('dataavaliacao');
             $table->date('dataexpiracaoavaliacao')->nullable();
-            $table->integer('status', );
-            $table->foreign('status', )->references('id')->on('status');
+            $table->integer('status');
+            $table->foreign('status')->references('id')->on('status');
             $table->text('anexoavaliacao')->nullable();
             $table->integer('iddoencafisica')->nullable();
             $table->string('fldeficiente', 3)->default('nao');

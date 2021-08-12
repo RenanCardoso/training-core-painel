@@ -19,19 +19,22 @@ class CreateTableFichaDeTreino extends Migration
             $table->string('nome', 120);
 
             $table->integer('idobjetivotreino')->nullable();
-            $table->foreign('idobjetivotreino', )->references('id')->on('objetivotreino');
+            $table->foreign('idobjetivotreino')->references('id')->on('objetivotreino');
 
             $table->integer('iddificuldadetreino');
-            $table->foreign('iddificuldadetreino', )->references('id')->on('dificuldadetreino');
+            $table->foreign('iddificuldadetreino')->references('id')->on('dificuldadetreino');
 
             $table->string('fliniciante', 3);
+
             $table->time('tempotreino')->nullable();
             $table->date('datainicio')->nullable();
             $table->date('datafim')->nullable();
+
+            $table->integer('qtdsessao');
             $table->text('descricao')->nullable();
 
-            $table->integer('status', );
-            $table->foreign('status', )->references('id')->on('status');
+            $table->integer('status');
+            $table->foreign('status')->references('id')->on('status');
             $table->timestamps();
         });
 

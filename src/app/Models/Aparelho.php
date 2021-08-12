@@ -13,8 +13,9 @@ class Aparelho extends Model
 
     protected $fillable = ['nome'];
 
-    public function pertenceExercicio()
+    public function getAparelho($aparelho_id)
     {
-        return $this->belongsTo(Exercicio::class);
+        $aparelho['id']        = Aparelho::find($aparelho_id);
+        return $aparelho;
     }
 }

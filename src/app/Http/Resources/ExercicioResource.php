@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Models\AgrupamentoMuscular;
 use App\Models\Aparelho;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ExercicioResource extends JsonResource
@@ -15,15 +17,21 @@ class ExercicioResource extends JsonResource
      */
     public function toArray($request)
     {
-//        $aparelho = new Aparelho();
+
+        $aparelho = new Aparelho();
+        $aparelho = $aparelho->getAparelho($this->idaparelho);
+
+        $agrupamentomuscular = new AgrupamentoMuscular();
+        $agrupamentomuscular = $agrupamentomuscular->getAgrupamentoMuscular($this->idagrupamentomusc);
+
         return [
             'id'                    => $this->id,
-//            'nome'                  => $this->nome,
-//            'idaparelho'            => $aparelho->pertenceExercicio()->toArray(),
-//            'descricao'             => $this->descricao,
-//            'imagem'                => $this->imagem,
-//            'idagrupamentomuscular' => $this->idagrupamentomuscular,
-//            'tempoexercicio'        => $this->tempoexercicio,
+            'nome'                  => $this->nome,
+            'idaparelho'            => $aparelho,
+            'descricao'             => $this->descricao,
+            'imagem'                => $this->imagem,
+            'idagrupamentomuscular' => $agrupamentomuscular,
+            'tempoexercicio'        => $this->tempoexercicio,
         ];
     }
 }
