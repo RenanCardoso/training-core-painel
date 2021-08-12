@@ -14,7 +14,7 @@ class TreinoExercicioController extends Controller
 {
     public function index(FichaDeTreino $fichadetreino)
     {
-        $treinoexercicio = $fichadetreino->treinoexercicio()->paginate();
+        $treinoexercicio = $fichadetreino->treinoexercicio()->orderBy('codigo_treino', 'ASC')->orderBy('ordem', 'ASC')->paginate();
 
         return new TreinoExercicioCollection($treinoexercicio, $fichadetreino);
     }

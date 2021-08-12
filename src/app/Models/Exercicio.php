@@ -31,7 +31,6 @@ class Exercicio extends Model
         $exercicio                      = Exercicio::findOrFail($exercicio_id)->toArray();
         $exercicio['idaparelho']        = Aparelho::find($exercicio['idaparelho']);
         $exercicio['idagrupamentomusc'] = AgrupamentoMuscular::find($exercicio['idagrupamentomusc']);
-
         return $exercicio;
     }
 }

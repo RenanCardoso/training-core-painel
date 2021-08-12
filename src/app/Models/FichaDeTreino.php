@@ -21,13 +21,6 @@ class FichaDeTreino extends Model
         'fliniciante',
         'tempotreino',
         'descricao',
-        'dom',
-        'seg',
-        'ter',
-        'qua',
-        'qui',
-        'sex',
-        'sab',
         'status',
     ];
 

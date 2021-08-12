@@ -44,6 +44,10 @@ Route::group(['middleware' => 'auth:api'], function (){
         //WS008 - Consultar Exercícios da Ficha de Treino do Aluno
         Route::get('ficha-de-treino/{fichadetreino}/exercicios', 'Api\TreinoExercicioController@index');
 
+        //WS009 - Iniciar Treino PAREI AQUI
+
+
+
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);
 
         //WS - School of Net

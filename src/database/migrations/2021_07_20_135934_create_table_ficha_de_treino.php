@@ -30,14 +30,6 @@ class CreateTableFichaDeTreino extends Migration
             $table->date('datafim')->nullable();
             $table->text('descricao')->nullable();
 
-            $table->boolean('dom')->nullable();
-            $table->boolean('seg')->nullable();
-            $table->boolean('ter')->nullable();
-            $table->boolean('qua')->nullable();
-            $table->boolean('qui')->nullable();
-            $table->boolean('sex')->nullable();
-            $table->boolean('sab')->nullable();
-
             $table->integer('status', );
             $table->foreign('status', )->references('id')->on('status');
             $table->timestamps();
