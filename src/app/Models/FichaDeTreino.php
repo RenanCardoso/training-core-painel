@@ -56,7 +56,7 @@ class FichaDeTreino extends Model
             ->groupBy('codigo_treino');
 
 //        echo "<pre>"; print_r($codigotreino); exit(' aa');
-
+//teste
         return $treinoexerciciododia;
     }
 }
