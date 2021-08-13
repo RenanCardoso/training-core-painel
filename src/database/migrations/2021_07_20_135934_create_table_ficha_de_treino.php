@@ -30,7 +30,6 @@ class CreateTableFichaDeTreino extends Migration
             $table->date('datainicio')->nullable();
             $table->date('datafim')->nullable();
 
-            $table->integer('qtdsessao');
             $table->text('descricao')->nullable();
 
             $table->integer('status');

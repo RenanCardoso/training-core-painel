@@ -22,7 +22,6 @@ class FichaDeTreino extends Model
         'tempotreino',
         'descricao',
         'status',
-        'qtdsessao',
     ];
 
     protected $dates = [
@@ -56,7 +55,6 @@ class FichaDeTreino extends Model
             ->groupBy('codigo_treino');
 
 //        echo "<pre>"; print_r($codigotreino); exit(' aa');
-//teste
         return $treinoexerciciododia;
     }
 }

@@ -53,7 +53,20 @@ class TreinoExercicioController extends Controller
     public function consultarTreinodoDia(FichaDeTreino $fichadetreino)
     {
         $treinoexercicio = $fichadetreino->treinoexerciciododiaporcodigo($fichadetreino);
+        $codigotreino = array_keys($treinoexercicio->toArray());
+        $exercicio = new Exercicio();
 
+        //       logica para pegar os dados do exercicio do treinoexercicio
+        for ($k = 0; $k < count($codigotreino); $k++){ //é loopado a quantidade de código treino
+            for ($i = 0; $i < count($treinoexercicio[$codigotreino[$k]]); $i++){ //é loopado a quantidade de exercícios deste código treino
+
+//                aqui pego o exercicio_id do treino_exercicio
+                $exercicios_id_array = array_column($treinoexercicio[$codigotreino[$k]]->toArray(), 'exercicio_id');
+
+//                aqui pego os dados do exercicio de fato
+                $treinoexercicio[$codigotreino[$k]][$i]['exercicio_id'] = $exercicio->getExercicio($exercicios_id_array[$i]);
+            }
+        }
         return $treinoexercicio->toArray();
     }
 }

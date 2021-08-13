@@ -23,7 +23,6 @@ class CreateTableTreinoExercicio extends Migration
             $table->string('repeticoes', 50);
             $table->time('tempodescansoseg');
             $table->text('observacao')->nullable();
-            $table->integer('ultsessao')->nullable();;
             $table->timestamps();
 
             $table->foreign('ficha_de_treino_id')->references('id')->on('ficha_de_treino');

@@ -21,7 +21,6 @@ class TreinoExercicio extends Model
         'tempodescansoseg',
         'observacao',
         'idusuario',
-        'ultsessao',
     ];
 
     public function exercicios(){
