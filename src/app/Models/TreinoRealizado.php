@@ -16,6 +16,5 @@ class TreinoRealizado extends Model
         'codigo_treino',
         'fltreinododia',
         'qtdrealizado',
-        'datarealizado',
     ];
 }

@@ -14,6 +14,15 @@ class TreinoRealizadoResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+//            'id' => $this->id,
+//            'ficha_de_treino_id' => $this->ficha_de_treino_id,
+//            'codigo_treino' => $this->codigo_treino,
+//            'fltreinododia' => $this->fltreinododia,
+//            'qtdrealizado' => $this->qtdrealizado,
+            'status' => 'ini',
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

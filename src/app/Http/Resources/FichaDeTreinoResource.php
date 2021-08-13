@@ -28,7 +28,6 @@ class FichaDeTreinoResource extends JsonResource
             'status'              => $this->status == '1' ? 'Ativo' : 'Inativo',
             'datainicio'          => date( 'd/m/Y' , strtotime($this->datainicio)),
             'datafim'             => date( 'd/m/Y' , strtotime($this->datafim)),
-            'qtdsessao'           => $this->qtdsessao,
         ];
     }
 }

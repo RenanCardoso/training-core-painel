@@ -28,7 +28,6 @@ class TreinoExercicioResource extends JsonResource
             'tempodescansoseg'   => $this->tempodescansoseg,
             'observacao'         => $this->observacao,
             'idusuario'          => $this->idusuario,
-            'ultsessao'          => $this->ultsessao,
         ];
     }
 }

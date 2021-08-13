@@ -19,8 +19,12 @@ class CreateTreinoRealizadoTable extends Migration
             $table->foreign('ficha_de_treino_id')->references('id')->on('ficha_de_treino');
             $table->string('codigo_treino', 3);
             $table->string('fltreinododia', 3)->default('nao');
+
+            $table->string('status', 3)->nullable();
+            //ini -> iniciado
+            //fin -> fin
+
             $table->integer('qtdrealizado')->nullable();
-            $table->date('datarealizado')->nullable();
 
             $table->timestamps();
         });

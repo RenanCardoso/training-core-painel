@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TreinoRealizadoRequest;
 use App\Http\Resources\ExercicioResource;
 use App\Http\Resources\TreinoExercicioCollection;
 use App\Http\Resources\TreinoExercicioResource;
@@ -68,5 +69,62 @@ class TreinoExercicioController extends Controller
             }
         }
         return $treinoexercicio->toArray();
+    }
+
+    public function iniciarTreino(TreinoRealizadoRequest $request, TreinoRealizado $treinorealizado)
+    {
+        if ($this->verificarSeTemTreinoJaIniciado($treinorealizado) == false || $treinorealizado['status'] != 'ini'){
+            $treinorealizado['status'] = 'ini';
+
+            $treinorealizado->save();
+            return response()->json([], 204);
+        } else {
+            return response()->json([
+                'error' => \Lang::get('validation.treinoiniciado')
+            ], 400);
+        }
+    }
+
+    public function verificarSeTemTreinoJaIniciado($treinorealizado)
+    {
+        $treinoiniciado = TreinoRealizado::all()
+            ->where('status', '=', 'ini')
+            ->where('ficha_de_treino_id', '=', $treinorealizado['ficha_de_treino_id']);
+
+        if (count($treinoiniciado)){
+            return true;
+        }
+
+        return false;
+    }
+
+    public function finalizarTreino(TreinoRealizadoRequest $request, TreinoRealizado $treinorealizado)
+    {
+        if ($this->verificarSeTemTreinoJaFinalizado($treinorealizado) == false || $treinorealizado['status'] != 'fin'){
+            $treinorealizado['status'] = 'fin';
+
+            $qtdrealizadotemp = $treinorealizado['qtdrealizado'];
+            $treinorealizado['qtdrealizado'] = $qtdrealizadotemp + 1;
+
+            $treinorealizado->save();
+            return response()->json([], 204);
+        } else {
+            return response()->json([
+                'error' => \Lang::get('validation.treinofinalizado')
+            ], 400);
+        }
+    }
+
+    public function verificarSeTemTreinoJaFinalizado($treinorealizado)
+    {
+        $treinoiniciado = TreinoRealizado::all()
+            ->where('status', '=', 'fin')
+            ->where('ficha_de_treino_id', '=', $treinorealizado['ficha_de_treino_id']);
+
+        if (count($treinoiniciado)){
+            return true;
+        }
+
+        return false;
     }
 }

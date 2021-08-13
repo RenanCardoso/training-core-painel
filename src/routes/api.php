@@ -51,7 +51,12 @@ Route::group(['middleware' => 'auth:api'], function (){
         Route::get('ficha-de-treino/{fichadetreino}/treino-do-dia/', 'Api\TreinoExercicioController@consultarTreinodoDia');
 
         //WS012 - Iniciar Treino
-//        Route::get('ficha-de-treino/{fichadetreino}/treino-do-dia/', 'Api\TreinoExercicioController@consultarTreinodoDia');
+        Route::put('/iniciar-treino/{treinorealizado}/', 'Api\TreinoExercicioController@iniciarTreino');
+
+        //WS013 - Finalizar Treino
+        Route::put('/finalizar-treino/{treinorealizado}/', 'Api\TreinoExercicioController@finalizarTreino');
+
+//        WS014 - Finalizar Exercício
 
 
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);

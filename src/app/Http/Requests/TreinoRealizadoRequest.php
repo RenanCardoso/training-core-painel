@@ -13,7 +13,7 @@ class TreinoRealizadoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class TreinoRealizadoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+//            'ficha_de_treino_id' => 'required',
+//            'codigo_treino' => 'required',
+//            'fltreinododia' => 'required',
+//            'qtdrealizado' => 'required',
+//            'datarealizado' => 'required',
+//            'status' => 'required',
         ];
     }
 }

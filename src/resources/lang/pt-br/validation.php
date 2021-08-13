@@ -92,7 +92,8 @@ return [
     'password'             => 'Campo :attribute deve conter uma letra maiúscula, uma minúscula, um número e um caracter especial.',
     'phone'                => ':attribute inválido',
     'phone_cell'           => ':attribute inválido',
-
+    'treinoiniciado'       => 'Não é possível iniciar um treino caso já exista um treino em andamento!',
+    'treinofinalizado'     => 'Não é possível finalizar um treino caso já exista um treino em andamento!',
 
     /*
     |--------------------------------------------------------------------------
