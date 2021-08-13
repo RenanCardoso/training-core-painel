@@ -36,7 +36,27 @@ class FichaDeTreino extends Model
 
     public function treinoexercicioporcodigo(FichaDeTreino $fichadetreino){
 
-        $treinoexerciciocodigo = TreinoExercicio::all()->where('ficha_de_treino_id', $fichadetreino->id)->groupBy('codigo_treino');
+        $treinoexerciciocodigo = TreinoExercicio::all()
+            ->where('ficha_de_treino_id', $fichadetreino->id)
+            ->groupBy('codigo_treino');
         return $treinoexerciciocodigo->sort();
+    }
+
+    public function treinoexerciciododiaporcodigo(FichaDeTreino $fichadetreino){
+
+        $treinododia = TreinoRealizado::all()
+            ->where('ficha_de_treino_id', $fichadetreino->id)
+            ->where('fltreinododia', '=', 'sim');
+
+        $codigotreino = array_column($treinododia->toArray(), 'codigo_treino');
+
+        $treinoexerciciododia = TreinoExercicio::all()
+            ->where('ficha_de_treino_id', $fichadetreino->id)
+            ->where('codigo_treino', '=' , $codigotreino[0])
+            ->groupBy('codigo_treino');
+
+//        echo "<pre>"; print_r($codigotreino); exit(' aa');
+
+        return $treinoexerciciododia;
     }
 }

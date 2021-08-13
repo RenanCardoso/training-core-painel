@@ -12,9 +12,10 @@ class TreinoRealizado extends Model
     protected $table = 'treino_realizado';
 
     protected $fillable = [
-        'treino_exercicio_id',
-        'flrealizado',
-        'numsessao',
+        'ficha_de_treino_id',
+        'codigo_treino',
+        'fltreinododia',
+        'qtdrealizado',
         'datarealizado',
     ];
 }

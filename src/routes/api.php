@@ -47,6 +47,8 @@ Route::group(['middleware' => 'auth:api'], function (){
         //WS010 - Consultar Exercícios Por Código Treino
         Route::get('ficha-de-treino/{fichadetreino}/exercicio-por-codigo/', 'Api\TreinoExercicioController@consultarTreinoPorCodigo');
 
+        //WS011 - WS011 - Consultar Treino do Dia
+        Route::get('ficha-de-treino/{fichadetreino}/treino-do-dia/', 'Api\TreinoExercicioController@consultarTreinodoDia');
 
 
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);

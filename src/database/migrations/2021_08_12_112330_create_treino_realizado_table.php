@@ -15,10 +15,11 @@ class CreateTreinoRealizadoTable extends Migration
     {
         Schema::create('treino_realizado', function (Blueprint $table) {
             $table->id();
-            $table->integer('treino_exercicio_id')->unsigned();
-            $table->foreign('treino_exercicio_id')->references('id')->on('treino_exercicio');
-            $table->string('flrealizado', 3)->default('nao');
-            $table->integer('numsessao')->unsigned();
+            $table->integer('ficha_de_treino_id')->unsigned();
+            $table->foreign('ficha_de_treino_id')->references('id')->on('ficha_de_treino');
+            $table->string('codigo_treino', 3);
+            $table->string('fltreinododia', 3)->default('nao');
+            $table->integer('qtdrealizado')->nullable();
             $table->date('datarealizado')->nullable();
 
             $table->timestamps();
