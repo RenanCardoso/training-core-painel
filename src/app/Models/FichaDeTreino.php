@@ -22,6 +22,7 @@ class FichaDeTreino extends Model
         'tempotreino',
         'descricao',
         'status',
+        'qtdsessao',
     ];
 
     protected $dates = [
@@ -31,5 +32,11 @@ class FichaDeTreino extends Model
 
     public function treinoexercicio(){
         return $this->hasMany(TreinoExercicio::class);
+    }
+
+    public function treinoexercicioporcodigo(FichaDeTreino $fichadetreino){
+
+        $treinoexerciciocodigo = TreinoExercicio::all()->where('ficha_de_treino_id', $fichadetreino->id)->groupBy('codigo_treino');
+        return $treinoexerciciocodigo->sort();
     }
 }

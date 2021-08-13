@@ -28,9 +28,20 @@ class Exercicio extends Model
 
     public function getExercicio($exercicio_id)
     {
-        $exercicio                      = Exercicio::findOrFail($exercicio_id)->toArray();
-        $exercicio['idaparelho']        = Aparelho::find($exercicio['idaparelho']);
-        $exercicio['idagrupamentomusc'] = AgrupamentoMuscular::find($exercicio['idagrupamentomusc']);
+        if (is_array($exercicio_id)){
+            for ($i = 0; $i < count($exercicio_id); $i++) {
+                $exercicio[$i]                      = Exercicio::findOrFail($exercicio_id[$i])->toArray();
+                $exercicio[$i]['idaparelho']        = Aparelho::find($exercicio[$i]['idaparelho']);
+                $exercicio[$i]['idagrupamentomusc'] = AgrupamentoMuscular::find($exercicio[$i]['idagrupamentomusc']);
+            }
+
+
+        } else {
+            $exercicio                      = Exercicio::findOrFail($exercicio_id)->toArray();
+            $exercicio['idaparelho']        = Aparelho::find($exercicio['idaparelho']);
+            $exercicio['idagrupamentomusc'] = AgrupamentoMuscular::find($exercicio['idagrupamentomusc']);
+        }
+
         return $exercicio;
     }
 }
