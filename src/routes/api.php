@@ -56,7 +56,8 @@ Route::group(['middleware' => 'auth:api'], function (){
         //WS013 - Finalizar Treino
         Route::put('/finalizar-treino/{treinorealizado}/', 'Api\TreinoExercicioController@finalizarTreino');
 
-//        WS014 - Finalizar Exercício
+        //WS014 - Realizar Exercício
+        Route::post('/treino-exercicio/{treinoexercicio}/realizar-exercicio/', 'Api\ExercicioRealizadoController@realizarExercicio');
 
 
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);
