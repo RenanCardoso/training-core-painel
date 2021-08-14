@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FichaDeTreino;
+use App\Models\TreinoRealizado;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Models;
 use Illuminate\Support\Facades\DB;
@@ -129,6 +132,25 @@ class ResourceController extends Controller
         $request->validate($toValidate);
         if($form->add == 1){
             $resourceService = new ResourceService();
+
+            if ($form->id == 12){
+                $fichadetreino = new FichaDeTreino();
+                $fichadetreino = FichaDeTreino::find($request['ficha_de_treino_id']);
+
+                $codigotreino = $fichadetreino->treinoexercicioporcodigo($fichadetreino);
+                $codigotreino = array_keys($codigotreino->toArray());
+
+//                echo "<pre>"; print_r($codigotreino); exit(' aa');
+
+                if (!in_array($request['codigo_treino'], $codigotreino)){
+                    $fltreinododia = 'nao';
+                    $qtdrealizado = 0;
+
+                    $treinorealizado = new TreinoRealizado($request['ficha_de_treino_id'], $request['codigo_treino'], $fltreinododia, $qtdrealizado);
+                    $treinorealizado->save();
+                }
+            }
+
             $resourceService->add($form->id, $form->table_name, $request->all() );
             $request->session()->flash('message', 'Adicionado com sucesso!');
             return redirect()->route('resource.index', $table );
@@ -252,6 +274,24 @@ class ResourceController extends Controller
         $request->validate($toValidate);
         if($form->edit == 1){
             $resourceService = new ResourceService();
+            if ($form->id == 12){
+                $fichadetreino = new FichaDeTreino();
+                $fichadetreino = FichaDeTreino::find($request['ficha_de_treino_id']);
+
+                $codigotreino = $fichadetreino->treinoexercicioporcodigo($fichadetreino);
+                $codigotreino = array_keys($codigotreino->toArray());
+
+//                echo "<pre>"; print_r($codigotreino); exit(' aa');
+
+                if (!in_array($request['codigo_treino'], $codigotreino)){
+                    $fltreinododia = 'nao';
+                    $qtdrealizado = 0;
+
+                    $treinorealizado = new TreinoRealizado($request['ficha_de_treino_id'], $request['codigo_treino'], $fltreinododia, $qtdrealizado);
+                    $treinorealizado->save();
+                }
+
+            }
             $resourceService->update($form->table_name, $table, $id, $request->all() );
             $request->session()->flash('message', 'Editado com sucesso!');
             return redirect()->route('resource.index', $table );
