@@ -25,7 +25,7 @@ Route::name('api.login')->post('login', 'Api\AuthController@login');
 Route::post('refresh', 'Api\AuthController@refresh');
 
 //grupo de rotas mobile protegidas
-Route::group(['middleware' => 'auth:api'], function (){
+Route::group(['middleware' => 'auth:api'], function () {
 
     //WS003 - Realizar Logout
     Route::post('logout', 'Api\AuthController@logout');
@@ -44,19 +44,22 @@ Route::group(['middleware' => 'auth:api'], function (){
         //WS008 - Consultar Todos Exercícios da Ficha de Treino do Aluno e WS009 - Detalhe Exercício
         Route::resource('ficha-de-treino/{fichadetreino}/exercicios', 'Api\TreinoExercicioController', ['only' => ['index', 'show']]);
 
-        //WS010 - Consultar Exercícios Por Código Treino
+        //WS010 - Consultar Contador de Exercícios Por Código Treino
+        Route::get('ficha-de-treino/{fichadetreino}/cont-exercicio-por-codigo/', 'Api\TreinoExercicioController@consultarContadorTreinoPorCodigo');
+
+        //WS011 - Consultar Exercícios Por Código Treino
         Route::get('ficha-de-treino/{fichadetreino}/exercicio-por-codigo/', 'Api\TreinoExercicioController@consultarTreinoPorCodigo');
 
-        //WS011 - Consultar Treino do Dia
+        //WS012 - Consultar Treino do Dia
         Route::get('ficha-de-treino/{fichadetreino}/treino-do-dia/', 'Api\TreinoExercicioController@consultarTreinodoDia');
 
-        //WS012 - Iniciar Treino
+        //WS013 - Iniciar Treino
         Route::put('/iniciar-treino/{treinorealizado}/', 'Api\TreinoExercicioController@iniciarTreino');
 
-        //WS013 - Finalizar Treino
+        //WS014 - Finalizar Treino
         Route::put('/finalizar-treino/{treinorealizado}/', 'Api\TreinoExercicioController@finalizarTreino');
 
-        //WS014 - Realizar Exercício
+        //WS015 - Realizar Exercício
         Route::post('/treino-exercicio/{treinoexercicio}/realizar-exercicio/', 'Api\ExercicioRealizadoController@realizarExercicio');
 
 

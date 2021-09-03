@@ -51,11 +51,21 @@ class TreinoExercicioController extends Controller
         return $treinoexercicio->toArray();
     }
 
+    public function consultarContadorTreinoPorCodigo(FichaDeTreino $fichadetreino)
+    {
+        $treinoexercicio = $fichadetreino->treinoexercicioporcodigo($fichadetreino);
+
+        // echo "<pre>"; print_r($treinoexercicio->count()); exit(' a');
+
+        return $treinoexercicio->count();
+    }
+
     public function consultarTreinodoDia(FichaDeTreino $fichadetreino)
     {
         $treinoexercicio = $fichadetreino->treinoexerciciododiaporcodigo($fichadetreino);
         $codigotreino = array_keys($treinoexercicio->toArray());
         $exercicio = new Exercicio();
+
 
         //       logica para pegar os dados do exercicio do treinoexercicio
         for ($k = 0; $k < count($codigotreino); $k++){ //é loopado a quantidade de código treino
@@ -68,7 +78,10 @@ class TreinoExercicioController extends Controller
                 $treinoexercicio[$codigotreino[$k]][$i]['exercicio_id'] = $exercicio->getExercicio($exercicios_id_array[$i]);
             }
         }
-        return $treinoexercicio->toArray();
+        
+    //    echo "<pre>"; print_r($treinoexercicio[$codigotreino[0]]); exit(' aa');
+
+        return $treinoexercicio[$codigotreino[0]][0]->toArray();
     }
 
     public function iniciarTreino(TreinoRealizadoRequest $request, TreinoRealizado $treinorealizado)
