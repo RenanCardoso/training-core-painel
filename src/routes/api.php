@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::resource('ficha-de-treino/{fichadetreino}/exercicios', 'Api\TreinoExercicioController', ['only' => ['index', 'show']]);
 
         //WS010 - Consultar Contador de Exercícios Por Código Treino
+        Route::get('ficha-de-treino/{fichadetreino}/cont-total-exercicio-por-codigo/', 'Api\TreinoExercicioController@consultarContadorTotalTreinoPorCodigo');
         Route::get('ficha-de-treino/{fichadetreino}/cont-exercicio-por-codigo/', 'Api\TreinoExercicioController@consultarContadorTreinoPorCodigo');
 
         //WS011 - Consultar Exercícios Por Código Treino

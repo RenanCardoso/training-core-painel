@@ -36,6 +36,8 @@ class TreinoExercicioController extends Controller
         $codigotreino = array_keys($treinoexercicio->toArray());
         $exercicio = new Exercicio();
 
+        $treinoexerciciolist = [];
+        $counttreinoexerciciolist = 0;
         //       logica para pegar os dados do exercicio do treinoexercicio
         for ($k = 0; $k < count($codigotreino); $k++){ //é loopado a quantidade de código treino
             for ($i = 0; $i < count($treinoexercicio[$codigotreino[$k]]); $i++){ //é loopado a quantidade de exercícios deste código treino
@@ -45,13 +47,40 @@ class TreinoExercicioController extends Controller
 
 //                aqui pego os dados do exercicio de fato
                 $treinoexercicio[$codigotreino[$k]][$i]['exercicio_id'] = $exercicio->getExercicio($exercicios_id_array[$i]);
+                $treinoexerciciolist[$counttreinoexerciciolist] = $treinoexercicio[$codigotreino[$k]][$i];
+                $counttreinoexerciciolist++;
             }
         }
 
-        return $treinoexercicio->toArray();
+        return $treinoexerciciolist;
     }
 
+
     public function consultarContadorTreinoPorCodigo(FichaDeTreino $fichadetreino)
+    {
+        $treinoexercicio = $fichadetreino->treinoexercicioporcodigo($fichadetreino);
+        $codigotreino = array_keys($treinoexercicio->toArray());
+        
+        $qtdTreinosTotal = [];
+
+        //       logica para pegar os dados do exercicio do treinoexercicio
+        for ($k = 0; $k < count($codigotreino); $k++){ //é loopado a quantidade de código treino
+            
+            $qtdTreinosTotal[$codigotreino[$k]] = 0;
+
+            for ($i = 0; $i < count($treinoexercicio[$codigotreino[$k]]); $i++){ //é loopado a quantidade de exercícios deste código treino
+
+                $qtdTreinosTotal[$codigotreino[$k]] += 1;
+            }
+        }
+  
+
+        // echo "<pre>"; print_r($qtdTreinosTotal); exit(' a');
+
+        return $qtdTreinosTotal;
+    }
+
+    public function consultarContadorTotalTreinoPorCodigo(FichaDeTreino $fichadetreino)
     {
         $treinoexercicio = $fichadetreino->treinoexercicioporcodigo($fichadetreino);
 
