@@ -63,6 +63,8 @@ Route::group(['middleware' => 'auth:api'], function () {
         //WS015 - Realizar Exercício
         Route::post('/treino-exercicio/{treinoexercicio}/realizar-exercicio/', 'Api\ExercicioRealizadoController@realizarExercicio');
 
+        //WS016 - Consultar Treinos A Serem Realizados
+        Route::get('/consultar-treino-a-realizar/{fichadetreino}/', 'Api\TreinoExercicioController@consultarTreinoARealizar');
 
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);
 

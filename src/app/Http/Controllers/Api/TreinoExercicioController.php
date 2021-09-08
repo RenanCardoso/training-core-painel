@@ -183,7 +183,6 @@ class TreinoExercicioController extends Controller
             $k++;
         }
 
-
         $treinorealizado->save();
     }
 
@@ -199,4 +198,20 @@ class TreinoExercicioController extends Controller
 
         return false;
     }
+
+    public function consultarTreinoARealizar(FichaDeTreino $fichadetreino)
+    {
+        $todostreinos = \DB::table('treino_realizado')
+            ->orderBy('codigo_treino', 'asc')
+            ->get()
+        ;
+
+        $todostreinos = json_decode($todostreinos, true);
+
+        // echo "<pre>"; print_r($todostreinos); exit(' a');
+
+        return $todostreinos;
+    }
+
+
 }
