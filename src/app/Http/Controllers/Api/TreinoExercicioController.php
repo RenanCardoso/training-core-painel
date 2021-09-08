@@ -47,7 +47,7 @@ class TreinoExercicioController extends Controller
 
 //                aqui pego os dados do exercicio de fato
                 $treinoexercicio[$codigotreino[$k]][$i]['exercicio_id'] = $exercicio->getExercicio($exercicios_id_array[$i]);
-                $treinoexerciciolist[$counttreinoexerciciolist] = $treinoexercicio[$codigotreino[$k]][$i];
+                $treinoexerciciolist['treinos'][$counttreinoexerciciolist] = $treinoexercicio[$codigotreino[$k]][$i];
                 $counttreinoexerciciolist++;
             }
         }
@@ -60,12 +60,12 @@ class TreinoExercicioController extends Controller
     {
         $treinoexercicio = $fichadetreino->treinoexercicioporcodigo($fichadetreino);
         $codigotreino = array_keys($treinoexercicio->toArray());
-        
+
         $qtdTreinosTotal = [];
 
         //       logica para pegar os dados do exercicio do treinoexercicio
         for ($k = 0; $k < count($codigotreino); $k++){ //é loopado a quantidade de código treino
-            
+
             $qtdTreinosTotal[$codigotreino[$k]] = 0;
 
             for ($i = 0; $i < count($treinoexercicio[$codigotreino[$k]]); $i++){ //é loopado a quantidade de exercícios deste código treino
@@ -73,7 +73,7 @@ class TreinoExercicioController extends Controller
                 $qtdTreinosTotal[$codigotreino[$k]] += 1;
             }
         }
-  
+
 
         // echo "<pre>"; print_r($qtdTreinosTotal); exit(' a');
 
@@ -107,7 +107,7 @@ class TreinoExercicioController extends Controller
                 $treinoexercicio[$codigotreino[$k]][$i]['exercicio_id'] = $exercicio->getExercicio($exercicios_id_array[$i]);
             }
         }
-        
+
     //    echo "<pre>"; print_r($treinoexercicio[$codigotreino[0]]); exit(' aa');
 
         return $treinoexercicio[$codigotreino[0]][0]->toArray();
@@ -144,17 +144,47 @@ class TreinoExercicioController extends Controller
     {
         if ($this->verificarSeTemTreinoJaFinalizado($treinorealizado) == false || $treinorealizado['status'] != 'fin'){
             $treinorealizado['status'] = 'fin';
+            $treinorealizado['fltreinododia'] = 'nao';
 
             $qtdrealizadotemp = $treinorealizado['qtdrealizado'];
             $treinorealizado['qtdrealizado'] = $qtdrealizadotemp + 1;
 
             $treinorealizado->save();
+
+            $this->proxTreinoDoDia($treinorealizado);
+
             return response()->json([], 204);
         } else {
             return response()->json([
                 'error' => \Lang::get('validation.treinofinalizado')
             ], 400);
         }
+    }
+
+    public function proxTreinoDoDia(TreinoRealizado $treinorealizado){
+
+        $todostreinos = \DB::table('treino_realizado')
+            ->orderBy('codigo_treino', 'asc')
+            ->get()
+        ;
+
+        $todostreinos = json_decode($todostreinos, true);
+        $k = 1;
+        for ($i = 0; $i < count($todostreinos); $i++){
+            if ($todostreinos[$i]['id'] == $treinorealizado['id'] && $i == (count($todostreinos) - 1)){
+                \DB::table('treino_realizado')
+                    ->where('id', '=', $todostreinos[0]['id'])
+                    ->update(['fltreinododia' => 'sim']);
+            } elseif ($todostreinos[$i]['id'] == $treinorealizado['id'] && $i < (count($todostreinos) - 1)){
+                \DB::table('treino_realizado')
+                    ->where('id', '=', $todostreinos[$k]['id'])
+                    ->update(['fltreinododia' => 'sim']);
+            }
+            $k++;
+        }
+
+
+        $treinorealizado->save();
     }
 
     public function verificarSeTemTreinoJaFinalizado($treinorealizado)

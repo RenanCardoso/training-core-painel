@@ -159,6 +159,7 @@
                                             <option selected="" value="">Selecione...</option>
                                             @foreach($cidades as $cidade)
                                                 @if($user->idcidade == $cidade->idcidade)
+                                                    {echo "<pre>"; print_r($user->idcidade); exit(' a');}
                                                     <option selected value="{{ $cidade->idcidade }}">{{ $cidade->nmcidade }}</option>
                                                 @else
                                                     <option value="{{ $cidade->idcidade }}">{{ $cidade->nmcidade }}</option>
