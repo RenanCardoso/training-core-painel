@@ -67,10 +67,5 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/consultar-treino-a-realizar/{fichadetreino}/', 'Api\TreinoExercicioController@consultarTreinoARealizar');
 
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);
-
-        //WS - School of Net
-        Route::get('categories/{category}/bill_pays', 'Api\CategoryBillPayController@index');
-        Route::resource('categories', 'Api\CategoryController', ['except' => ['create', 'edit']]);
-        Route::resource('bill_pays', 'Api\BillPayController', ['except' => ['create', 'edit']]);
     });
 });

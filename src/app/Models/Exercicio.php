@@ -38,7 +38,7 @@ class Exercicio extends Model
                 
                 $nomeagrupamentomusc                = AgrupamentoMuscular::find($exercicio[$i]['idagrupamentomusc']);
                 $nomeagrupamentomusc['nome']        = isset($nomeagrupamentomusc['nome']) ? $nomeagrupamentomusc['nome'] : '';
-                $exercicio[$i]['idagrupamentomusc']        = $nomeagrupamentomusc['nome'];
+                $exercicio[$i]['idagrupamentomusc'] = $nomeagrupamentomusc['nome'];
             }
 
 
@@ -51,7 +51,7 @@ class Exercicio extends Model
 
             $nomeagrupamentomusc            = AgrupamentoMuscular::find($exercicio['idagrupamentomusc']);
             $nomeagrupamentomusc['nome']    = isset($nomeagrupamentomusc['nome']) ? $nomeagrupamentomusc['nome'] : '';
-            $exercicio['idagrupamentomusc']        = $nomeagrupamentomusc['nome'];
+            $exercicio['idagrupamentomusc'] = $nomeagrupamentomusc['nome'];
         }
 
         return $exercicio;
