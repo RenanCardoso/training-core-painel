@@ -61,11 +61,14 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::put('/finalizar-treino/{treinorealizado}/', 'Api\TreinoExercicioController@finalizarTreino');
 
         //WS015 - Realizar Exercício
-        Route::post('/treino-exercicio/{treinoexercicio}/realizar-exercicio/', 'Api\ExercicioRealizadoController@realizarExercicio');
+        Route::post('/realizar-exercicio/', 'Api\ExercicioRealizadoController@realizarExercicio');
 
         //WS016 - Consultar Treinos A Serem Realizados
-        Route::get('/consultar-treino-a-realizar/{fichadetreino}/', 'Api\TreinoExercicioController@consultarTreinoARealizar');
+        Route::post('/consultar-treino-a-realizar/', 'Api\TreinoExercicioController@consultarTreinoARealizar');
 
+        //WS017 - Consultar Contador Treinos A Serem Realizados
+        Route::get('/consultar-contador-treino-a-realizar/{fichadetreino}/', 'Api\TreinoExercicioController@consultarContadorTreinoARealizar');
+                
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);
     });
 });

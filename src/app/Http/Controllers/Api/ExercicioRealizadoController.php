@@ -14,6 +14,7 @@ class ExercicioRealizadoController extends Controller
     public function realizarExercicio(ExercicioRealizadoRequest $request)
     {
         $exerciciorealizado = ExercicioRealizado::create($request->all());
-        return new ExercicioRealizadoResource($exerciciorealizado);
+        // return new ExercicioRealizadoResource($exerciciorealizado);
+        return response()->json([], 201);
     }
 }

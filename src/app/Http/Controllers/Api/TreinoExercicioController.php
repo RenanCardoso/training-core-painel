@@ -110,7 +110,7 @@ class TreinoExercicioController extends Controller
 
     //    echo "<pre>"; print_r($treinoexercicio[$codigotreino[0]]); exit(' aa');
 
-        return $treinoexercicio[$codigotreino[0]][0]->toArray();
+        return $treinoexercicio[$codigotreino[0]]->toArray();
     }
 
     public function iniciarTreino(TreinoRealizadoRequest $request, TreinoRealizado $treinorealizado)
@@ -199,19 +199,31 @@ class TreinoExercicioController extends Controller
         return false;
     }
 
-    public function consultarTreinoARealizar(FichaDeTreino $fichadetreino)
+    public function consultarTreinoARealizar(TreinoRealizadoRequest $request)
     {
         $todostreinos = \DB::table('treino_realizado')
+            ->where('ficha_de_treino_id', $request['ficha_de_treino_id'])
+            ->where('codigo_treino', $request['codigo_treino'])
             ->orderBy('codigo_treino', 'asc')
             ->get()
         ;
 
         $todostreinos = json_decode($todostreinos, true);
 
-        // echo "<pre>"; print_r($todostreinos); exit(' a');
+        // echo "<pre>"; print_r($todostreinos[0]); exit(' a');
+
+        return $todostreinos[0];
+    }
+
+    public function consultarContadorTreinoARealizar(FichaDeTreino $fichadetreino)
+    {
+        $todostreinos = \DB::table('treino_realizado')
+            ->where('ficha_de_treino_id', $fichadetreino['id'])
+            ->count()
+        ;
+
+        // $todostreinos = json_decode($todostreinos, true);
 
         return $todostreinos;
     }
-
-
 }
