@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TreinoRealizadoRequest;
+use App\Http\Requests\TreinoExercicioRequest;
 use App\Http\Resources\ExercicioResource;
 use App\Http\Resources\TreinoExercicioCollection;
 use App\Http\Resources\TreinoExercicioResource;
@@ -54,7 +55,6 @@ class TreinoExercicioController extends Controller
 
         return $treinoexerciciolist;
     }
-
 
     public function consultarContadorTreinoPorCodigo(FichaDeTreino $fichadetreino)
     {
@@ -179,6 +179,10 @@ class TreinoExercicioController extends Controller
                 \DB::table('treino_realizado')
                     ->where('id', '=', $todostreinos[$k]['id'])
                     ->update(['fltreinododia' => 'sim']);
+            } else {
+                \DB::table('treino_realizado')
+                ->where('id', '=', $todostreinos[$k]['id'])
+                ->update(['fltreinododia' => 'nao']);
             }
             $k++;
         }
@@ -215,6 +219,26 @@ class TreinoExercicioController extends Controller
         return $todostreinos[0];
     }
 
+    public function consultarTreinoFiltradoPorCodigo(TreinoExercicioRequest $request)
+    {
+        $exercicios = new Exercicio();
+
+        $todostreinos = \DB::table('treino_exercicio')
+        ->where('ficha_de_treino_id', $request['ficha_de_treino_id'])
+        ->where('codigo_treino', $request['codigo_treino'])
+        ->orderBy('codigo_treino', 'asc')
+        ->get()
+        ;
+
+        $todostreinos = json_decode($todostreinos, true);
+
+        for ($i=0; $i < count($todostreinos); $i++) { 
+            $todostreinos[$i]['exercicio_id'] = $exercicios->getExercicio($todostreinos[$i]['exercicio_id']);
+        }
+        // echo "<pre>"; print_r($todostreinos[0]); exit(' a');
+
+        return $todostreinos;
+    }
     public function consultarContadorTreinoARealizar(FichaDeTreino $fichadetreino)
     {
         $todostreinos = \DB::table('treino_realizado')

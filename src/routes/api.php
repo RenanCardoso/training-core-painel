@@ -68,7 +68,11 @@ Route::group(['middleware' => 'auth:api'], function () {
 
         //WS017 - Consultar Contador Treinos A Serem Realizados
         Route::get('/consultar-contador-treino-a-realizar/{fichadetreino}/', 'Api\TreinoExercicioController@consultarContadorTreinoARealizar');
-                
+          
+        //WS018 - Consultar Treino Filtrado por Código
+        Route::post('/consultar-treino-filtrado-codigo/', 'Api\TreinoExercicioController@consultarTreinoFiltradoPorCodigo');
+    
+
         Route::resource('cidades', 'Api\CidadeController', ['only' => ['index']]);
     });
 });
