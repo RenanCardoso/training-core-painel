@@ -64,6 +64,18 @@
                                         echo '<option value="nao">Não</option>';
                                         echo '</select>';
                                         echo '<br>';
+                                    }elseif($column->type == 'codigo_treino'){
+                                        echo '<label>' . $column->name . '</label>';
+                                        echo '<select name="' . $column->column_name . '" class="form-control">';
+                                        echo '<option selected="" value="">Selecione...</option>';
+                                        echo '<option value="A">A</option>';
+                                        echo '<option value="B">B</option>';
+                                        echo '<option value="C">C</option>';
+                                        echo '<option value="D">D</option>';
+                                        echo '<option value="E">E</option>';
+                                        echo '<option value="F">F</option>';
+                                        echo '</select>';
+                                        echo '<br>';
                                     }elseif($column->type == 'radio'){
                                         echo '<label class="mt-3">' . $column->name . '</label>';
                                         echo '<div class="form-check">';
@@ -111,6 +123,18 @@
                                     echo '<label class="col-form-label">' . $column->name . '</label>';
                                     echo '<textarea class="form-control" name="' . $column->column_name . '" rows="9"></textarea>';
 //                                    echo '</div>';
+                                }elseif($column->type == 'codigo_treino'){
+                                    echo '<label>' . $column->name . '</label>';
+                                    echo '<select name="' . $column->column_name . '" class="form-control">';
+                                    echo '<option selected="" value="">Selecione...</option>';
+                                    echo '<option value="A">A</option>';
+                                    echo '<option value="B">B</option>';
+                                    echo '<option value="C">C</option>';
+                                    echo '<option value="D">D</option>';
+                                    echo '<option value="E">E</option>';
+                                    echo '<option value="F">F</option>';
+                                    echo '</select>';
+                                    echo '<br>';
                                 }else{
                                     echo '<p>Not recognize field type: ' . $column->type . '</p>';
                                 }

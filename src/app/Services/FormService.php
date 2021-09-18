@@ -348,6 +348,10 @@ class FormService{
     public function getFormOptions(){
         $otherOptions = array(
             array(
+                'value' => 'codigo_treino',
+                'name' => 'codigo_treino'
+            ),
+            array(
                 'value' => 'text_area',
                 'name' => 'text area'
             ),

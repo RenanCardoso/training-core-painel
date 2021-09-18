@@ -155,7 +155,7 @@ class ResourceService{
 
         foreach($columns as $column){
 //            echo "<pre>"; print_r($columns); exit('');
-            if($column->type == 'checkbox' || $column->type == 'radio' || $column->type == 'relation_radio') {
+            if($column->type == 'checkbox' || $column->type == 'radio' || $column->type == 'relation_radio' || $column->type == 'codigo_treino') {
                 if (isset($request[$column->column_name])) {
                     $toInsert[$column->column_name] = $request[$column->column_name];
                 } else {
@@ -186,6 +186,8 @@ class ResourceService{
                             $flag = 'checkbox';
                         }elseif($update->type == 'price'){
                             $flag = 'price';
+                        }elseif($update->type == 'codigo_treino'){
+                            $flag = 'codigo_treino';
                         }elseif($update->type == 'imc') {
                             $flag = 'imc';
                         }elseif($update->type == 'radio' || $update->type == 'relation_radio'){
@@ -208,6 +210,12 @@ class ResourceService{
                     }elseif($flag == 'price'){
                         if(isset($request[$column])){
                             $updateArray[$column] = Formatter::formatToDatabase($request[$column]);
+                        }else{
+                            $updateArray[$column] = false;
+                        }
+                    }elseif($flag == 'codigo_treino'){
+                        if(isset($request[$column])){
+                            $updateArray[$column] = $request[$column];
                         }else{
                             $updateArray[$column] = false;
                         }
