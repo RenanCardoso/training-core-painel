@@ -39,6 +39,9 @@
                                     <b>Sexo: </b>{{ $user->sexo == 'mas' ? 'Masculino' : 'Feminino' }}
                                 </div>
                                 <div class="form-group col-sm-6">
+                                    <b>Plano do Aluno: </b>{{ $user->plano_id }}
+                                </div>
+                                <div class="form-group col-sm-6">
                                     <b>Tipo de Usuário: </b>
                                     @if($user->tipousuario == 'alu')
                                         {{ 'Aluno' }}

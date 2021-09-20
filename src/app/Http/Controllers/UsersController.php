@@ -6,6 +6,7 @@ use App\Services\UserService;
 use App\Validators\Formatter;
 use App\Models\User;
 use App\Models\Cidade;
+use App\Models\Plano;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -51,8 +52,9 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $cidades = Cidade::all();
+        $planos = Plano::all();
 
-        return view('dashboard.admin.userShow', compact( 'user', 'cidades' ));
+        return view('dashboard.admin.userShow', compact( 'user', 'cidades', 'planos' ));
     }
 
     /**
@@ -66,15 +68,18 @@ class UsersController extends Controller
         $user = User::find($id);
         $roles = Role::all();
         $cidades = Cidade::all();
-        return view('dashboard.admin.userEditForm', compact('user', 'roles', 'cidades'));
+        $planos = Plano::all();
+
+        return view('dashboard.admin.userEditForm', compact('user', 'roles', 'cidades', 'planos'));
     }
 
     public function create()
     {
         $roles = Role::all();
         $cidades = Cidade::all();
+        $planos = Plano::all();
 
-        return view('dashboard.admin.userCreateForm', compact('roles', 'cidades'));
+        return view('dashboard.admin.userCreateForm', compact('roles', 'cidades', 'planos'));
     }
 
     /**
@@ -134,6 +139,7 @@ class UsersController extends Controller
         $user->cpf              = Formatter::formatToDatabase($request['cpf']);
         $user->rg               = Formatter::formatToDatabase($request['rg']);
         $user->sexo             = $request['sexo_option'];
+        $user->plano_id         = $request['planos_option'];
         $user->tipousuario      = $request['tipousuario_option'];
         $user->idcidade         = $request['cidade_option'];
         $user->flaplicativo     = $request['flaplicativo_option'];
@@ -184,6 +190,7 @@ class UsersController extends Controller
         $user->cpf              = Formatter::formatToDatabase($request['cpf']);
         $user->rg               = Formatter::formatToDatabase($request['rg']);
         $user->sexo             = $request['sexo_option'];
+        $user->plano_id         = $request['planos_option'];
         $user->tipousuario      = $request['tipousuario_option'];
         $user->idcidade         = $request['cidade_option'];
         $user->flaplicativo     = $request['flaplicativo_option'];

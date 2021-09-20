@@ -74,6 +74,16 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label for="planos_option">Plano do Aluno</label><small><b> *</b></small>
+                                        <select class="form-control" name="planos_option" id="planos_option"
+                                                required autofocus>
+                                            <option selected="" value="">Selecione...</option>
+                                            @foreach($planos as $plano)
+                                                <option value="{{ $plano->id }}">{{ $plano->nome }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label for="tipousuario_option" for="tipousuario_option">Tipo de Usuário</label><small><b> *</b></small>
                                         <select class="form-control" name="tipousuario_option" id="tipousuario_option"
                                                 required autofocus>
