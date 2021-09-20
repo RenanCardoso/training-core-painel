@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('tipousuario', 3);
             $table->string('flaplicativo', 3)->default('nao');
             $table->string('status', 3)->default('ati');
-            $table->integer('plano_id')->nullable();
+            $table->integer('plano_id');
             $table->foreign('plano_id')->references('id')->on('plano');
         });
     }
