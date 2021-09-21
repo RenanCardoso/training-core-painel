@@ -15,7 +15,7 @@
                       <div>Aparelhos</div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-                      <canvas class="chart" id="card-chart1" height="70"></canvas>
+                      <!-- <canvas class="chart" id="card-chart1" height="70"></canvas> -->
                     </div>
                   </div>
                 </div>
