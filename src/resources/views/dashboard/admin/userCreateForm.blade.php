@@ -37,6 +37,11 @@
                                                maxlength="255" name="name" id="name" required autofocus>
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label for="ra">RA</label><small><b> *</b></small>
+                                        <input class="form-control" type="number" placeholder="{{ __('RA') }}"
+                                               maxlength="255" name="ra" id="ra" required autofocus>
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label for="datanasc">Data de Nascimento</label>
                                         <input type="date" class="form-control" name="datanasc" id="datanasc">
                                     </div>
@@ -116,16 +121,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="password">Senha</label><small><b> *</b></small>
+                                        <label for="password">Senha</label></small>
                                         <input type="password" class="form-control" name="password" id="password"
-                                               maxlength="255" required autofocus>
-                                        <span class="help-block"><small>Mínimo de 6 caracteres.</small></span>
+                                               maxlength="255">
+                                        <span class="help-block">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="password_confirmation">Confirmar Senha</label><small><b> *</b></small>
+                                        <label for="password_confirmation">Confirmar Senha</label></small>
                                         <input type="password" class="form-control" name="password_confirmation"
-                                               maxlength="255" id="password_confirmation" required autofocus>
+                                               maxlength="255" id="password_confirmation">
                                     </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <small>*Senha e confirmar senha são obrigatórios somente quando o usuário tem acesso ao aplicativo. Caso ele tenha, a senha deverá ser o seu primeiro nome com a letra inicial em maiúscula junto com seu RA.</small></span>
                                 </div>
                                 <button class="btn btn-block btn-success" type="submit">{{ __('Salvar') }}</button>
                                 <a href="{{ route('users.index') }}"

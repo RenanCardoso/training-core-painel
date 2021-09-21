@@ -7,6 +7,7 @@ use App\Validators\Formatter;
 use App\Models\User;
 use App\Models\Cidade;
 use App\Models\Plano;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -116,6 +117,7 @@ class UsersController extends Controller
 
         $request->validate([
             'name'                  => 'required|min:1|max:255',
+            'ra'                    => 'required',
             'email'                 => 'required|email|max:255',
             'telefone'              => 'required|max:14',
             'cpf'                   => 'required|max:14',
@@ -124,8 +126,7 @@ class UsersController extends Controller
             'tipousuario_option'    => 'required',
             'flaplicativo_option'   => 'required',
             'menuroles_option'      => 'required',
-            'password'              => 'required|min:6',
-            'password_confirmation' => 'required|min:6|same:password',
+            'password_confirmation' => 'same:password',
             'cep'                   => 'required|max:10',
             // 'cidade_option'         => 'required',
             'logradouro'            => 'required|max:100',
@@ -133,7 +134,15 @@ class UsersController extends Controller
             'numero'                => 'required|max:5',
         ]);
 
+        if ($request['flaplicativo_option'] == 'sim'){
+            $request->validate([
+                'password'              => 'required',
+                'password_confirmation' => 'required',
+            ]);
+        }
+
         $user->name             = $request['name'];
+        $user->ra               = $request['ra'];
         $user->datanasc         = $request['datanasc'];
         $user->email            = $request['email'];
         $user->celular          = Formatter::formatToDatabase($request['telefone']);
@@ -163,12 +172,15 @@ class UsersController extends Controller
     //    echo "<pre>"; print_r($user->idcidade); exit('objeto');
 
         $user->save();
+        $email = new MailController();
+        $email->send(2, $request);
     }
 
     public function updateUser(Request $request, $user){
 
         $request->validate([
             'name'                  => 'required|min:1|max:255',
+            'ra'                    => 'required',
             'email'                 => 'required|email|max:255',
             'telefone'              => 'required|max:14',
             'cpf'                   => 'required|max:14',
@@ -186,6 +198,7 @@ class UsersController extends Controller
         ]);
 
         $user->name             = $request['name'];
+        $user->ra               = $request['ra'];
         $user->datanasc         = $request['datanasc'];
         $user->email            = $request['email'];
         $user->celular          = Formatter::formatToDatabase($request['telefone']);
@@ -209,13 +222,21 @@ class UsersController extends Controller
         $user->complemento      = $request['complemento'];
         $user->numero           = $request['numero'];
 
+        $senha_alterada = false;
+
         if (!empty($request['password'])){
             $user->password = Hash::make($request['password']);
+            $senha_alterada = true;
         }
 
     //    echo "<pre>"; print_r($user->idcidade); exit('objeto');
 
         $user->save();
+        $email = new MailController();
+
+        if($senha_alterada && $user->flaplicativo == 'sim'){
+            $email->send(2, $request);
+        }
     }
 
     /**

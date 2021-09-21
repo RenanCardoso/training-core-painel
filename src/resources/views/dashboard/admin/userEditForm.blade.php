@@ -38,6 +38,11 @@
                                                name="name" id="name" value="{{ $user->name }}" required autofocus>
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label for="ra">RA</label><small><b> *</b></small>
+                                        <input class="form-control" type="text" placeholder="{{ __('RA') }}" maxlength="255"
+                                               name="ra" id="ra" value="{{ $user->ra }}" required autofocus>
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label for="datanasc">Data de Nascimento</label>
                                         <input type="date" class="form-control" name="datanasc" id="datanasc"
                                                value="{{ $user->datanasc }}">

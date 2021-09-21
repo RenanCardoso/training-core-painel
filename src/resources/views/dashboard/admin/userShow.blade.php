@@ -23,6 +23,9 @@
                                     <b>Nome: </b>{{ $user->name }}
                                 </div>
                                 <div class="form-group col-sm-6">
+                                    <b>RA: </b>{{ $user->ra }}
+                                </div>
+                                <div class="form-group col-sm-6">
                                     <b>Data de Nascimento: </b>
                                     {{ date( 'd/m/Y' , strtotime($user->datanasc))}}
                                 </div>
