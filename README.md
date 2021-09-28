@@ -94,7 +94,7 @@ $ npm run dev
 $ npm run dev
 
 <h5>Uso</h5> 
-# iniciar servidor local
+# iniciar servidor local <br>
 $ php artisan serve
 
 Abra seu navegador com o endereço: 
