@@ -17,21 +17,21 @@ Resumo. Este trabalho propõe o desenvolvimento de um sistema integrado e apoiad
 
 <h3>Instalação</h3> 
 
-# 1. clone o repositório
+<h3> 1. clone o repositório </h3>
 $ git clone https://github.com/RenanCardoso/training-core-painel my-project
 
-# 2. vá para o diretório do aplicativo
+<h3> 2. vá para o diretório do aplicativo </h3>
 $ cd my-project
 
-# 3. instalar dependências do aplicativo
+<h3> 3. instalar dependências do aplicativo </h3>
 $ composer install
 
-# 4. instalar dependências do aplicativo
+<h3> 4. instalar dependências do aplicativo </h3>
 $ npm install
 
-# 5.1. Instalar PostgreSQL
+<h3> 5.1. Instalar PostgreSQL </h3>
 
-# 5.2. Criar usuário
+<h3> 5.2. Criar usuário </h3>
 
 $ sudo -u postgres createuser --interactive
 enter name of role to add: laravel
@@ -46,15 +46,15 @@ postgres= \q
 Create database
 $ sudo -u postgres createdb laravel
 
-# 5.3. Criar senha para o usuário
+<h3> 5.3. Criar senha para o usuário </h3>
 $ sudo -u postgres psql
 postgres= ALTER USER laravel WITH ENCRYPTED PASSWORD 'password';
 postgres= \q
 
-# 5.4. Criar banco de dados
+<h3> 5.4. Criar banco de dados </h3>
 $ sudo -u postgres createdb laravel
 
-# 5.5. Copie o arquivo ".env.example" e altere seu nome para ".env". Em seguida, no arquivo ".env" substitua esta configuração do banco de dados:
+<h3> 5.5. Copie o arquivo ".env.example" e altere seu nome para ".env". Em seguida, no arquivo ".env" substitua esta configuração do banco de dados: </h3>
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -70,9 +70,9 @@ DB_DATABASE=laravel
 DB_USERNAME=laravel
 DB_PASSWORD=password
 
-# 6. Definir APP_URL
-Se a url do seu projeto se parece com: example.com/sub-folder Então vá para my-project / .env E modifique esta linha:
-
+<h3> 6. Definir APP_URL
+Se a url do seu projeto se parece com: example.com/sub-folder Então vá para my-project / .env E modifique esta linha: 
+ </h3>
 APP_URL =
 Para fazer com que fique assim:
 
@@ -80,17 +80,17 @@ APP_URL = http://example.com/sub-folder
 
 <h5>7. Próxima etapa</h5> 
 
-# no diretório do seu aplicativo
-# gerar APP_KEY de laravel
+<h3> no diretório do seu aplicativo </h3>
+<h3> gerar APP_KEY de laravel </h3>
 $ php artisan key:generate
 
-# 8. executar migration e seed do banco de dados 
+<h3> 8. executar migration e seed do banco de dados  </h3>
 $ php artisan migrate:refresh --seed
 
-# 9. generate mixing
+<h3> 9. generate mixing </h3>
 $ npm run dev
 
-# 10. and repeat generate mixing
+<h3> 10. and repeat generate mixing </h3>
 $ npm run dev
 
 <h5>Uso</h5> 
