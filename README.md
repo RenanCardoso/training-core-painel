@@ -104,5 +104,5 @@ Clique em "Login" no menu da barra lateral e faça login com as credenciais:
 E-mail: admin@admin.com 
 Senha: password
 
-senha Este usuário tem funções: 
+Este usuário tem funções: 
 usuário e administrador
