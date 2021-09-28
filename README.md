@@ -96,3 +96,13 @@ $ npm run dev
 <h5>Uso</h5> 
 # iniciar servidor local
 $ php artisan serve
+
+Abra seu navegador com o endereço: 
+localhost: 8000 
+
+Clique em "Login" no menu da barra lateral e faça login com as credenciais: 
+E-mail: admin@admin.com 
+Senha: password
+
+senha Este usuário tem funções: 
+usuário e administrador
