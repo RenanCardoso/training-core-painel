@@ -23,8 +23,7 @@ $ git clone https://github.com/RenanCardoso/training-core-painel my-project
 <h3> 2. certifique-se de ter o PHP 7.4 ou superior instalado em sua máquina </h3>
 
 <h3> 3. instale as extensões PHP </h3>
-$ sudo apt install openssl php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip <br>
-<br>$ sudo apt-get install php7.4-curl
+$ sudo apt install openssl php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip php-cli php-pcov php-xdebug
 
 <h3> 4. vá para o diretório do aplicativo </h3>
 $ cd my-project
