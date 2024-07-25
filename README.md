@@ -39,18 +39,18 @@ $ npm install
 <h3> 7.2. Criar usuário </h3>
 
 $ sudo -u postgres createuser --interactive
-<p>enter name of role to add: laravel</p>
+<p>enter name of role to add: renan</p>
 <p>shall the new role be a superuser (y/n) n</p>
 <p>shall the new role be allowed to create database (y/n) n</p>
 <p>shall the new role be allowed to create more new roles (y/n) n</p>
 
 <h3> 7.3. Criar senha para o usuário </h3>
 <p>$ sudo -u postgres psql</p>
-<p>ALTER USER laravel WITH ENCRYPTED PASSWORD 'password';</p>
+<p>ALTER USER laravel WITH ENCRYPTED PASSWORD '123456';</p>
 <p>\q</p>
 
 <h3> 7.4. Criar banco de dados </h3>
-$ sudo -u postgres createdb laravel
+$ sudo -u postgres createdb trainingcore
 
 <h3> 7.5. Copie o arquivo ".env.example" e altere seu nome para ".env". Em seguida, no arquivo ".env" substitua esta configuração do banco de dados: </h3>
 DB_CONNECTION=mysql
@@ -64,9 +64,9 @@ To this:
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
 DB_PORT=5432
-DB_DATABASE=laravel
-DB_USERNAME=laravel
-DB_PASSWORD=password
+DB_DATABASE=trainingcore
+DB_USERNAME=renan
+DB_PASSWORD=123456
 
 <h3> 8. Definir APP_URL
 Se a url do seu projeto se parece com: example.com/sub-folder Então vá para my-project / .env E modifique esta linha: 
