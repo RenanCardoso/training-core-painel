@@ -39,22 +39,15 @@ $ npm install
 <h3> 7.2. Criar usuário </h3>
 
 $ sudo -u postgres createuser --interactive
-enter name of role to add: laravel
-shall the new role be a superuser (y/n) n
-shall the new role be allowed to create database (y/n) n
-shall the new role be allowed to create more new roles (y/n) n
-Set user password
-
-$ sudo -u postgres psql
-postgres= ALTER USER laravel WITH ENCRYPTED PASSWORD 'password';
-postgres= \q
-Create database
-$ sudo -u postgres createdb laravel
+<p>enter name of role to add: laravel</p>
+<p>shall the new role be a superuser (y/n) n</p>
+<p>shall the new role be allowed to create database (y/n) n</p>
+<p>shall the new role be allowed to create more new roles (y/n) n</p>
 
 <h3> 7.3. Criar senha para o usuário </h3>
-$ sudo -u postgres psql
-postgres= ALTER USER laravel WITH ENCRYPTED PASSWORD 'password';
-postgres= \q
+<p>$ sudo -u postgres psql</p>
+<p>ALTER USER laravel WITH ENCRYPTED PASSWORD 'password';</p>
+<p>\q</p>
 
 <h3> 7.4. Criar banco de dados </h3>
 $ sudo -u postgres createdb laravel
