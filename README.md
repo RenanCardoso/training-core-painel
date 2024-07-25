@@ -53,20 +53,20 @@ $ sudo -u postgres createuser --interactive
 $ sudo -u postgres createdb trainingcore
 
 <h3> 7.5. Copie o arquivo ".env.example" e altere seu nome para ".env". Em seguida, no arquivo ".env" substitua esta configuração do banco de dados: </h3>
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=
-To this:
-
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432
-DB_DATABASE=trainingcore
-DB_USERNAME=renan
-DB_PASSWORD=123456
+<p>DB_CONNECTION=mysql</p>
+<p>DB_HOST=127.0.0.1</p>
+<p>DB_PORT=3306</p>
+<p>DB_DATABASE=laravel</p>
+<p>DB_USERNAME=root</p>
+<p>DB_PASSWORD=</p>
+<p>To this:</p>
+<br>
+<p>DB_CONNECTION=pgsql</p>
+<p>DB_HOST=127.0.0.1</p>
+<p>DB_PORT=5432</p>
+<p>DB_DATABASE=trainingcore</p>
+<p>DB_USERNAME=renan</p>
+<p>DB_PASSWORD=123456</p>
 
 <h3> 8. Definir APP_URL
 Se a url do seu projeto se parece com: example.com/sub-folder Então vá para my-project / .env E modifique esta linha: 
