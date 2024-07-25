@@ -18,7 +18,7 @@ Resumo. Este trabalho propõe o desenvolvimento de um sistema integrado e apoiad
 <h3>Instalação</h3> 
 
 <h3> 1. clone o repositório </h3>
-$ git clone https://github.com/RenanCardoso/training-core-painel my-project
+$ git clone https://github.com/RenanCardoso/training-core-painel training-core-painel
 
 <h3> 2. certifique-se de ter o PHP 7.4 ou superior instalado em sua máquina </h3>
 
@@ -26,7 +26,7 @@ $ git clone https://github.com/RenanCardoso/training-core-painel my-project
 $ sudo apt install openssl php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip php-cli php-pcov php-xdebug php-pgsql
 
 <h3> 4. vá para o diretório do aplicativo </h3>
-$ cd my-project
+$ cd training-core-painel
 
 <h3> 5. instalar dependências do aplicativo </h3>
 $ composer install
