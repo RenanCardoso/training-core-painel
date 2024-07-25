@@ -46,7 +46,7 @@ $ sudo -u postgres createuser --interactive
 
 <h3> 7.3. Criar senha para o usuário </h3>
 <p>$ sudo -u postgres psql</p>
-<p>ALTER USER laravel WITH ENCRYPTED PASSWORD '123456';</p>
+<p>ALTER USER renan WITH ENCRYPTED PASSWORD '123456';</p>
 <p>\q</p>
 
 <h3> 7.4. Criar banco de dados </h3>
